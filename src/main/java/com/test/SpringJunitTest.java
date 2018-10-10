@@ -56,8 +56,8 @@ public class SpringJunitTest {
     //1、用户登录测试
    @Test
     public void Test1(){
-          User users=userdao.login("user","123456");
-          System.out.println(users.getName());
+          User user=userdao.login("user","123456");
+          System.out.println("用户名："+user.getName());
     }
 
     /*
