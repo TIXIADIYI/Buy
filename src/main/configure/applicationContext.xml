@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="    
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">    
+    
+    <!-- 自动扫描Spring注解配置，但是不扫描@Controller，以免与spring mvc的扫描配置一样，导致重复扫描 -->
+    <context:component-scan base-package="com">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+
+
+    <!-- mysql连接的基本配置，使用的是spring提供的 DriverManagerDataSource-->  
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>  
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/buy_data?characterEncoding=utf-8"></property>
+    </bean>
+   
+       
+  <!--
+		2. mybatis的SqlSession的工厂: SqlSessionFactoryBean dataSource:引用数据源
+
+		MyBatis定义数据源,同意加载配置
+	-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!--自动扫描mapping.xml文件-->
+		<!--<property name="mapperLocations" value="classpath:com/ljy/maven_github_ssm/dao/*.xml"></property>-->
+	</bean>
+	
+	<!--
+		3. mybatis自动扫描加载Sql映射文件/接口 : MapperScannerConfigurer sqlSessionFactory
+
+		basePackage:DAO接口所在包名，Spring会自动查找其下的类
+	-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <!--mapper接口扫描的包，即将此包下所有符合的mapper接口加载到SpringIOC容器管理-->
+		<property name="basePackage" value="com.dao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+   
+  	<!--
+		4. 事务管理 : DataSourceTransactionManager dataSource:引用上面定义的数据源
+	-->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 5. 启用事务，使用声明式事务
+		 transaction-manager：引用上面定义的事务管理器
+	 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+  </beans>

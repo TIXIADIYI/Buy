@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 指明这个映射文件adminMapper.xml的逻辑路径,如果与接口建立映射，那么逻辑路径应该与接口的物理路径一致-->
+<mapper namespace="com.dao.ProductDao">
+    <!-- parameterType表示要传入的参数的类型 ，resultType表示要返回的数据的类型-->
+
+    <!-- 查询所有商品 -->
+    <select id="all"  resultType="Product">
+        select * from products
+    </select>
+</mapper>
