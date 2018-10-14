@@ -12,7 +12,7 @@ public class Index {
    */
   @RequestMapping(value = "/shop")
     public String shop(){
-        return "/shop/index.jsp";
+        return "shop/shop_index.jsp";
     }
 
 

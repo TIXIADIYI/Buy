@@ -59,6 +59,25 @@ public class SpringJunitTest {
           User user=userdao.login("user","123456");
           System.out.println("用户名："+user.getName());
     }
+    //注册功能测试
+    @Test
+    public void Testzhuce(){
+       if(userdao.zhuce("12345678901","123456")!=0){
+           System.out.println("注册成功");
+       }else{
+           System.out.println("注册失败，可能同名了改一下名字试试");
+       }
+    }
+
+    //同名检测功能测试
+    @Test
+    public void Testzhucetm(){
+       if(userdao.zhuce_tm("user")==null){
+           System.out.println("账号可用");
+       }else{
+           System.out.println("账号不可用");
+       }
+    }
 
     /*
     管理员表---------------------------------------------------------------------------------------------

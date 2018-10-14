@@ -612,12 +612,12 @@ i {
 .i_btn i {
 	font-size: 14px;
 	border-left: 1px solid #e93a3a;
-	border-right: 1px solid #e93a3a;
+	border-right: 1px solid #E93A3A;
 	margin: 0 -1px;
 	display: block;
 	font-style: normal;
 	color: #fff;
-	background: #ff3b37;
+	
 	text-decoration: none;
 	height: 30px;
 	line-height: 30px;
@@ -643,22 +643,22 @@ i {
 
 .i_btn2 {
 	width: 70px;
-	border-color: #d5d5d5;
+	border-color: #E93A3A;
 	text-align: center;
 	margin: 0 10px
 }
 
 .i_btn2 i {
 	color: #666;
-	border-color: #d5d5d5;
-	background: #ebebeb;
+	border-color: #E93A3A;
+	background: #E93A3A;
 	height: 30px;
 	line-height: 30px
 }
 
 .i_btn2:hover {
-	border-top: 1px solid #d5d5d5;
-	border-bottom: 1px solid #d5d5d5
+	border-top: 1px solid #E93A3A;
+	border-bottom: 1px solid #E93A3A
 }
 
 .dialog_wrapper {

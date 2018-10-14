@@ -8,4 +8,14 @@
     <select id="login"  resultType="User">
         select * from users where user=#{user} and pass=#{pass}
     </select>
+
+    <!-- 注册功能 -->
+    <insert id="zhuce" >
+         insert into users values(null,#{user},#{pass},null,null)
+    </insert>
+
+    <!--同名查询-->
+    <select id="zhuce_tm"  resultType="User">
+          select * from users where user=#{user}
+    </select>
 </mapper>

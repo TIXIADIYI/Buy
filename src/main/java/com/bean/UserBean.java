@@ -18,5 +18,15 @@ public class UserBean {
         return  users;
     }
 
+    //注册功能
+    public int zhuce(String user,String pass){
+        return userdao.zhuce(user,pass);
+    }
+
+    //同名查询
+    public User zhuce_tm(String user){
+        return  userdao.zhuce_tm(user);
+    }
+
 
 }
