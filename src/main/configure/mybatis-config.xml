@@ -10,6 +10,7 @@
 		<typeAlias alias="Admin" type="com.model.Admin"/>
 		<typeAlias alias="Product" type="com.model.Product"/>
 		<typeAlias alias="Product_type" type="com.model.Product_type"/>
+		<typeAlias alias="Product_comment" type="com.model.Product_comment"/>
 	</typeAliases>
 
 	<mappers>
@@ -18,6 +19,7 @@
 		<mapper resource="com/dao/mapper/AdminMapper.xml"/>
 		<mapper resource="com/dao/mapper/ProductMapper.xml"/>
 		<mapper resource="com/dao/mapper/Product_typeMapper.xml"/>
+		<mapper resource="com/dao/mapper/Product_commentMapper.xml"/>
 	</mappers>
 
 

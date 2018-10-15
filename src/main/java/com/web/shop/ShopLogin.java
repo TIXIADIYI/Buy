@@ -40,7 +40,6 @@ public class ShopLogin {
     @ResponseBody
     @RequestMapping(value = "/login/zhuce", method = RequestMethod.POST)
     public Integer shoplogin_zhuce(String user,String pass,String pass2){
-        System.out.println(user+"和"+pass+"和"+pass2 );
         if(user==null||pass==null||pass2==null||user.equals("")||pass.equals("")||pass2.equals("")){
             return 2;
         }else if(!pass.equals(pass2)){

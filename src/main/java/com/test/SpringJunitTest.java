@@ -1,13 +1,7 @@
 package com.test;
 
-import com.dao.AdminDao;
-import com.dao.ProductDao;
-import com.dao.Product_typeDao;
-import com.dao.UserDao;
-import com.model.Admin;
-import com.model.Product;
-import com.model.Product_type;
-import com.model.User;
+import com.dao.*;
+import com.model.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -49,6 +43,8 @@ public class SpringJunitTest {
     private ProductDao productdao;
     @Resource
     private Product_typeDao product_typedao;
+    @Resource
+    private Product_commentDao product_commentdao;
 
     /*
     用户表---------------------------------------------------------------------------------------------
@@ -89,7 +85,6 @@ public class SpringJunitTest {
        System.out.println(admin.getId());
     }
 
-
     /*
    商品表---------------------------------------------------------------------------------------------
  */
@@ -113,5 +108,14 @@ public class SpringJunitTest {
         for(int i=0;i<prdocut_type.length;i++){
             System.out.println(prdocut_type[i].getName());
         }
+    }
+
+    /*
+    商品评论表-------------------------------------------------------------
+     */
+    @Test
+    public void Testcomment(){
+        Product_comment[] pro=product_commentdao.all();
+        System.out.println(pro.length);
     }
 }
