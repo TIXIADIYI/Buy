@@ -79,7 +79,8 @@
       box-shadow: 0 0 5px rgba(46, 141, 237, 0.3); 
 	  border: 1px solid rgba(46, 141, 237, 0.5) !important; } 
 .login-body { 
-      padding: 5px 25px 0; 
+      padding: 5px 25px 0;
+	height: 230px;
 	  overflow: hidden; }
 .login ul { 
        overflow: hidden; 
@@ -108,7 +109,7 @@
 .login-style { 
         display: none; }
 .login-on { 
-          color: #f60;
+          color: #ff6700;
 		  font-size:14px; 
 		  border-bottom:1px solid #f60 !important;}
 .login-on em { opacity: 1 !important; }
@@ -239,7 +240,13 @@
             background-position: -32px 0; }
 .foot_nav i { 
            margin: 0 10px; }
-
+#button{
+	width: 270px; height: 40px; background-color:#ff6700;font-size: 24px; color:#fff;
+	position: relative;
+	top: 20px;
+	border: 0px;
+	box-shadow: 0px 0px;
+}
 
 
 
