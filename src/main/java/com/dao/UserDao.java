@@ -15,5 +15,7 @@ public interface UserDao {
 	int zhuce(@Param(value = "user") String user, @Param(value = "pass") String pass);
     //同名查询
 	User zhuce_tm(@Param(value = "user")String user);
+	//根据id查询用户
+	User get(@Param(value = "id") String id);
 }
 

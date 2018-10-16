@@ -7,6 +7,33 @@ public class Product_comment {
     private User user_id;
     private String comment;
     private Date time;
+    private Integer Y;
+    private  Integer N;
+    private boolean praise;
+
+    public Integer getY() {
+        return Y;
+    }
+
+    public void setY(Integer y) {
+        Y = y;
+    }
+
+    public Integer getN() {
+        return N;
+    }
+
+    public void setN(Integer n) {
+        N = n;
+    }
+
+    public boolean isPraise() {
+        return praise;
+    }
+
+    public void setPraise(boolean praise) {
+        this.praise = praise;
+    }
 
     public Product getProduct_id() {
         return product_id;

@@ -11,7 +11,7 @@ public class Product {
     private String sum;
     private Date time;
     private Integer click;
-    private Product_type product_type;
+    private Product_type product_type_id;
 
     public Integer getId() {
         return id;
@@ -77,11 +77,11 @@ public class Product {
         this.click = click;
     }
 
-    public Product_type getProduct_type() {
-        return product_type;
+    public Product_type getProduct_type_id() {
+        return product_type_id;
     }
 
-    public void setProduct_type(Product_type product_type) {
-        this.product_type = product_type;
+    public void setProduct_type_id(Product_type product_type_id) {
+        this.product_type_id = product_type_id;
     }
 }
