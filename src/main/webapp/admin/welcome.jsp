@@ -13,11 +13,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <link href="<%=basePath%>admin/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>admin/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
-<title>我的桌面</title>
+<title>数据统计</title>
 </head>
 <body>
 <div class="pd-20" style="padding-top:20px;">
-  <p class="f-20 text-success">欢迎使用二手市场后台</p>
+  <p class="f-20 text-success">欢迎使用柳橙汁二手市场数据管理系统</p>
   <p>登录次数：1 </p>
   <p>上次登录IP：222.35.131.79.1  上次登录时间：2014-6-14 11:19:55</p>
   <table class="table table-border table-bordered table-bg">

@@ -16,7 +16,6 @@
 <link href="<%=basePath%>admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>admin/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin" />
 <link href="<%=basePath%>admin/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
-<link href="<%=basePath%>admin/css/style.css" rel="stylesheet" type="text/css" />
 <title>后台</title>
 </head>
 <body>
@@ -36,20 +35,15 @@
     
     
 	<ul class="Hui-userbar">
-		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
-			<ul class="dropDown-menu radius box-shadow">
-				<li><a href="#">个人信息</a></li>
-				<li><a href="#">切换账户</a></li>
-				<li><a href="login.jsp">退出</a></li>
-			</ul>
+		<li class="dropDown "><a href="#" class="dropDown_A">${sessionScope.admin.name}</a>
 		</li>
-        
-        
-        
-        
-        
-        
-		<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+
+
+
+
+
+
+		<li id="Hui-msg"> <a href="<%=basePath%>admin/exit" title="退出">退出</a> </li>
 		<li id="Hui-skin" class="dropDown right dropDown_hover"><a href="javascript:;" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
@@ -69,7 +63,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="<%=basePath%>admin/product-list.jsp" href="javascript:void(0)">产品管理</a></li>
+					<li><a _href="<%=basePath%>admin/product_list.jsp" href="javascript:void(0)">产品管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -112,7 +106,7 @@
 	<div id="Hui-tabNav" class="Hui-tabNav">
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
-				<li class="active"><span title="我的桌面" data-href="welcome.jsp">我的桌面</span><em></em></li>
+				<li class="active"><span title="数据统计" data-href="welcome.jsp">数据统计</span><em></em></li>
 			</ul>
 		</div>
 		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
