@@ -32,7 +32,7 @@
         <td>${product.sum}</td>
         <td>${product.time}</td>
         <td>${product.click}</td>
-        <td></td>
+        <td>${product.product_type_id.name}</td>
     </tr>
 </c:forEach>
 </table>

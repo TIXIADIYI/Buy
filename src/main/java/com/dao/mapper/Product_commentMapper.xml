@@ -6,9 +6,9 @@
     <!-- 外键关联 -->
     <resultMap type="Product_comment" id="product_comment">
         <!-- 关联对象属性association，property指属性名， -->
-        <association property="product_id" javaType="Product" column="product_id" select="com.dao.ProductDao.all">
+        <association property="product_id" javaType="Product" column="product_id" select="com.dao.ProductDao.get">
         </association>
-        <association property="user_id" javaType="User" column="user_id" select="com.dao.UserDao.all">
+        <association property="user_id" javaType="User" column="user_id" select="com.dao.UserDao.get">
         </association>
     </resultMap>
 

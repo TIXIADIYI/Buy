@@ -18,4 +18,9 @@
     <select id="zhuce_tm"  resultType="User">
           select * from users where user=#{user}
     </select>
+
+    <!--根据id查询用户-->
+    <select id="get" resultType="User">
+        SELECT  * from users where id=#{id}
+    </select>
 </mapper>
