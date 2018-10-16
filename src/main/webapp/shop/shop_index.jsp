@@ -10,7 +10,6 @@
 </head>
 <body>
 <a href="<%=basePath%>shop/login">点击进入登录</a>
-
 <h1>商品列表</h1>
 <table border="1">
     <tr>

@@ -15,8 +15,8 @@ public class AdminLogin {
     private AdminBean adminbean;
 
     //跳转到登录页面
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String adminlogin(){
-//
-//    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String adminlogin(){
+        return "admin/login.jsp";
+    }
 }
