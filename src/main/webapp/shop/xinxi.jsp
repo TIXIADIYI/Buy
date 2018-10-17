@@ -42,7 +42,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<div class="container">
 					<ul class="header-links pull-left">					
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<li><a href="index.jsp"></i> 首页</a></li>
+						<li><a href="shop_index.jsp"></i> 首页</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 						

@@ -4,6 +4,7 @@ public class Product_type {
     private Integer id;
     private String name;
 
+
     public Integer getId() {
         return id;
     }
@@ -19,4 +20,5 @@ public class Product_type {
     public void setName(String name) {
         this.name = name;
     }
+
 }

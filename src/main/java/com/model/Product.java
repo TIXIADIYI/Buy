@@ -5,13 +5,48 @@ import java.util.Date;
 public class Product {
     private Integer id;
     private String name;
-    private String price;
+    private Float price;
     private String remake;
     private String image;
     private String sum;
     private Date time;
     private Integer click;
     private Product_type product_type_id;
+    private Float prices;
+    private User user_id;
+    private boolean display;
+
+    public User getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    public boolean isDisplay() {
+        return display;
+    }
+
+    public void setDisplay(boolean display) {
+        this.display = display;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public Float getPrices() {
+        return prices;
+    }
+
+    public void setPrices(Float prices) {
+        this.prices = prices;
+    }
 
     public Integer getId() {
         return id;
@@ -27,14 +62,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public String getRemake() {

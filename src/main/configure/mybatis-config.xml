@@ -11,6 +11,7 @@
 		<typeAlias alias="Product" type="com.model.Product"/>
 		<typeAlias alias="Product_type" type="com.model.Product_type"/>
 		<typeAlias alias="Product_comment" type="com.model.Product_comment"/>
+		<typeAlias alias="Recommend" type="com.model.Recommend"/>
 	</typeAliases>
 
 	<mappers>
@@ -20,6 +21,7 @@
 		<mapper resource="com/dao/mapper/ProductMapper.xml"/>
 		<mapper resource="com/dao/mapper/Product_typeMapper.xml"/>
 		<mapper resource="com/dao/mapper/Product_commentMapper.xml"/>
+		<mapper resource="com/dao/mapper/RecommendMapper.xml"/>
 	</mappers>
 
 

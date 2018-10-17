@@ -39,7 +39,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-dollar"></i> 登录</a></li>
 						<li><a href="#"><i class="fa fa-dollar"></i> 注册</a></li>
-						<li><a href="index.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
+						<li><a href="shop_index.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
 					</ul>
 				</div>
 			</div>

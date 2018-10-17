@@ -8,6 +8,8 @@
         <!-- 关联对象属性association，property指属性名， -->
         <association property="product_type_id" javaType="Product_type" column="product_type_id" select="com.dao.Product_typeDao.get">
         </association>
+        <association property="user_id" javaType="User" column="user_id" select="com.dao.UserDao.get">
+        </association>
     </resultMap>
 
     <!-- parameterType表示要传入的参数的类型 ，resultType表示要返回的数据的类型-->

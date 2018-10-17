@@ -8,4 +8,9 @@
     <select id="login"  resultType="Admin">
         select * from admins where name=#{name} and pass=#{pass}
     </select>
+
+    <!--根据id查询管理员-->
+    <select id="get" resultType="Admin">
+        SElect * from admins where id=#{id}
+    </select>
 </mapper>

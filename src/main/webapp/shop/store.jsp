@@ -142,7 +142,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="index.jsp">首页</a></li>
+							<li><a href="shop_index.jsp">首页</a></li>
 							<li><a href="#">所有类别</a></li>
 							
 							<li class="active">电脑 (490 结果)</li>

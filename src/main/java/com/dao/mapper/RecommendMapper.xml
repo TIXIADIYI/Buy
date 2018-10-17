@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 指明这个映射文件adminMapper.xml的逻辑路径,如果与接口建立映射，那么逻辑路径应该与接口的物理路径一致-->
+<mapper namespace="com.dao.RecommendDao">
+
+    <!-- 外键关联 -->
+    <resultMap type="Recommend" id="recommend">
+        <!-- 关联对象属性association，property指属性名， -->
+        <association property="admin_id" javaType="Admin" column="admin_id" select="com.dao.AdminDao.get">
+        </association>
+    </resultMap>
+
+    <!-- parameterType表示要传入的参数的类型 ，resultType表示要返回的数据的类型-->
+
+    <!-- 查询所有推荐 -->
+    <select id="all"  resultMap="recommend">
+        select * from recommend
+    </select>
+
+</mapper>

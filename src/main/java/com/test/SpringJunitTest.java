@@ -45,6 +45,8 @@ public class SpringJunitTest {
     private Product_typeDao product_typedao;
     @Resource
     private Product_commentDao product_commentdao;
+    @Resource
+    private RecommendDao recommenddao;
 
     /*
     用户表---------------------------------------------------------------------------------------------
@@ -117,5 +119,16 @@ public class SpringJunitTest {
     public void Testcomment(){
         Product_comment[] pro=product_commentdao.all();
         System.out.println(pro.length);
+    }
+
+    /*
+    推荐表
+     */
+    @Test
+    public void TestRecommned(){
+        Recommend[] re=recommenddao.all();
+        for (int i=0;i<re.length;i++){
+            System.out.println(re[i].getCommend());
+        }
     }
 }

@@ -30,14 +30,16 @@
                      function (data) {
                          if (data == "1") {
                              layer.msg('登录成功!',{icon: 6,time:1000});
-                             location.href = "<%=basePath%>admin/index";
+                             delayURL("<%=basePath%>admin/index");
                          } else if (data == "2") {
                              layer.msg('登录失败，填写不完整!',{icon: 5,time:1000});
                          } else {
                              layer.msg('登录失败，账号或密码错误!',{icon: 5,time:1000});
                          }
              });
-
+       function delayURL(url){
+              setTimeout("location.href = '" + url + "'",1000);
+          }
      }
   </script>
 </head>
