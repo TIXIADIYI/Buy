@@ -15,24 +15,30 @@
 <link href="<%=basePath%>admin/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
 <title>柳橙汁二手交易平台管理系统</title>
   <script language="JavaScript" src="<%=basePath%>admin/js/jquery.js"></script>
+  <<script type="text/javascript" src="<%=basePath%>admin/lib/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/lib/layer/1.9.3/layer.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/lib/My97DatePicker/WdatePicker.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/js/H-ui.js"></script>
+  <script type="text/javascript" src="<%=basePath%>admin/js/H-ui.admin.js"></script>
+
   <script type="text/javascript">
-      $(document).ready(function(){
-          $("#button").click(function() {
-                  $.post("<%=basePath%>admin/login/post",
-                      $("#adminlogin").serialize(),
-                      function (data) {
-                          if(data=="1"){
-                              alert("登录成功");
-                              location.href="<%=basePath%>admin/index";
-                          }else if(data=="2"){
-                              alert("登录失败，填写不完整");
-                          }else{
-                              alert("登录失败，账号或密码错误");
-                          }
-                      });
-              }
-          )
-      });
+      function button() {
+                 $.post("<%=basePath%>admin/login/post",
+                     $("#adminlogin").serialize(),
+                     function (data) {
+                         if (data == "1") {
+                             layer.msg('登录成功!',{icon: 6,time:1000});
+                             location.href = "<%=basePath%>admin/index";
+                         } else if (data == "2") {
+                             layer.msg('登录失败，填写不完整!',{icon: 5,time:1000});
+                         } else {
+                             layer.msg('登录失败，账号或密码错误!',{icon: 5,time:1000});
+                         }
+             });
+
+     }
   </script>
 </head>
 <body>
@@ -61,7 +67,7 @@
       </div>
       <div class="row">
         <div class="formControls col-8 col-offset-3">
-          <input name="" type="button" id="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+          <input name="" type="button" onClick="button()" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
           <input name="" type="reset" class="btn btn-default radius size-L" style="float: right;" value="&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;">
         </div>
       </div>
