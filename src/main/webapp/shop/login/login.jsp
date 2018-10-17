@@ -43,7 +43,7 @@
 </div>
 <form id="loginform" method="post">
     <div class="login_wrap"
-         style="width:; background:#fff url(../image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
+         style="width:; background:#fff url(<%=basePath%>shop/image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
         <div class="wrapper" id="login_body" style="width:;">
             <div class="log_ad" style="display:"><a href="javascript:;"></a></div>
             <div class="login_border" style="padding:8px;">
@@ -60,7 +60,7 @@
                     <div class="login-body">
                         <div class="login-style" style="display: block;">
                             <dl>
-                                <dd><img src="../image/iconfont-yonghu.png" style="position: absolute;"><input
+                                <dd><img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;"><input
                                         name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
                             </dl>
                             <dl><img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
@@ -96,7 +96,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/style.js"></script>
+<script type="text/javascript" src="<%=basePath%>shop/js/style.js"></script>
 
 </body>
 
