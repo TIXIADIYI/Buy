@@ -218,7 +218,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="./img/product01.png" alt="">
+												<img src="<%=basePath%>shop/img/product01.png" alt="">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 													<span class="new">新</span>
@@ -521,7 +521,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="./img/product01.png" alt="">
+												<img src="<%=basePath%>shop/img/product01.png" alt="">
 											</div>
 											<div class="product-body">
 												<p class="product-category">商品名</p>
@@ -591,7 +591,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product08.png" alt="">
+										<img src="<%=basePath%>shop/img/product08.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -604,7 +604,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product09.png" alt="">
+										<img src="<%=basePath%>shop/img/product09.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">Category</p>
@@ -619,7 +619,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product01.png" alt="">
+										<img src="<%=basePath%>shop/img/product01.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -632,7 +632,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product02.png" alt="">
+										<img src="<%=basePath%>shop/img/product02.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -645,7 +645,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product03.png" alt="">
+										<img src="<%=basePath%>shop/img/product03.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -671,7 +671,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product04.png" alt="">
+										<img src="<%=basePath%>shop/img/product04.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -684,7 +684,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product05.png" alt="">
+										<img src="<%=basePath%>shop/img/product05.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -697,7 +697,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product06.png" alt="">
+										<img src="<%=basePath%>shop/img/product06.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -712,7 +712,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product07.png" alt="">
+										<img src="<%=basePath%>shop/img/product07.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -725,7 +725,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product08.png" alt="">
+										<img src="<%=basePath%>shop/img/product08.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -738,7 +738,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product09.png" alt="">
+										<img src="<%=basePath%>shop/img/product09.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -766,7 +766,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product01.png" alt="">
+										<img src="<%=basePath%>shop/img/product01.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -779,7 +779,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product02.png" alt="">
+										<img src="<%=basePath%>shop/img/product02.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -792,7 +792,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product03.png" alt="">
+										<img src="<%=basePath%>shop/img/product03.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -807,7 +807,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product04.png" alt="">
+										<img src="<%=basePath%>shop/img/product04.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -820,7 +820,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product05.png" alt="">
+										<img src="<%=basePath%>shop/img/product05.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
@@ -833,7 +833,7 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="./img/product06.png" alt="">
+										<img src="<%=basePath%>shop/img/product06.png" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">商品名</p>
