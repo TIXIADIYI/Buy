@@ -15,4 +15,9 @@ public class ProductBean {
     public Product[] all(){
         return productdao.all();
     }
+    //根据分类查询商品
+    public Product[] product_type_get(Integer product_type_id){
+       return  productdao.product_type_get(product_type_id);
+    }
+
 }

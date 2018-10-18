@@ -23,4 +23,9 @@
     <select id="get" resultMap="product">
         SELECT * from products where id=#{id}
     </select>
+
+    <!--根据分类查询商品-->
+    <select id="product_type_get" resultMap="product">
+        select * from products where product_type_id=#{product_type_id}
+    </select>
 </mapper>

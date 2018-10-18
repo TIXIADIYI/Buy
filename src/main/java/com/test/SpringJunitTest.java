@@ -99,6 +99,15 @@ public class SpringJunitTest {
        }
         System.out.println("总商品数"+product.length);
     }
+    //根据分类查询商品测试
+    @Test
+    public void Test_type(){
+        Product[] product=productdao.product_type_get(1) ;
+        System.out.println("该分类下的商品：");
+        for(int i=0;i<product.length;i++){
+            System.out.println(product[i].getName());
+        }
+    }
 
         /*
     商品分类表---------------------------------------------------------------------------------------------
