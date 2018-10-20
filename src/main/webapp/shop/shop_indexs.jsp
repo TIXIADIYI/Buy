@@ -66,7 +66,7 @@
 								<form>
 									<select class="input-select">
 										<option value="all">所有类别</option>
-                                           <c:forEach items="${requestScope.product_type}" var="list">
+                                           <c:forEach items="${requestScope.product_type}" var="list" >
 											   <option value="${list.id}">${list.name}</option>
 										   </c:forEach>
 									</select>
@@ -118,7 +118,7 @@
 						<li class="active"><a href="<%=basePath%>shop">首页</a></li>
 						<li><a href="#">热卖</a></li>
 						<li><a href="<%=basePath%>shop/store.jsp">分类</a></li>
-						<c:forEach items="${requestScope.product_type_top}" var="list">
+						<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">
 							<li><a href="#">${list.name}</a></li>
 						</c:forEach>
 
@@ -137,47 +137,21 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
+					<c:forEach items="${requestScope.product_type_top}" var="list" end="2" varStatus="sss">
 					<!-- shop -->
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="<%=basePath%>shop/img/shop02.png" alt="">
+								<img src="<%=basePath%>shop/${requestScope.product_image[sss.index]}" alt="" height="200" width="300">
 							</div>
 							<div class="shop-body">
-								<h3>车辆<br>Collection</h3>
+								<h3>${list.name}<br></h3>
 								<a href="product.jsp" class="cta-btn">进去淘一淘<i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
 					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="<%=basePath%>shop/img/shop02.png" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>车辆<br>Collection</h3>
-								<a href="product.jsp" class="cta-btn">进去淘一淘<i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="<%=basePath%>shop/img/shop02.png" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>车辆<br>Collection</h3>
-								<a href="product.jsp" class="cta-btn">进去淘一淘<i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
+					</c:forEach>
 				</div>
 				<!-- /row -->
 			</div>
@@ -198,10 +172,9 @@
 							<h3 class="title">新品</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">笔记本电脑</a></li>
-									<li><a data-toggle="tab" href="#tab1">智能手机</a></li>
-									<li><a data-toggle="tab" href="#tab1">相机</a></li>
-									<li><a data-toggle="tab" href="#tab1">饰品</a></li>
+									<c:forEach items="${requestScope.product_type_new}" var="list">
+									<li><a data-toggle="tab" href="#tab1">${list.name}</a></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -388,10 +361,10 @@
 							<h3 class="title">畅销</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab2">笔记本电脑</a></li>
-									<li><a data-toggle="tab" href="#tab2">智能手机</a></li>
-									<li><a data-toggle="tab" href="#tab2">相机</a></li>
-									<li><a data-toggle="tab" href="#tab2">饰品</a></li>
+									<c:forEach items="${requestScope.product_type_top}" var="list" end="3">
+										<li><a data-toggle="tab" href="#tab2">${list.name}</a></li>
+									</c:forEach>
+									<%--<li class="active"><a data-toggle="tab" href="#tab2">笔记本电脑</a></li>--%>
 								</ul>
 							</div>
 						</div>

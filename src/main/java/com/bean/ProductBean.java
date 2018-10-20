@@ -19,5 +19,8 @@ public class ProductBean {
     public Product[] product_type_get(Integer product_type_id){
        return  productdao.product_type_get(product_type_id);
     }
-
+    //根据时间从新到旧排序商品
+    public Product[] product_new(){
+        return  productdao.product_new();
+    }
 }

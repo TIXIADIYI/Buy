@@ -28,4 +28,9 @@
     <select id="product_type_get" resultMap="product">
         select * from products where product_type_id=#{product_type_id}
     </select>
+
+    <!--根据日期从新到旧排序商品-->
+    <select id="product_new" resultMap="product">
+        SELECT * from products  order by time DESC
+    </select>
 </mapper>

@@ -21,10 +21,14 @@ public class ShopIndex {
     @Resource
     private RecommendBean recommendbean;
 
-    //主页头部使用分类数组
-    private Product_type[] product_type_top=new Product_type[4];
-    private int[] product_type_top_int=new int[4];
-
+    //主页头部使用分类数组、7个分类
+    private Product_type[] product_type_top=new Product_type[7];
+    private int[] product_type_top_int=new int[7];
+    //主页新品使用分类数组、4个分类
+    private Product_type[] product_type_new=new Product_type[4];
+    private int[] product_type_new_int=new int[4];
+    //主页头部大图分类的第一个商品图片
+    private String[] product_image=new String[3];
     /*
    * 跳转到前台主页
    */
@@ -45,28 +49,82 @@ public class ShopIndex {
         Recommend[] recommends=recommendbean.all();
         Recommend recommend=recommends[(int) (Math.random() * recommends.length)];
         request.setAttribute("recommend",recommend);
-        //获取头部热门点击分类
+        //获取头部热门(下半部分热门)点击分类
         for(int i=0;i<product_type_top.length;i++){
             product_type_top_int[i]=0;
             product_type_top[i]=null;
         }
-            for(int j=0;j<product_type.length;j++){
+        for(int j=0;j<product_type.length;j++){
                 int click=0;
                 Product[] product_j=productbean.product_type_get(product_type[j].getId());
                 for(int k=0;k<product_j.length;k++){
                     click+=product_j[k].getClick();
                 }
-                for(int i=0;i<product_type_top.length;i++){
-                    if(click>product_type_top_int[i]){
-                        product_type_top_int[i]=click;
-                        product_type_top[i]=product_type[j];
+                for(int p=0;p<product_type_top.length;p++){
+                    if(click>product_type_top_int[p]) {
+                        int clicks = product_type_top_int[p];
+                        Product_type product_type_clicks= product_type_top[p];
+                        product_type_top_int[p]=click;
+                        product_type_top[p]=product_type[j];
+                        for(int i=p+1;i<product_type_top.length;i++){
+                            if(clicks>product_type_top_int[i]){
+                                int clickss=product_type_top_int[i];
+                                Product_type product_type_clickss=product_type_top[i];
+                                product_type_top_int[i]=clicks;
+                                product_type_top[i]=product_type_clicks;
+                                product_type_clicks=product_type_clickss;
+                                clicks=clickss;
+                            }
+                        }
                         break;
                     }
                 }
+                }
+        for(Product_type s:product_type_top){
+            if(s!=null){
+            System.out.println(s.getName());
             }
+        }
         request.setAttribute("product_type_top",product_type_top);
         //获取新上架按时间排序分类
-
+        Product[] product_new=productbean.product_new();
+        boolean product_type_new_b=false;
+         for(int i=0;i<product_new.length&&product_type_new_b==false;i++){
+            for(int j=0;j<product_type_new.length;j++){
+                if(product_type_new[product_type_new.length-1]!=null){
+                    product_type_new_b=true;
+                }
+                boolean sss=true;
+                for(int k=0;k<j;k++){
+                    if(product_type_new_int[k]==product_new[i].getProduct_type_id().getId()){
+                        sss=false;
+                        break;
+                    }
+                }
+                if(sss&&product_type_new[j]==null){
+                    product_type_new[j]=product_new[i].getProduct_type_id();
+                    product_type_new_int[j]=product_new[i].getProduct_type_id().getId();
+                    break;
+                }
+               }
+         }
+        request.setAttribute("product_type_new",product_type_new);
+         //头部大图分类取最热门商品图片
+         for(int i=0;i<3;i++){
+             Product[] product_j=productbean.product_type_get(product_type_top[i].getId());
+             Product product_js=null;
+             for(int l=0;l<product_j.length;l++){
+                 if(l==0){
+                     product_js=product_j[l];
+                 }else {
+                     if(product_js.getClick()<product_j[l].getClick()){
+                         product_js=product_j[l];
+                     }
+                 }
+             }
+             product_image[i]=product_js.getImage();
+         }
+        request.setAttribute("product_image",product_image);
         //跳转
         return "shop/shop_indexs.jsp";
     }
