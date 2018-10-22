@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -221,7 +222,14 @@
 											<div class="product-img">
 												<img src="<%=basePath%>shop/img/product02.png" alt="">
 												<div class="product-label">
-													<span class="sale">-${(1-list.price/list.prices)*100}%</span>
+                                                    <c:choose>
+                                                        <c:when  test="${(1-list.price/list.prices)*100==0||list.prices==null||list.prices==0}">
+
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                    <span class="sale">-<fmt:formatNumber type="number" value="${(1-list.price/list.prices)*100}" pattern="#.##"/>%</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
 												</div>
 											</div>
 											<div class="product-body">
@@ -331,7 +339,14 @@
 											<div class="product-img">
 												<img src="<%=basePath%>shop/img/product07.png" alt="">
 												<div class="product-label">
-													<span class="sale">-${(1-list.price/list.prices)*100}%</span>
+                                                    <c:choose>
+                                                        <c:when  test="${(1-list.price/list.prices)*100==0||list.prices==null||list.prices==0}">
+
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="sale">-<fmt:formatNumber type="number" value="${(1-list.price/list.prices)*100}" pattern="#.##"/>%</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
 												</div>
 											</div>
 											<div class="product-body">
