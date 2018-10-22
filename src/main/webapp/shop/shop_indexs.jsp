@@ -142,7 +142,7 @@
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="<%=basePath%>shop/${requestScope.product_image[sss.index]}" alt="" height="200" width="300">
+								<img src="<%=basePath%>shop/${requestScope.product_image[sss.index]}" alt="" height="250" width="350">
 							</div>
 							<div class="shop-body">
 								<h3>${list.name}<br></h3>
@@ -172,9 +172,6 @@
 							<h3 class="title">新品</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<c:forEach items="${requestScope.product_type_new}" var="list">
-									<li><a data-toggle="tab" href="#tab1">${list.name}</a></li>
-									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -189,48 +186,48 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product01.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">新</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-											<a href="<%=basePath%>shop/product.jsp">	<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详</button></a>
-											</div>
-										</div>
+										<%--<div class="product">--%>
+											<%--<div class="product-img">--%>
+												<%--<img src="<%=basePath%>shop/img/product01.png" alt="">--%>
+												<%--<div class="product-label">--%>
+													<%--<span class="sale">-30%</span>--%>
+													<%--<span class="new">新</span>--%>
+												<%--</div>--%>
+											<%--</div>--%>
+											<%--<div class="product-body">--%>
+												<%--<p class="product-category">商品名</p>--%>
+												<%--<h3 class="product-name"><a href="#">这里是描述</a></h3>--%>
+												<%--<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
+												<%--<div class="product-rating">--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+												<%--</div>--%>
+												<%--<div class="product-btns">--%>
+													<%--<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>--%>
+													<%----%>
+												<%--</div>--%>
+											<%--</div>--%>
+											<%--<div class="add-to-cart">--%>
+											<%--<a href="<%=basePath%>shop/product.jsp">	<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详</button></a>--%>
+											<%--</div>--%>
+										<%--</div>--%>
 										<!-- /product -->
-
+                                    <c:forEach items="${requestScope.product_new}" var="list" end="4">
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
 												<img src="<%=basePath%>shop/img/product02.png" alt="">
 												<div class="product-label">
-													<span class="new">新</span>
+													<span class="sale">-${(1-list.price/list.prices)*100}%</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<p class="product-category">${list.name}</p>
+												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
+												<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -240,32 +237,7 @@
 												</div>
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
 
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product03.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
 												</div>
 											</div>
 											<div class="add-to-cart">
@@ -273,60 +245,8 @@
 											</div>
 										</div>
 										<!-- /product -->
+									</c:forEach>
 
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -361,9 +281,6 @@
 							<h3 class="title">畅销</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<c:forEach items="${requestScope.product_type_top}" var="list" end="3">
-										<li><a data-toggle="tab" href="#tab2">${list.name}</a></li>
-									</c:forEach>
 									<%--<li class="active"><a data-toggle="tab" href="#tab2">笔记本电脑</a></li>--%>
 								</ul>
 							</div>
@@ -378,49 +295,49 @@
 								<!-- tab -->
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product06.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">新</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
-
+										<%--<!-- product -->--%>
+										<%--<div class="product">--%>
+											<%--<div class="product-img">--%>
+												<%--<img src="<%=basePath%>shop/img/product06.png" alt="">--%>
+												<%--<div class="product-label">--%>
+													<%--<span class="sale">-30%</span>--%>
+													<%--<span class="new">新</span>--%>
+												<%--</div>--%>
+											<%--</div>--%>
+											<%--<div class="product-body">--%>
+												<%--<p class="product-category">商品名</p>--%>
+												<%--<h3 class="product-name"><a href="#">这里是描述</a></h3>--%>
+												<%--<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
+												<%--<div class="product-rating">--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+													<%--<i class="fa fa-star"></i>--%>
+												<%--</div>--%>
+												<%--<div class="product-btns">--%>
+													<%--<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>--%>
+													<%----%>
+												<%--</div>--%>
+											<%--</div>--%>
+											<%--<div class="add-to-cart">--%>
+												<%--<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>--%>
+											<%--</div>--%>
+										<%--</div>--%>
+										<%--<!-- /product -->--%>
+                            <c:forEach items="${requestScope.product_hot}" var="list" end="4">
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
 												<img src="<%=basePath%>shop/img/product07.png" alt="">
 												<div class="product-label">
-													<span class="new">新</span>
+													<span class="sale">-${(1-list.price/list.prices)*100}%</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+												<p class="product-category">${list.name}</p>
+												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
+												<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
@@ -438,85 +355,7 @@
 											</div>
 										</div>
 										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product08.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product09.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">商品名</p>
-												<h3 class="product-name"><a href="#">这里是描述</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-													
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-											</div>
-										</div>
-										<!-- /product -->
+							</c:forEach>
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -540,7 +379,7 @@
 				<div class="row">
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
-							<h4 class="title">畅销</h4>
+							<h4 class="title">${requestScope.product_type_top[0].name}</h4>
 							<div class="section-nav">
 								<div id="slick-nav-3" class="products-slick-nav"></div>
 							</div>
@@ -548,92 +387,39 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-3">
 							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product07.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
+						<%--<!-- product widget -->--%>
+								<%--<div class="product-widget">--%>
+									<%--<div class="product-img">--%>
+										<%--<img src="<%=basePath%>shop/img/product07.png" alt="">--%>
+									<%--</div>--%>
+									<%--<div class="product-body">--%>
+										<%--<p class="product-category">商品名</p>--%>
+										<%--<h3 class="product-name"><a href="#">这里是描述</a></h3>--%>
+										<%--<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
+									<%--</div>--%>
+								<%--</div>--%>
 								<!-- /product widget -->
-
+                             <c:forEach items="${requestScope.product_top_hot[0]}" var="list" >
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
 										<img src="<%=basePath%>shop/img/product08.png" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+										<p class="product-category">${list.name}</p>
+										<h3 class="product-name"><a href="#">${list.remake}</a></h3>
+										<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
 									</div>
 								</div>
 								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product09.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
-							</div>
-
-							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product01.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product02.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product03.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
+							 </c:forEach>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
-							<h4 class="title">数码</h4>
+							<h4 class="title">${requestScope.product_type_top[1].name}</h4>
 							<div class="section-nav">
 								<div id="slick-nav-4" class="products-slick-nav"></div>
 							</div>
@@ -641,85 +427,22 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-4">
 							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product04.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
 
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product05.png" alt="">
+								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" >
+									<!-- product widget -->
+									<div class="product-widget">
+										<div class="product-img">
+											<img src="<%=basePath%>shop/img/product08.png" alt="">
+										</div>
+										<div class="product-body">
+											<p class="product-category">${list.name}</p>
+											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
+											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+										</div>
 									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
+									<!-- /product widget -->
+								</c:forEach>
 
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product06.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
-							</div>
-
-							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product07.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product08.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product09.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
 							</div>
 						</div>
 					</div>
@@ -728,7 +451,7 @@
 
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
-							<h4 class="title">日用品</h4>
+							<h4 class="title">${requestScope.product_type_top[2].name}</h4>
 							<div class="section-nav">
 								<div id="slick-nav-5" class="products-slick-nav"></div>
 							</div>
@@ -736,85 +459,20 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-5">
 							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product01.png" alt="">
+								<c:forEach items="${requestScope.product_top_hot[2]}" var="list" >
+									<!-- product widget -->
+									<div class="product-widget">
+										<div class="product-img">
+											<img src="<%=basePath%>shop/img/product08.png" alt="">
+										</div>
+										<div class="product-body">
+											<p class="product-category">${list.name}</p>
+											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
+											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+										</div>
 									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product02.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product03.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
-							</div>
-
-							<div>
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product04.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product05.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- /product widget -->
-
-								<!-- product widget -->
-								<div class="product-widget">
-									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product06.png" alt="">
-									</div>
-									<div class="product-body">
-										<p class="product-category">商品名</p>
-										<h3 class="product-name"><a href="#">这里是描述</a></h3>
-										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-									</div>
-								</div>
-								<!-- product widget -->
+									<!-- /product widget -->
+								</c:forEach>
 							</div>
 						</div>
 					</div>

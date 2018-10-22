@@ -24,11 +24,10 @@ public class ShopIndex {
     //主页头部使用分类数组、7个分类
     private Product_type[] product_type_top=new Product_type[7];
     private int[] product_type_top_int=new int[7];
-    //主页新品使用分类数组、4个分类
-    private Product_type[] product_type_new=new Product_type[4];
-    private int[] product_type_new_int=new int[4];
     //主页头部大图分类的第一个商品图片
     private String[] product_image=new String[3];
+    //主页热门3分类的商品
+    private Product[][] product_top_hot=new Product[3][];
     /*
    * 跳转到前台主页
    */
@@ -80,35 +79,18 @@ public class ShopIndex {
                     }
                 }
                 }
-        for(Product_type s:product_type_top){
-            if(s!=null){
-            System.out.println(s.getName());
-            }
-        }
         request.setAttribute("product_type_top",product_type_top);
-        //获取新上架按时间排序分类
+        //获取新上架商品
         Product[] product_new=productbean.product_new();
-        boolean product_type_new_b=false;
-         for(int i=0;i<product_new.length&&product_type_new_b==false;i++){
-            for(int j=0;j<product_type_new.length;j++){
-                if(product_type_new[product_type_new.length-1]!=null){
-                    product_type_new_b=true;
-                }
-                boolean sss=true;
-                for(int k=0;k<j;k++){
-                    if(product_type_new_int[k]==product_new[i].getProduct_type_id().getId()){
-                        sss=false;
-                        break;
-                    }
-                }
-                if(sss&&product_type_new[j]==null){
-                    product_type_new[j]=product_new[i].getProduct_type_id();
-                    product_type_new_int[j]=product_new[i].getProduct_type_id().getId();
-                    break;
-                }
-               }
-         }
-        request.setAttribute("product_type_new",product_type_new);
+        request.setAttribute("product_new",product_new);
+        //获取最热门商品
+        Product[] product_hot=productbean.product_hot();
+        request.setAttribute("product_hot",product_hot);
+        //获取最热门3个分类的商pin
+        for(int i=0;i<product_top_hot.length;i++){
+            product_top_hot[i]=productbean.product_type_get(product_type_top[i].getId());
+        }
+        request.setAttribute("product_top_hot",product_top_hot);
          //头部大图分类取最热门商品图片
          for(int i=0;i<3;i++){
              Product[] product_j=productbean.product_type_get(product_type_top[i].getId());

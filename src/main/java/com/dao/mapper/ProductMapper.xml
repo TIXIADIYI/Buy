@@ -24,7 +24,7 @@
         SELECT * from products where id=#{id}
     </select>
 
-    <!--根据分类查询商品-->
+    <!--根据分类id查询商品-->
     <select id="product_type_get" resultMap="product">
         select * from products where product_type_id=#{product_type_id}
     </select>
@@ -32,5 +32,10 @@
     <!--根据日期从新到旧排序商品-->
     <select id="product_new" resultMap="product">
         SELECT * from products  order by time DESC
+    </select>
+
+    <!--根据热门程度排序商品-->
+    <select id="product_hot" resultMap="product">
+       SELECT * from products ORDER BY click desc
     </select>
 </mapper>

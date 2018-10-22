@@ -12,4 +12,6 @@ public interface ProductDao {
     Product[] product_type_get(@Param(value = "product_type_id")Integer product_type_id);
     //根据时间从新到旧排序商品
     Product[] product_new();
+     //根据热门程度排序商品-->
+    Product[] product_hot();
 }

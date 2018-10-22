@@ -23,4 +23,6 @@ public class ProductBean {
     public Product[] product_new(){
         return  productdao.product_new();
     }
+     //根据热门程度排序商品-->
+    public Product[] product_hot(){ return  productdao.product_hot();}
 }

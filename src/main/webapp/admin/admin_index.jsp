@@ -3,6 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -63,7 +64,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="<%=basePath%>admin/product_list.jsp" href="javascript:void(0)">产品管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product" href="javascript:void(0)">产品管理</a></li>
 				</ul>
 			</dd>
 		</dl>
