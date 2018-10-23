@@ -16,14 +16,18 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <link href="<%=basePath%>admin/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>admin/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="<%=basePath%>admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <title>商品列表</title>
 </head>
 <body class="pos-r">
 <div >
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 	<div class="pd-10">
-		<div class="cl pd-5 bg-1 bk-gray "> <span class="l"><a href="#" id="datadel" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="product_add('添加产品','product-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a></span> <span class="r">共有数据：<strong>${fn:length(requestScope.product)}</strong> 条</span> </div>
+		<div class="cl pd-5 bg-1 bk-gray "> <span class="l">
+			<a href="#" id="datadel" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			<a class="btn btn-primary radius" onclick="product_add('添加产品','<%=basePath%>admin/index/product/add')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a>
+		</span>
+			<span class="r">共有数据：<strong>${fn:length(requestScope.product)}</strong> 条</span> </div>
 		<div class="mt-20">
 			<table class="table table-border table-bordered table-bg table-hover table-sort">
 				<thead>
@@ -48,7 +52,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<tr class="text-c va-m">
 						<td><input name="checkbox" type="checkbox" value="${list.id}" ></td>
 						<td >${list.id}</td>
-						<td><img width="60" class="product-thumb" src="pic/product/Thumb/6204.jpg"></td>
+						<td><img width="60" class="product-thumb" src="${list.image}"></td>
 						<td class="text-l"> ${list.name}</td>
 						<td class="text-l">${list.remake}</td>
 						<td><span class="price">${list.price}(原价:${list.prices})RMB</span> </td>
@@ -191,7 +195,7 @@ function product_stop(obj,id){
         $.get("<%=basePath%>admin/index/product/display_tf?id="+id+"&&display=false",
             function (data) {
                 if(data=="1"){
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe603;</i></a>');
+                    $(obj).parents("tr").find(".td-manage").prepend('<a id='+id+' style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe603;</i></a>');
                     $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
                     layer.msg('已下架!',{icon: 6,time:1000});
                     $(obj).remove();
@@ -208,7 +212,7 @@ function product_start(obj,id){
         $.get("<%=basePath%>admin/index/product/display_tf?id="+id+"&&display=true",
             function (data) {
                 if(data=="1"){
-                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+                    $(obj).parents("tr").find(".td-manage").prepend('<a  id='+id+' style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
                     $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已上架</span>');
                     $(obj).remove();
                     layer.msg('已上架!',{icon: 6,time:1000});

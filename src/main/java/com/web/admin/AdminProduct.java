@@ -39,4 +39,11 @@ public class AdminProduct {
    public Integer admin_del(Integer id){
         return productbean.del(id);
     }
+
+    //跳转至添加
+    @RequestMapping(value = "/product/add", method = RequestMethod.GET)
+    public String admin_product_add(){
+      return "admin/product_add.jsp";
+    }
+
 }
