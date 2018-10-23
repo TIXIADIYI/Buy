@@ -250,6 +250,7 @@ function product_del(obj,id){
 }
 
 $("#datadel").click(function (){
+    layer.confirm('确认要删除吗？',function(index){
         var s = document.getElementsByName("checkbox");
        for(var i=0;i<s.length;i++){
            if(s[i].checked){
@@ -262,7 +263,9 @@ $("#datadel").click(function (){
            layer.msg('已删除!', {icon: 6, time: 1000});
            setTimeout(" location.reload()",1000)
        }
+    });
 }
+
 );
 
 </script>
