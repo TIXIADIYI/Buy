@@ -25,4 +25,18 @@ public class ProductBean {
     }
      //根据热门程度排序商品-->
     public Product[] product_hot(){ return  productdao.product_hot();}
+    //根据id上下架商品
+    public int display_tf(Integer id,boolean display){
+        int i=0;
+        if(display){
+            i=productdao.display_t(id);
+        }else {
+            i=productdao.display_f(id);
+        }
+    return i;
+    }
+    //根据id删除商品
+    public int del(Integer id){
+        return productdao.del(id);
+    }
 }

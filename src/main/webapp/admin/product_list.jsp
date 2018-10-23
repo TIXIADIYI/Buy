@@ -4,6 +4,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -20,13 +22,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <body class="pos-r">
 <div >
 	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品列表 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-	<div class="pd-20">
-		<div class="text-c">
-
-			<input type="text" name="" id="" placeholder=" 产品名称" style="width:250px" class="input-text">
-			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜产品</button>
-		</div>
-		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="product_add('添加产品','product-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="pd-10">
+		<div class="cl pd-5 bg-1 bk-gray "> <span class="l"><a href="#" id="datadel" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="product_add('添加产品','product-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a></span> <span class="r">共有数据：<strong>${fn:length(requestScope.product)}</strong> 条</span> </div>
 		<div class="mt-20">
 			<table class="table table-border table-bordered table-bg table-hover table-sort">
 				<thead>
@@ -34,24 +31,70 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<th width="40"><input name="" type="checkbox" value=""></th>
 						<th width="40">ID</th>
 						<th width="60">缩略图</th>
-						<th width="100">产品名称</th>
+						<th width="60">产品名称</th>
 						<th>描述</th>
-						<th width="100">单价</th>
-						<th width="60">发布状态</th>
+						<th width="40">单价</th>
+						<th width="40">库存</th>
+						<th>点击数</th>
+						<th>分类</th>
+						<th width="40">上架时间</th>
+						<th width="60">上架状态</th>
+						<th>上架用户</th>
 						<th width="100">操作</th>
 					</tr>
 				</thead>
 				<tbody>
                 <c:forEach items="${requestScope.product}" var="list">
 					<tr class="text-c va-m">
-						<td><input name="" type="checkbox" value=""></td>
-						<td>${list.id}</td>
-						<td><a onClick="product_show('哥本哈根橡木地板','product-show.html','10001')" href="javascript:;"><img width="60" class="product-thumb" src="pic/product/Thumb/6204.jpg"></a></td>
+						<td><input name="checkbox" type="checkbox" value="${list.id}" ></td>
+						<td >${list.id}</td>
+						<td><img width="60" class="product-thumb" src="pic/product/Thumb/6204.jpg"></td>
 						<td class="text-l"> ${list.name}</td>
 						<td class="text-l">${list.remake}</td>
-						<td><span class="price">${list.price}</span> </td>
-						<td class="td-status"><span class="label label-success radius">已发布</span></td>
-						<td class="td-manage"><a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','product-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+						<td><span class="price">${list.price}(原价:${list.prices})RMB</span> </td>
+						<td>${list.sum}</td>
+						<td>${list.click}</td>
+						<td>${list.product_type_id.name}</td>
+						<td><fmt:formatDate
+								type="date"
+								value="${list.time}"
+								dateStyle="default"
+						/></td>
+						<td class="td-status">
+							<c:choose>
+								<c:when test="${list.display==false}">
+									<span class="label label-defaunt radius">已下架</span>
+								</c:when>
+								<c:otherwise>
+									<span class="label label-success radius">已上架</span>
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+						<c:choose>
+							<c:when test="${list.user_id.user==null}">
+
+							</c:when>
+							<c:otherwise>
+								${list.user_id.user}(${list.user_id.name})
+							</c:otherwise>
+						</c:choose>
+						</td>
+						<td class="td-manage">
+							<c:choose>
+								<c:when test="${list.display==false}">
+								<a  id="${list.id}" style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="上架">
+								</c:when>
+								<c:otherwise>
+								<a id="${list.id}" style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架">
+								</c:otherwise>
+							</c:choose>
+
+
+								<i class="Hui-iconfont">&#xe6de;</i></a>
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','product-add.html','10001')" href="javascript:;" title="编辑">
+							<i class="Hui-iconfont">&#xe6df;</i></a> <a  id="${list.id}" style="text-decoration:none" class="ml-5" onClick="product_del(this,id)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -145,20 +188,35 @@ function product_shenhe(obj,id){
 /*图片-下架*/
 function product_stop(obj,id){
 	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
+        $.get("<%=basePath%>admin/index/product/display_tf?id="+id+"&&display=false",
+            function (data) {
+                if(data=="1"){
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="上架"><i class="Hui-iconfont">&#xe603;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
+                    layer.msg('已下架!',{icon: 6,time:1000});
+                    $(obj).remove();
+                }else{
+                    layer.msg('下架失败!',{icon: 5,time:1000});
+                }
+            });
 	});
 }
 
 /*图片-发布*/
 function product_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
+	layer.confirm('确认要上架吗？',function(index){
+        $.get("<%=basePath%>admin/index/product/display_tf?id="+id+"&&display=true",
+            function (data) {
+                if(data=="1"){
+                    $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
+                    $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已上架</span>');
+                    $(obj).remove();
+                    layer.msg('已上架!',{icon: 6,time:1000});
+                    $(obj).remove();
+                }else{
+                    layer.msg('上架失败!',{icon: 5,time:1000});
+                }
+            });
 	});
 }
 /*图片-申请上线*/
@@ -179,10 +237,34 @@ function product_edit(title,url,id){
 /*图片-删除*/
 function product_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+        $.get("<%=basePath%>admin/index/product/del?id="+id+" ",
+            function (data) {
+                if(data=="1"){
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!',{icon:6,time:1000});
+                }else{
+                    layer.msg('删除失败!',{icon: 5,time:1000});
+                }
+            });
 	});
 }
+
+$("#datadel").click(function (){
+        var s = document.getElementsByName("checkbox");
+       for(var i=0;i<s.length;i++){
+           if(s[i].checked){
+               $.get("<%=basePath%>admin/index/product/del?id="+s[i].value+" ",
+                   function (data) {
+                   });
+		   }
+	   }
+	   if(s.length!=0) {
+           layer.msg('已删除!', {icon: 6, time: 1000});
+           setTimeout(" location.reload()",1000)
+       }
+}
+);
+
 </script>
 </body>
 </html>

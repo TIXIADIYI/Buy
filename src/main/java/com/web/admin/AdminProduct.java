@@ -5,6 +5,7 @@ import com.model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,5 +24,19 @@ public class AdminProduct {
         Product[] product=productbean.all();
         request.setAttribute("product",product);
         return "admin/product_list.jsp";
+    }
+
+    //上下架商品
+    @ResponseBody
+    @RequestMapping(value = "/product/display_tf", method = RequestMethod.GET)
+    public Integer admin_display_t(Integer id,boolean display){
+        return productbean.display_tf(id,display);
+    }
+
+    //删除商品
+    @ResponseBody
+    @RequestMapping(value = "/product/del", method = RequestMethod.GET)
+   public Integer admin_del(Integer id){
+        return productbean.del(id);
     }
 }

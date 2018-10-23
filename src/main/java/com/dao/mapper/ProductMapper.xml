@@ -38,4 +38,19 @@
     <select id="product_hot" resultMap="product">
        SELECT * from products ORDER BY click desc
     </select>
+
+    <!--根据id上架商品-->
+    <update id="display_t" >
+        UPDATE products SET display=1 where id=#{id}
+    </update>
+
+    <!--根据id下架商品-->
+    <update id="display_f" >
+        UPDATE products SET display=0 where id=#{id}
+    </update>
+
+    <!--根据id删除商品-->
+    <delete id="del">
+        DELETE from products where id=#{id}
+    </delete>
 </mapper>

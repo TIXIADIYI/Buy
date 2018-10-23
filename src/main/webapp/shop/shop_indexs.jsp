@@ -37,8 +37,8 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> 官塘大道</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> 登录</a></li>
-						<li><a href="#"><i class="fa fa-dollar"></i> 注册</a></li>
+						<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
+						<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
 						<li><a href="<%=basePath%>shop/grzx.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
 					</ul>
 				</div>
