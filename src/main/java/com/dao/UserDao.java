@@ -17,5 +17,7 @@ public interface UserDao {
 	User zhuce_tm(@Param(value = "user")String user);
 	//根据id查询用户
 	User get(@Param(value = "id") String id);
+	//获取所有用户
+	User[] all();
 }
 

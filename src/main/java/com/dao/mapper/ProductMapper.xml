@@ -53,4 +53,10 @@
     <delete id="del">
         DELETE from products where id=#{id}
     </delete>
+
+    <!--添加商品-->
+    <insert id="in" >
+    INSERT INTO products VALUES (#{phone},#{qq},null,#{name},#{price},#{remake},#{image},#{sum},#{time},
+    #{click},#{product_type_id.id},#{prices},#{display},#{user_id.id},#{weixin})
+    </insert>
 </mapper>

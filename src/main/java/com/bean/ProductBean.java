@@ -23,6 +23,10 @@ public class ProductBean {
     public Product[] product_new(){
         return  productdao.product_new();
     }
+    //根据id查询商品
+    public Product get(Integer id){
+        return productdao.get(id);
+    }
      //根据热门程度排序商品-->
     public Product[] product_hot(){ return  productdao.product_hot();}
     //根据id上下架商品
@@ -38,5 +42,9 @@ public class ProductBean {
     //根据id删除商品
     public int del(Integer id){
         return productdao.del(id);
+    }
+    //添加商品
+    public int in(Product product){
+        return  productdao.in(product);
     }
 }

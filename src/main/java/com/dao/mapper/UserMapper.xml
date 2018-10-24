@@ -23,4 +23,9 @@
     <select id="get" resultType="User">
         SELECT  * from users where id=#{id}
     </select>
+
+    <!--获取所有用户-->
+    <select id="all" resultType="User">
+        select * from users
+    </select>
 </mapper>

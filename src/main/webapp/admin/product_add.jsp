@@ -3,6 +3,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -28,63 +29,107 @@
 </head>
 <body>
 <div class="pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+	<form action="" method="post" class="form form-horizontal" id="admin_product" >
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>产品标题：</label>
 			<div class="formControls col-10">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="name">
+				<input type="text" class="input-text" value="${requestScope.product.name}" placeholder=""  name="name">
+				<c:choose>
+					<c:when test="${requestScope.add_or_edit==false}">
+						<input type="hidden" class="input-text" value="${requestScope.product.id}" placeholder=""  name="id">
+					</c:when>
+				</c:choose>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>商品分类</label>
-			<div class="formControls col-2"> <span class="select-box">
+			<div class="formControls col-4"> <span class="select-box">
 				<select name="product_type_id.id" class="select">
-					<option value="0">一级分类</option>
-					<option value="1">一级分类</option>
-					<option value="11">├二级分类</option>
-					<option value="12">├二级分类</option>
-					<option value="13">├二级分类</option>
+					<c:forEach items="${requestScope.product_type}" var="list">
+						<c:choose>
+							<c:when test="${list.id==requestScope.product.product_type_id.id}">
+								<option value="${list.id}" selected>${list.name}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${list.id}">${list.name}</option>
+							</c:otherwise>
+						</c:choose>
+
+					</c:forEach>
 				</select>
 				</span> </div>
-			<label class="form-label col-2"><span class="c-red">*</span>是否上架</label>
-			<div class="formControls col-2"> <span class="select-box">
-				<select name="display" class="select">
-					<option value="0">是</option>
-					<option value="1">否</option>
-				</select>
-				</span> </div>
-			<label class="form-label col-2"><span class="c-red">*</span>上传的用户</label>
-			<div class="formControls col-2"> <span class="select-box">
+			<label class="form-label col-2">上传的用户</label>
+			<div class="formControls col-4"> <span class="select-box">
 				<select name="user_id.id" class="select">
-					<option value="0">无</option>
-					<option value="0">是</option>
-					<option value="1">否</option>
+					<option value="null">无</option>
+						<c:forEach items="${requestScope.user}" var="list">
+							<c:choose>
+							<c:when test="${list.id==requestScope.product.user_id.id}">
+								<option value="${list.id}" selected>${list.name}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${list.id}">${list.name}</option>
+							</c:otherwise>
+							</c:choose>
+						</c:forEach>
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">打折后价格：</label>
+			<label class="form-label col-2"><span class="c-red">*</span>打折后价格：</label>
 			<div class="formControls col-4">
-				<input type="text" name="price" id="" placeholder="" value="" class="input-text" style="width:90%">
+				<input type="text" name="price" id="" placeholder="" value="${requestScope.product.price}" class="input-text" style="width:90%">
 				元</div>
 			<label class="form-label col-2">打折前价格：</label>
 			<div class="formControls col-4">
-				<input type="text" name="prices" id=""  placeholder="" value="" class="input-text" style="width:90%">
+				<input type="text" name="prices" id=""  placeholder="若无打折可不填" value="${requestScope.product.prices}" class="input-text" style="width:90%">
 				元</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-2">库存</label>
+			<label class="form-label col-2"><span class="c-red">*</span>库存</label>
 			<div class="formControls col-4">
-				<input type="text" name="sum" id="" placeholder="" value="" class="input-text" style="width:90%">
+				<input type="text" name="sum" id="" placeholder="" value="${requestScope.product.sum}" class="input-text" style="width:90%">
 				</div>
 			<label class="form-label col-2">点击数</label>
 			<div class="formControls col-4">
-				<input type="text" name="click" id=""  placeholder="" value="" class="input-text" style="width:90%">
+				<input type="text" name="click" id=""  placeholder="" value="${requestScope.product.click}" class="input-text" style="width:90%">
 				</div>
 		</div>
 		<div class="row cl">
+		<label class="form-label col-2"><span class="c-red">*</span>qq</label>
+		<div class="formControls col-4">
+			<input type="text" name="qq" id="" placeholder="" value="${requestScope.product.qq}" class="input-text" style="width:90%">
+		</div>
+		<label class="form-label col-2">微信</label>
+		<div class="formControls col-4">
+			<input type="text" name="weixin" id=""  placeholder="" value="${requestScope.product.weixin}" class="input-text" style="width:90%">
+		</div>
+	</div>
+		<div class="row cl">
+			<label class="form-label col-2">手机</label>
+			<div class="formControls col-4">
+				<input type="text" name="phone" id=""  placeholder="" value="${requestScope.product.phone}" class="input-text" style="width:90%">
+			</div>
+			<label class="form-label col-2"><span class="c-red">*</span>是否上架</label>
+			<div class="formControls col-4"> <span class="select-box">
+				<select name="display" class="select">
+					<option value="true">是</option>
+					<option value="false">否</option>
+				</select>
+				</span> </div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-2">上架时间：</label>
+			<div class="formControls col-4">
+				<input type="date"  name="time" class="input-text Wdate" style="width:90%;" value="${requestScope.product.time}">
+			</div>
+	</div>
+
+		<div class="row cl">
 			<label class="form-label col-2">图片上传：</label>
 			<div class="formControls col-10">
+				<input type="text" name="image" id=""  placeholder="" value="${requestScope.product.image}" class="input-text" style="width:90%">
 				<div class="uploader-list-container">
 					<div class="queueList">
 						<div id="dndArea" class="placeholder">
@@ -105,13 +150,13 @@
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2">详细内容：</label>
-			<div class="formControls col-10"> 
-				<script id="editor" type="text/plain" style="width:100%;height:400px;" ></script>
+			<div class="formControls col-10">
+				<input type="text" name="remake" id="" placeholder="填写商品介绍" value="${requestScope.product.remake}" class="input-text" style="width:90%;height: 200px">
 			</div>
 		</div>
 		<div class="row cl">
 			<div class="col-10 col-offset-2">
-				<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button onClick="Button();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
 			</div>
 		</div>
@@ -124,12 +169,25 @@
 <script type="text/javascript" src="<%=basePath%>admin/lib/icheck/jquery.icheck.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>admin/lib/Validform/5.3.2/Validform.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>admin/lib/webuploader/0.1.5/webuploader.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>admin/lib/ueditor/1.4.3/ueditor.config.js"></script>
-<script type="text/javascript" src="<%=basePath%>admin/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
-<script type="text/javascript" src="<%=basePath%>admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="<%=basePath%>admin/js/H-ui.js"></script>
 <script type="text/javascript" src="<%=basePath%>admin/js/H-ui.admin.js"></script>
 <script type="text/javascript">
+
+function  Button(){
+    if(${requestScope.add_or_edit==true}) {
+        $.post("<%=basePath%>admin/index/product/add/post",
+            $("#admin_product").serialize(),
+            function (data) {
+                if (data == "1") {
+                    layer.msg('添加成功!', {icon: 6, time: 1000});
+                } else if (data == "0") {
+                    layer.msg('添加失败', {icon: 5, time: 1000});
+                }
+            });
+    }else{
+
+	}
+}
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -144,10 +202,10 @@ $(function(){
 
 	var uploader = WebUploader.create({
 		auto: true,
-		swf: '<%=basePath%>/admin/lib/webuploader/0.1.5/Uploader.swf',
+		swf: '<%=basePath%>admin/lib/webuploader/0.1.5/Uploader.swf',
 	
 		// 文件接收服务端。
-		server: '<%=basePath%>/admin/lib/webuploader/0.1.5/server/fileupload.php',
+		server: '<%=basePath%>admin/lib/webuploader/0.1.5/server/fileupload.php',
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -391,14 +449,14 @@ $(function(){
             swf: '<%=basePath%>admin/lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '<%=basePath%>/admin/lib/webuploader/0.1.5/server/fileupload.php',
+            server: '<%=basePath%>admin/lib/webuploader/0.1.5/server/fileupload.php',
             // runtimeOrder: 'flash',
 
-            // accept: {
-            //     title: 'Images',
-            //     extensions: 'gif,jpg,jpeg,bmp,png',
-            //     mimeTypes: 'image/*'
-            // },
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
@@ -806,9 +864,7 @@ $(function(){
 
 })( jQuery );
 
-$(function(){
-	var ue = UE.getEditor('editor');
-});
+
 </script>
 </body>
 </html>

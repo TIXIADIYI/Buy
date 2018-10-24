@@ -28,5 +28,9 @@ public class UserBean {
         return  userdao.zhuce_tm(user);
     }
 
+    //获取所有用户
+    public User[] all(){
+        return userdao.all();
+    }
 
 }

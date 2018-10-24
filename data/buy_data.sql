@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 22/10/2018 12:45:01
+ Date: 24/10/2018 11:52:41
 */
 
 SET NAMES utf8mb4;
@@ -85,6 +85,8 @@ INSERT INTO `product_type` VALUES (7, '背包');
 -- ----------------------------
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products`  (
+  `phone` char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `qq` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `price` float(20, 0) NULL DEFAULT NULL,
@@ -97,6 +99,7 @@ CREATE TABLE `products`  (
   `prices` float(50, 0) NULL DEFAULT NULL,
   `display` bit(1) NOT NULL,
   `user_id` int(20) NULL DEFAULT NULL,
+  `weixin` char(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `p_type`(`product_type_id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
@@ -107,15 +110,18 @@ CREATE TABLE `products`  (
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES (1, '楠神旗舰电脑', NULL, NULL, NULL, NULL, '2018-10-02', 1, 2, NULL, b'1', 1);
-INSERT INTO `products` VALUES (2, '楠神的商品', NULL, NULL, '1111111', NULL, '2018-10-17', 5, 1, NULL, b'1', 1);
-INSERT INTO `products` VALUES (3, '楠神手机', NULL, NULL, 'img/shop02.png', NULL, '2018-06-06', 99, 1, NULL, b'1', 1);
-INSERT INTO `products` VALUES (4, '海飞丝', 50, '要毕业了用不完，还有400多毫升', NULL, 5, '2018-10-09', 40, 23, 100, b'1', 2);
-INSERT INTO `products` VALUES (5, '测试专用商品', 99, '测试专用哦', NULL, 999, '2018-10-31', 55, 5, 999, b'1', 2);
-INSERT INTO `products` VALUES (6, '测试专用商品2', 88, NULL, NULL, NULL, '2018-10-30', 5, 6, NULL, b'1', NULL);
-INSERT INTO `products` VALUES (7, '测试专用商品3', 77, NULL, NULL, NULL, NULL, 66, 7, NULL, b'1', NULL);
-INSERT INTO `products` VALUES (8, '测试专用商品4', NULL, NULL, NULL, NULL, NULL, 7, 8, NULL, b'1', NULL);
-INSERT INTO `products` VALUES (9, '测试专用商品5', 66, NULL, NULL, NULL, NULL, 3, 23, 1, b'1', NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 1, '楠神旗舰电脑', NULL, NULL, NULL, NULL, '2018-10-02', 1, 2, NULL, b'1', 1, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 2, '楠神的商品', NULL, NULL, '1111111', NULL, '2018-10-17', 5, 1, NULL, b'1', 1, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 3, '楠神手机', NULL, NULL, 'img/shop02.png', NULL, '2018-06-06', 99, 1, NULL, b'1', 1, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 4, '海飞丝', 50, '要毕业了用不完，还有400多毫升', NULL, 5, '2018-10-09', 40, 23, 100, b'1', 2, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 5, '测试专用商品', 99, '测试专用哦', NULL, 999, '2018-10-31', 55, 5, 999, b'1', 2, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 6, '测试专用商品2', 88, NULL, NULL, NULL, '2018-10-30', 5, 6, NULL, b'1', NULL, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 7, '测试专用商品3', 77, NULL, NULL, NULL, NULL, 66, 7, NULL, b'1', NULL, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 8, '测试专用商品4', NULL, NULL, NULL, NULL, NULL, 7, 8, NULL, b'1', NULL, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 9, '测试专用商品5', 66, NULL, NULL, NULL, NULL, 3, 23, 1, b'1', NULL, NULL);
+INSERT INTO `products` VALUES ('123', '123', 10, '哈哈哈', 123, '123', '', 213, NULL, 123, 1, 123, b'1', 2, '123');
+INSERT INTO `products` VALUES ('123', '1234567890', 11, '哈哈哈', 500, '牛逼哄哄吊炸天', '', 500, '2018-10-11', 123, 4, 123, b'1', 1, '123');
+INSERT INTO `products` VALUES ('123', '1234567890', 12, 'hhh', 500, '', '', 500, '2018-10-13', 123, 8, 123, b'1', 2, '123');
 
 -- ----------------------------
 -- Table structure for recommend

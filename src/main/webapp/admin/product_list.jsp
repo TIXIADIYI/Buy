@@ -96,7 +96,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 
 								<i class="Hui-iconfont">&#xe6de;</i></a>
-							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','product-add.html','10001')" href="javascript:;" title="编辑">
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','<%=basePath%>admin/index/product/edit?id=${list.id}','')" href="javascript:;" title="编辑">
 							<i class="Hui-iconfont">&#xe6df;</i></a> <a  id="${list.id}" style="text-decoration:none" class="ml-5" onClick="product_del(this,id)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 						</td>
 					</tr>

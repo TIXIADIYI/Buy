@@ -20,4 +20,6 @@ public interface ProductDao {
     int display_f(@Param(value = "id") Integer id);
     //根据id删除商品
     int del(@Param(value = "id") Integer id);
+    //添加商品
+    int in(Product product);
 }

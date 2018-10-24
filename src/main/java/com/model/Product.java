@@ -1,5 +1,7 @@
 package com.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Product {
@@ -9,12 +11,40 @@ public class Product {
     private String remake;
     private String image;
     private String sum;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
     private Integer click;
     private Product_type product_type_id;
     private Float prices;
     private User user_id;
     private boolean display;
+    private String phone;
+    private String qq;
+    private String weixin;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin;
+    }
 
     public User getUser_id() {
         return user_id;
