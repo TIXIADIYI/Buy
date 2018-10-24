@@ -47,4 +47,8 @@ public class ProductBean {
     public int in(Product product){
         return  productdao.in(product);
     }
+    //修改商品
+    public int set(Product product){
+        return productdao.set(product);
+    }
 }

@@ -60,7 +60,6 @@
 							</div>
 						</div>
 						<!-- /LOGO -->
-
 						<!-- 搜索框 -->
 						<div class="col-md-6">
 							<div class="header-search">
@@ -143,7 +142,15 @@
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="<%=basePath%>shop/${requestScope.product_image[sss.index]}" alt="" height="250" width="350">
+								<c:choose>
+									<c:when  test="${requestScope.product_image[sss.index]==null||requestScope.product_image[sss.index]==''}">
+										<img src="<%=basePath%>shop/image/timg.gif" alt="" height="250" width="350">
+								    </c:when>
+									<c:otherwise>
+										<img src="${requestScope.product_image[sss.index]}" alt="" height="250" width="350">
+									</c:otherwise>
+								</c:choose>
+
 							</div>
 							<div class="shop-body">
 								<h3>${list.name}<br></h3>
@@ -166,7 +173,6 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
@@ -178,7 +184,6 @@
 						</div>
 					</div>
 					<!-- /section title -->
-
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
 						<div class="row">
@@ -220,7 +225,14 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product02.png" alt="">
+												<c:choose>
+													<c:when  test="${list.image==null||list.image==''}">
+														<img src="<%=basePath%>shop/image/timg.gif" alt="" height="200" width="400">
+													</c:when>
+													<c:otherwise>
+														<img src="${list.image}" alt="" height="200" width="400">
+													</c:otherwise>
+												</c:choose>
 												<div class="product-label">
                                                     <c:choose>
                                                         <c:when  test="${(1-list.price/list.prices)*100==0||list.prices==null||list.prices==0}">
@@ -337,7 +349,14 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="<%=basePath%>shop/img/product07.png" alt="">
+												<c:choose>
+													<c:when  test="${list.image==null||list.image==''}">
+														<img src="<%=basePath%>shop/image/timg.gif" alt="" height="200" width="400">
+													</c:when>
+													<c:otherwise>
+														<img src="${list.image}" alt="" height="200" width="400">
+													</c:otherwise>
+												</c:choose>
 												<div class="product-label">
                                                     <c:choose>
                                                         <c:when  test="${(1-list.price/list.prices)*100==0||list.prices==null||list.prices==0}">
@@ -418,7 +437,14 @@
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="<%=basePath%>shop/img/product08.png" alt="">
+										<c:choose>
+											<c:when test="${list.image==null||list.image==''}">
+												<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+											</c:when>
+											<c:otherwise>
+												<img src="${list.image}" alt="" width="100" height="50">
+											</c:otherwise>
+										</c:choose>
 									</div>
 									<div class="product-body">
 										<p class="product-category">${list.name}</p>
@@ -442,12 +468,19 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-4">
 							<div>
-
 								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" >
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">
-											<img src="<%=basePath%>shop/img/product08.png" alt="">
+											<c:choose>
+												<c:when test="${list.image==null||list.image==''}">
+													<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+												</c:when>
+												<c:otherwise>
+													<img src="${list.image}" alt="" width="100" height="50">
+												</c:otherwise>
+											</c:choose>
+
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>
@@ -457,13 +490,11 @@
 									</div>
 									<!-- /product widget -->
 								</c:forEach>
-
 							</div>
 						</div>
 					</div>
 
 					<div class="clearfix visible-sm visible-xs"></div>
-
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
 							<h4 class="title">${requestScope.product_type_top[2].name}</h4>
@@ -478,7 +509,14 @@
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">
-											<img src="<%=basePath%>shop/img/product08.png" alt="">
+											<c:choose>
+												<c:when test="${list.image==null||list.image==''}">
+													<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+												</c:when>
+												<c:otherwise>
+													<img src="${list.image}" alt="" width="100" height="50">
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>

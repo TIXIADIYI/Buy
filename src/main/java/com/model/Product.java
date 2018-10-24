@@ -11,8 +11,10 @@ public class Product {
     private String remake;
     private String image;
     private String sum;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
+
     private Integer click;
     private Product_type product_type_id;
     private Float prices;

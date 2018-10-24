@@ -99,4 +99,11 @@ public class AdminProduct {
         request.setAttribute("add_or_edit",false);
         return "admin/product_add.jsp";
     }
+
+    //编辑提交
+    @ResponseBody
+    @RequestMapping(value = "/product/edit/post", method = RequestMethod.POST)
+    public Integer admin_product_edits(Product product){
+        return productbean.set(product);
+    }
 }

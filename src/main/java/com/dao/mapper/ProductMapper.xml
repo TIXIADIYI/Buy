@@ -59,4 +59,10 @@
     INSERT INTO products VALUES (#{phone},#{qq},null,#{name},#{price},#{remake},#{image},#{sum},#{time},
     #{click},#{product_type_id.id},#{prices},#{display},#{user_id.id},#{weixin})
     </insert>
+
+    <!--修改商品-->
+    <update id="set">
+        update products set phone=#{phone},qq=#{qq},name=#{name},price=#{price},remake=#{remake},image=#{image},sum=#{sum},time=#{time},
+         click=#{click},product_type_id=#{product_type_id.id},prices=#{prices},display=#{display},user_id=#{user_id.id},weixin=#{weixin}  where id=#{id}
+    </update>
 </mapper>

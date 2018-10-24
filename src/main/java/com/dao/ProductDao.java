@@ -22,4 +22,6 @@ public interface ProductDao {
     int del(@Param(value = "id") Integer id);
     //添加商品
     int in(Product product);
+    //修改商品
+    int set(Product product);
 }
