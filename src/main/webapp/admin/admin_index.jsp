@@ -64,8 +64,9 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="<%=basePath%>admin/index/product" href="javascript:void(0)">分类管理</a></li>
-					<li><a _href="<%=basePath%>admin/index/product_type" href="javascript:void(0)">产品管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product_type" href="javascript:void(0)">分类管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product" href="javascript:void(0)">产品管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product_comment" href="javascript:void(0)">评论管理</a></li>
 				</ul>
 			</dd>
 		</dl>

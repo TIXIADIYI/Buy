@@ -13,9 +13,27 @@
     </resultMap>
 
     <!-- parameterType表示要传入的参数的类型 ，resultType表示要返回的数据的类型-->
+    <!--根据di查询评论-->
+    <select id="get" resultMap="product_comment">
+        select * from product_comment where id=#{id}
+    </select>
     <!-- 查询所有评论功能 -->
     <select id="all"  resultMap="product_comment">
         select * from product_comment
     </select>
 
+    <!--根据id删除评论-->
+    <delete id="del">
+        delete from product_comment where id=#{id}
+    </delete>
+
+    <!--添加pingl -->
+    <insert id="add" >
+        insert into product_comment values (#{comment},#{user_id.id},#{product_id.id},#{time},#{praise},#{id})
+    </insert>
+
+    <!--编辑-->
+    <update id="set">
+        update  product_comment set comment=#{comment},user_id=#{user_id.id},product_id=#{product_id.id},time=#{time},praise=#{praise} where id=#{id}
+    </update>
 </mapper>

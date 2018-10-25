@@ -1,30 +1,27 @@
 package com.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Product_comment {
+    private  Integer id;
     private Product product_id;
     private User user_id;
     private String comment;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
-    private Integer Y;
-    private  Integer N;
+
     private boolean praise;
 
-    public Integer getY() {
-        return Y;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setY(Integer y) {
-        Y = y;
-    }
-
-    public Integer getN() {
-        return N;
-    }
-
-    public void setN(Integer n) {
-        N = n;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public boolean isPraise() {

@@ -25,46 +25,38 @@
 <script type="text/javascript" src="<%=basePath%>admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>新增商品</title>
+<title>新增评论或编辑</title>
 </head>
 <body>
 <div class="pd-20">
 	<form action="" method="post" class="form form-horizontal" id="admin_product" >
-		<div class="row cl">
-			<label class="form-label col-2"><span class="c-red">*</span>产品标题：</label>
-			<div class="formControls col-10">
-				<input type="text" class="input-text" value="${requestScope.product.name}" placeholder=""  name="name">
 				<c:choose>
 					<c:when test="${requestScope.add_or_edit==false}">
-						<input type="hidden" class="input-text" value="${requestScope.product.id}" placeholder=""  name="id">
+						<input type="hidden" class="input-text" value="${requestScope.product_comment.id}" placeholder=""  name="id">
 					</c:when>
 				</c:choose>
-			</div>
-		</div>
 		<div class="row cl">
-			<label class="form-label col-2"><span class="c-red">*</span>商品分类</label>
+			<label class="form-label col-2"><span class="c-red">*</span>评论的商品</label>
 			<div class="formControls col-4"> <span class="select-box">
-				<select name="product_type_id.id" class="select">
-					<c:forEach items="${requestScope.product_type}" var="list">
+				<select name="product_id.id" class="select">
+					<c:forEach items="${requestScope.product}" var="list">
 						<c:choose>
-							<c:when test="${list.id==requestScope.product.product_type_id.id}">
+							<c:when test="${list.id==requestScope.product_comment.product_id.id}">
 								<option value="${list.id}" selected>${list.name}</option>
 							</c:when>
 							<c:otherwise>
 								<option value="${list.id}">${list.name}</option>
 							</c:otherwise>
 						</c:choose>
-
 					</c:forEach>
 				</select>
 				</span> </div>
-			<label class="form-label col-2">上传的用户</label>
+			<label class="form-label col-2">评论的用户</label>
 			<div class="formControls col-4"> <span class="select-box">
 				<select name="user_id.id" class="select">
-					<option value="null">无</option>
 						<c:forEach items="${requestScope.user}" var="list">
 							<c:choose>
-							<c:when test="${list.id==requestScope.product.user_id.id}">
+							<c:when test="${list.id==requestScope.product_comment.user_id.id}">
 								<option value="${list.id}" selected>${list.name}</option>
 							</c:when>
 							<c:otherwise>
@@ -75,79 +67,34 @@
 				</select>
 				</span> </div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-2"><span class="c-red">*</span>打折后价格：</label>
-			<div class="formControls col-4">
-				<input type="text" name="price" id="" placeholder="" value="${requestScope.product.price}" class="input-text" style="width:90%">
-				元</div>
-			<label class="form-label col-2">打折前价格：</label>
-			<div class="formControls col-4">
-				<input type="text" name="prices" id=""  placeholder="若无打折可不填" value="${requestScope.product.prices}" class="input-text" style="width:90%">
-				元</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-2">库存</label>
-			<div class="formControls col-4">
-				<input type="text" name="sum" id="" placeholder="" value="${requestScope.product.sum}" class="input-text" style="width:90%">
-				</div>
-			<label class="form-label col-2">点击数</label>
-			<div class="formControls col-4">
-				<input type="text" name="click" id=""  placeholder="" value="${requestScope.product.click}" class="input-text" style="width:90%">
-				</div>
-		</div>
-		<div class="row cl">
-		<label class="form-label col-2">qq</label>
-		<div class="formControls col-4">
-			<input type="text" name="qq" id="" placeholder="" value="${requestScope.product.qq}" class="input-text" style="width:90%">
-		</div>
-		<label class="form-label col-2">微信</label>
-		<div class="formControls col-4">
-			<input type="text" name="weixin" id=""  placeholder="" value="${requestScope.product.weixin}" class="input-text" style="width:90%">
-		</div>
-	</div>
-		<div class="row cl">
-			<label class="form-label col-2">手机</label>
-			<div class="formControls col-4">
-				<input type="text" name="phone" id=""  placeholder="" value="${requestScope.product.phone}" class="input-text" style="width:90%">
-			</div>
-			<label class="form-label col-2"><span class="c-red">*</span>是否上架</label>
-			<div class="formControls col-4"> <span class="select-box">
-				<select name="display" class="select">
-
-					<option value="true">上架</option>
-					<option value="false"
-					<c:choose>
-					<c:when test="${requestScope.product.display==false}">
-						selected
-					</c:when>
-						<c:otherwise>
-						</c:otherwise>
-					</c:choose>
-						>下架</option>
-				</select>
-				</span> </div>
-		</div>
 
 		<div class="row cl">
-			<label class="form-label col-2">上架时间：</label>
+			<label class="form-label col-2">评论时间：</label>
 			<div class="formControls col-4">
 				<input type="date"  name="time" id="time" class="input-text Wdate" style="width:90%;"
-					   value="<fmt:formatDate value='${requestScope.product.time}' pattern='yyyy-MM-dd' />">
+					   value="<fmt:formatDate value='${requestScope.product_comment.time}' pattern='yyyy-MM-dd' />">
+			</div>
+			<label class="form-label col-2">好或差评</label>
+			<div class="formControls col-4">
+				<select name="praise" class="select">
+					<option value="true"><span class="c-green">好评</span></option>
+					<option value="false"
+							<c:choose>
+								<c:when test="${requestScope.product_comment.praise==false}">
+									selected
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>
+					><span class="c-red">差评</span></option>
+				</select>
 			</div>
 	</div>
 
 		<div class="row cl">
-			<label class="form-label col-2">图片上传：</label>
+			<label class="form-label col-2">评论内容：</label>
 			<div class="formControls col-10">
-				<input type="text" name="image" id="url1"  placeholder="" value="${requestScope.product.image}" class="input-text" style="width:50%">
-				<input type="button" id="image1"  class="btn btn-primary radius" style="width:120px;" value="点我选择图片" />
-				<a href="#" id="clearImagePath1">清除选择图片路径</a>
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-2">详细内容：</label>
-			<div class="formControls col-10">
-				<input type="text" name="remake" id="" placeholder="填写商品介绍" value="${requestScope.product.remake}" class="input-text" style="width:90%;height: 200px">
+				<input type="text" name="comment" id="" placeholder="填写评论" value="${requestScope.product_comment.comment}" class="input-text" style="width:90%;height: 200px">
 			</div>
 		</div>
 		<div class="row cl">
@@ -169,7 +116,7 @@
 <script type="text/javascript">
 function  Button(){
     if(${requestScope.add_or_edit==true}) {
-        $.post("<%=basePath%>admin/index/product/add/post",
+        $.post("<%=basePath%>admin/index/product_comment/add/post",
             $("#admin_product").serialize(),
             function (data) {
                 if (data == "1") {
@@ -184,7 +131,7 @@ function  Button(){
                 }
             });
     }else{
-        $.post("<%=basePath%>admin/index/product/edit/post",
+        $.post("<%=basePath%>admin/index/product_comment/edit/post",
             $("#admin_product").serialize(),
             function (data) {
                 if (data == "1") {

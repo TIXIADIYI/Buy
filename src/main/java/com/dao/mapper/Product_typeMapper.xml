@@ -12,4 +12,16 @@
     <select id="get" resultType="Product_type">
         select * from product_type where id=#{id}
     </select>
+    <!--根据id删除分类-->
+    <delete id="del" >
+        delete from product_type where id=#{id}
+    </delete>
+    <!--添加分类-->
+    <insert id="in">
+        insert into product_type values (null,#{name})
+    </insert>
+    <!--编辑分类-->
+    <update id="set">
+        update product_type set name=#{name} where id=#{id}
+    </update>
 </mapper>

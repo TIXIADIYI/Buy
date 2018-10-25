@@ -149,7 +149,7 @@ $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
 	"aoColumnDefs": [
-	  {"orderable":false,"aTargets":[0,7]}// 制定列不参与排序
+	  {"orderable":false,"aTargets":[0,10]}// 制定列不参与排序
 	]
 });
 /*图片-添加*/
@@ -264,7 +264,7 @@ $("#datadel").click(function (){
 		   }
 	   }
 	   if(s.length!=0) {
-           layer.msg('已删除!', {icon: 6, time: 1000});
+           layer.msg('已删除所选!', {icon: 6, time: 1000});
            setTimeout(" location.reload()",1000)
        }
     });
