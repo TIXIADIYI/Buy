@@ -17,4 +17,23 @@
         select * from recommend
     </select>
 
+    <!--根据id查询推荐-->
+    <select id="get" resultMap="recommend">
+        select * from recommend where id=#{id}
+    </select>
+
+    <!--根据id删除-->
+    <delete id="del">
+        delete from recommend where id=#{id}
+    </delete>
+
+    <!--添加-->
+    <insert id="add">
+        insert into recommend values (null,#{commend},#{admin_id.id},#{value})
+    </insert>
+
+    <!--编辑-->
+    <update id="set">
+        update recommend set commend=#{commend},admin_id=#{admin_id.id},value=#{value} where id=#{id}
+    </update>
 </mapper>

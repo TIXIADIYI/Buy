@@ -60,42 +60,40 @@
 <aside class="Hui-aside">
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
+		<dl id="menu-admin">
+			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员功能<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a _href="<%=basePath%>admin/index/pass" href="javascript:void(0)">修改本人资料</a></li>
+					<li><a _href="<%=basePath%>admin/index/recommend" href="javascript:void(0)">搜索语的发布与管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/list" href="javascript:void(0)">管理员列表</a></li>
+				</ul>
+			</dd>
+		</dl>
     <dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="<%=basePath%>admin/index/product_type" href="javascript:void(0)">分类管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product_type" href="javascript:void(0)">产品分类管理</a></li>
 					<li><a _href="<%=basePath%>admin/index/product" href="javascript:void(0)">产品管理</a></li>
-					<li><a _href="<%=basePath%>admin/index/product_comment" href="javascript:void(0)">评论管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/product_comment" href="javascript:void(0)">产品评论管理</a></li>
 				</ul>
 			</dd>
 		</dl>
-		
-		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-user">
+			<dt><i class="Hui-iconfont">&#xe69d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="picture-list.jsp" href="javascript:void(0)">图片管理</a></li>
+					<li><a _href="" href="javascript:void(0)">用户管理</a></li>
+					<li><a _href="">用户收藏管理</a></li>
 				</ul>
 			</dd>
 		</dl>
-        
-        <dl id="menu-admin">
-			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dl id="menu-order">
+			<dt><i class="Hui-iconfont">&#xe64d;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="admin-role.jsp" href="javascript:void(0)">角色管理</a></li>
-					
-				</ul>
-			</dd>
-		</dl>
-		
-		
-		<dl id="menu-comments">
-			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a _href="feedback-list.jsp" href="javascript:void(0)">意见反馈</a></li>
+					<li><a _href="" href="javascript:void(0)">订单管理</a></li>
 				</ul>
 			</dd>
 		</dl>
