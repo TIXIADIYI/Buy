@@ -33,4 +33,9 @@ public class UserBean {
         return userdao.all();
     }
 
+    //根据id删除
+    public int del(Integer id){
+        return  userdao.del(id);
+    }
+
 }

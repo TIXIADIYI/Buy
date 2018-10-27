@@ -17,4 +17,24 @@ public class AdminBean {
         Admin admin=admindao.login(name,pass);
         return admin;
     }
+    //管理员修改
+    public int set(Admin admin){
+        return admindao.set(admin);
+    }
+    //查询所有管理员
+    public Admin[] all(){
+        return  admindao.all();
+    }
+    //删除
+    public int del(Integer id){
+        return admindao.del(id);
+    }
+    //根据id查询管理
+    public Admin get(Integer id){
+        return  admindao.get(id);
+    }
+    //天机
+    public int add(Admin admin){
+        return admindao.add(admin);
+    }
 }

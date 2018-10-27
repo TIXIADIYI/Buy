@@ -15,4 +15,20 @@ public class RecommendBean {
     public Recommend[] all(){
         return recommenddao.all();
     }
+    //根据id查询
+    public Recommend get(Integer id){
+     return    recommenddao.get(id);
+    }
+    //根据id删除
+    public int del(Integer id){
+        return  recommenddao.del(id);
+    }
+    //添加
+    public int add(Recommend recommend){
+        return  recommenddao.add(recommend);
+    }
+    //编辑
+    public int set(Recommend recommend){
+        return  recommenddao.set(recommend);
+    }
 }

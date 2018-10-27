@@ -28,4 +28,9 @@
     <select id="all" resultType="User">
         select * from users
     </select>
+
+    <!--根据id删除-->
+    <delete id="del">
+        delete from users where id=#{id}
+    </delete>
 </mapper>

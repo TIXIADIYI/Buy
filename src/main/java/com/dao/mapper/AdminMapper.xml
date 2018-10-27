@@ -13,4 +13,24 @@
     <select id="get" resultType="Admin">
         SElect * from admins where id=#{id}
     </select>
+
+    <!--根据id修改资料-->
+    <update id="set" >
+        update admins  set name=#{name},pass=#{pass} where id=#{id}
+    </update>
+
+    <!--读取所有管理-->
+    <select id="all" resultType="Admin">
+        select * from admins
+    </select>
+
+    <!--删除-->
+    <delete id="del" >
+        delete from admins where id=#{id}
+    </delete>
+
+    <!--添加-->
+    <insert id="add">
+       insert into admins values (null,#{name},#{pass})
+    </insert>
 </mapper>

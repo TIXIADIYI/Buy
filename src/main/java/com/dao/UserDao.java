@@ -19,5 +19,7 @@ public interface UserDao {
 	User get(@Param(value = "id") String id);
 	//获取所有用户
 	User[] all();
+	//根据id删除
+	int del(Integer id);
 }
 
