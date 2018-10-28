@@ -7,21 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>个人中心</title>
-    <script type="href=" <%=basePath%>shop
-    /text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <
-    script
-    type = "href=\"<%=basePath%>shop/text/javascript"
-    src = "js/la.js" ></script>
-    <link rel="stylesheet" href="<%=basePath%>shop/css/layui.css">
-    </script>
+    <script type="text/javascript" src="<%=basePath%>shop/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>shop/js/la.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>shop/css/layui.css"></script>
 
-    <
-    link
-    rel = "stylesheet"
-    href = "css/public.css" >
-        < script
-    src = "js/common.js" ></script>
+    <link rel="stylesheet" href="<%=basePath%>shop/css/public.css">
+        <script src="<%=basePath%>shop/js/common.js"></script>
     <link rel="stylesheet" href="<%=basePath%>shop/css/user.css">
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
@@ -51,7 +42,7 @@
         <div class="container">
             <ul class="header-links pull-left">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li><a href="<%=basePath%>shop/index.jsp"></i> 首页</a></li>
+                <li><a href="<%=basePath%>shop/shop_indexs.jsp"></i> 首页</a></li>
             </ul>
             <ul class="header-links pull-right">
 
@@ -79,18 +70,12 @@
             </div>
             <div class="sider-nav">
                 <ul>
-                    <li><a href="href=" <%=basePath%>shop/grzx.html" class=""><i class="icon"></i><img src="href="
-                                                                                                       <%=basePath%>shop/img/fabu.png"
-                        />&nbsp;我发布的</a></li>
-                    <li><a href="href=" <%=basePath%>shop/xiangyao.html" class=""><i class="icon"></i><img src="href="
-                                                                                                           <%=basePath%>shop/img/xin.png"
-                        />&nbsp;我想要的</a></li>
-                    <li><a href="href=" <%=basePath%>shop/liuyan.html" class=""><i class="icon"></i><img
-                            src="href="<%=basePath%>shop/img/ly.png"/>&nbsp;我的留言</a></li>
-                    <li><a href="href=" <%=basePath%>shop/xinxi.html" class=""><i class="icon"></i><img
-                            src="href="<%=basePath%>shop/img/xx.png"/>&nbsp;个人信息</a></li>
+                    <li><a href="<%=basePath%>shop/grzx.jsp" class=""><i class="icon" ></i><img src="<%=basePath%>shop/img/fabu.png" />&nbsp;我发布的</a></li>
+                    <li><a href="<%=basePath%>shop/xiangyao.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xin.png" />&nbsp;我想要的</a></li>
+                    <li><a href="<%=basePath%>shop/liuyan.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/ly.png" />&nbsp;我的留言</a></li>
+                    <li><a href="<%=basePath%>shop/xinxi.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xx.png" />&nbsp;个人信息</a></li>
 
-                    <li><a href="fankiu.jsp" class="active"><i class="icon"></i><img src="<%=basePath%>shop/img/yj.png"/>&nbsp;意见反馈</a>
+                    <li><a href="<%=basePath%>shop/fankiu.jsp" class="active"><i class="icon"></i><img src="<%=basePath%>shop/img/yj.png" />&nbsp;意见反馈</a></li>
                     </li>
                 </ul>
             </div>

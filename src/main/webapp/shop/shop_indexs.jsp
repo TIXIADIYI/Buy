@@ -34,12 +34,12 @@
 				<div class="container">
 					<ul class="header-links pull-left">
 						<li style="color: #000000;">位置</li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 官塘大道</a></li>
+						<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
 						<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
-						<li><a href="<%=basePath%>shop/grzx.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
+						<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;个人中心</a></li>
 					</ul>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 							<div class="header-ctn">-->
 								<!-- Wishlist -->
 								<div>
-									<a href="#" class="publish-btn"></i>发布二货</a>
+									<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
 								</div>
 								<!-- /Wishlist -->
 
@@ -154,7 +154,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>${list.name}<br></h3>
-								<a href="product.jsp" class="cta-btn">进去淘一淘<i class="fa fa-arrow-circle-right"></i></a>
+								<a href="product.jsp" class="cta-btn">进去淘一淘</a>
 							</div>
 						</div>
 					</div>
@@ -249,19 +249,19 @@
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
 												<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
 												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
+												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
 										<!-- /product -->
@@ -373,24 +373,25 @@
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
 												<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
 												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
+													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 													
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
+												<a href="product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
-										<!-- /product -->
+
 							</c:forEach>
+											<!-- /product -->
 									</div>
+
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
 								<!-- /tab -->
@@ -549,19 +550,19 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">关于我们</h3>
+								<h3 style="color:#8a8a8a" class="footer-title" >信息</h3>
 								
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>官塘大道</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+123-45-67-89</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/wz.png" /></i>官塘大道</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/shouji.png" /></i>+123-45-67-89</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/yx.png" /></i>email@email.com</a></li>
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">分类</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">分类</h3>
 								<ul class="footer-links">
 									<li><a href="#">热卖</a></li>
 									<li><a href="#">电脑</a></li>
@@ -576,7 +577,7 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">信息</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">关于我们</h3>
 								<ul class="footer-links">
 									<li><a href="#">关于我们</a></li>
 									<li><a href="#">联系我们</a></li>
@@ -589,7 +590,7 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">服务</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">服务</h3>
 								<ul class="footer-links">
 									<li><a href="#">我的账户</a></li>
 									<li><a href="#">查看购物车</a></li>
