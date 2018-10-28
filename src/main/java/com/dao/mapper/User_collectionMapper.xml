@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 指明这个映射文件adminMapper.xml的逻辑路径,如果与接口建立映射，那么逻辑路径应该与接口的物理路径一致-->
+<mapper namespace="com.dao.User_collectionDao">
+    <!-- parameterType表示要传入的参数的类型 ，resultType表示要返回的数据的类型-->
+    <!-- 外键关联 -->
+    <resultMap type="User_collection" id="user_collection">
+        <!-- 关联对象属性association，property指属性名， -->
+        <association property="product_id" javaType="Product" column="product_id" select="com.dao.ProductDao.get">
+        </association>
+        <association property="user_id" javaType="User" column="user_id" select="com.dao.UserDao.get">
+        </association>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="all"  resultMap="user_collection">
+        select * from user_collection
+    </select>
+    <!--根据id查询-->
+    <select id="get" resultMap="user_collection">
+        select  * from user_collection where id=#{id}
+    </select>
+    <!--根据id删除-->
+    <delete id="del" >
+        delete from user_collection where id=#{id}
+    </delete>
+    <!--添加分类-->
+    <insert id="add">
+        insert into user_collection values (null,#{user_id.id},#{product_id.id})
+    </insert>
+    <!--编辑分类-->
+    <update id="set">
+        update user_collection set user_id=#{user_id.id},product_id=#{product_id.id} where id=#{id}
+    </update>
+</mapper>

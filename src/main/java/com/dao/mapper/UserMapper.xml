@@ -11,7 +11,7 @@
 
     <!-- 注册功能 -->
     <insert id="zhuce" >
-         insert into users values(null,#{user},#{pass},null,null)
+         insert into users values(null,#{user},#{pass},null,null,null,1,null,null)
     </insert>
 
     <!--同名查询-->
@@ -33,4 +33,17 @@
     <delete id="del">
         delete from users where id=#{id}
     </delete>
+
+    <!--添加-->
+    <insert id="add" >
+          insert into users values(null,#{user},#{pass},#{name},#{header},#{remake},#{sex},#{address},#{time})
+    </insert>
+
+    <!--编辑-->
+    <update id="set">
+        update users set name=#{name},pass=#{pass},header=#{header},remake=#{remake},sex=#{sex},address=#{address},time=#{time}
+        where id=#{id}
+    </update>
+
+
 </mapper>

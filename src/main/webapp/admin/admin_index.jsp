@@ -84,8 +84,8 @@
 			<dt><i class="Hui-iconfont">&#xe69d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="" href="javascript:void(0)">用户管理</a></li>
-					<li><a _href="">用户收藏管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/user" href="javascript:void(0)">用户管理</a></li>
+					<li><a _href="<%=basePath%>admin/index/user_collection">用户收藏管理</a></li>
 				</ul>
 			</dd>
 		</dl>

@@ -5,7 +5,8 @@
 
 	<!-- 实体类,简称 -设置别名 -->
 	<typeAliases>
-		<!-- 将com.lcvc.ebuytest3.model.Admin类重新起一个名字Admin，供mybatis的映射文件使用 -->
+		<!-- 将类重新起一个名字Admin，供mybatis的映射文件使用 -->
+		<typeAlias alias="User_collection" type="com.model.User_collection"/>
 		<typeAlias alias="User" type="com.model.User"/>
 		<typeAlias alias="Admin" type="com.model.Admin"/>
 		<typeAlias alias="Product" type="com.model.Product"/>
@@ -15,7 +16,8 @@
 	</typeAliases>
 
 	<mappers>
-		<!--注册adminMappe.xml文件 -->
+		<!--注册xml文件 -->
+		<mapper resource="com/dao/mapper/User_collectionMapper.xml"/>
 	    <mapper resource="com/dao/mapper/UserMapper.xml"/>
 		<mapper resource="com/dao/mapper/AdminMapper.xml"/>
 		<mapper resource="com/dao/mapper/ProductMapper.xml"/>

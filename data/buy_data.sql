@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 27/10/2018 01:58:18
+ Date: 28/10/2018 19:44:46
 */
 
 SET NAMES utf8mb4;
@@ -52,7 +52,7 @@ CREATE TABLE `product_comment`  (
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `product_comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_comment_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product_comment
@@ -140,7 +140,7 @@ CREATE TABLE `recommend`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_id`(`admin_id`) USING BTREE,
   CONSTRAINT `recommend_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of recommend
@@ -151,22 +151,48 @@ INSERT INTO `recommend` VALUES (3, '全球限量版楠神手机探索版', 1, '�
 INSERT INTO `recommend` VALUES (4, '美滋滋电脑你值得拥有!', 1, '电脑');
 
 -- ----------------------------
+-- Table structure for user_collection
+-- ----------------------------
+DROP TABLE IF EXISTS `user_collection`;
+CREATE TABLE `user_collection`  (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user_id` int(50) NULL DEFAULT NULL,
+  `product_id` int(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  INDEX `product_id`(`product_id`) USING BTREE,
+  CONSTRAINT `user_collection_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_collection_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_collection
+-- ----------------------------
+INSERT INTO `user_collection` VALUES (1, 1, 1);
+INSERT INTO `user_collection` VALUES (3, 2, 11);
+
+-- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `id` int(50) NOT NULL AUTO_INCREMENT,
   `user` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pass` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` char(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `header` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `remake` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sex` bit(1) NULL DEFAULT b'1',
+  `address` char(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `time` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'user', '123456', '小王', NULL);
-INSERT INTO `users` VALUES (2, '12345678900', '123456', '楠神', NULL);
+INSERT INTO `users` VALUES (1, 'user', '123456', '小王', NULL, NULL, b'0', NULL, NULL);
+INSERT INTO `users` VALUES (2, '12345678900', '123456', '楠神', '', '牛逼哄哄吊炸天', b'1', '', NULL);
+INSERT INTO `users` VALUES (3, '111', '123', 'you盘2', '', '牛逼哄哄吊炸天', b'0', '', '2018-10-16');
 
 SET FOREIGN_KEY_CHECKS = 1;
