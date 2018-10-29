@@ -20,17 +20,10 @@
 <title>后台</title>
 </head>
 <body>
-<header class="Hui-header cl"> <span class="Hui-subtitle l">logo</span>
+<header class="Hui-header cl"> <span class="Hui-subtitle l"><img src="<%=basePath%>shop/img/logo.jpg" width="50" height="50" style="position: relative; left: 20px; top: -20px;"></span>
 
 	<nav class="mainnav cl" id="Hui-nav">
-		<ul>
-			<li class="dropDown dropDown_click"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
-				<ul class="dropDown-menu radius box-shadow">
-					<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.jsp')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-					<li><a href="javascript:;" onclick="member_add('添加用户','member-add.jsp','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-				</ul>
-			</li>
-		</ul>
+
 	</nav>
     
     
@@ -86,14 +79,6 @@
 				<ul>
 					<li><a _href="<%=basePath%>admin/index/user" href="javascript:void(0)">用户管理</a></li>
 					<li><a _href="<%=basePath%>admin/index/user_collection">用户收藏管理</a></li>
-				</ul>
-			</dd>
-		</dl>
-		<dl id="menu-order">
-			<dt><i class="Hui-iconfont">&#xe64d;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a _href="" href="javascript:void(0)">订单管理</a></li>
 				</ul>
 			</dd>
 		</dl>

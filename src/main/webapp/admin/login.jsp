@@ -70,7 +70,7 @@
       <div class="row">
         <div class="formControls col-8 col-offset-3">
           <input name="" type="button" onClick="button()" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
-          <input name="" type="reset" class="btn btn-default radius size-L" style="float: right;" value="&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;">
+          <input name="" type="reset" class="btn btn-default radius size-L" onClick="Return()"  style="float: right;" value="&nbsp;返&nbsp;&nbsp;&nbsp;&nbsp;回&nbsp;">
         </div>
       </div>
     </form>
@@ -87,6 +87,9 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
+function Return() {
+    window.location.href="<%=basePath%>shop/index";
+}
 </script>
 </body>
 </html>

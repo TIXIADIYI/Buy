@@ -40,6 +40,7 @@
 						<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
 						<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
 						<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;个人中心</a></li>
+						<li><a href="<%=basePath%>admin/login">&nbsp;后台管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -115,7 +116,7 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="<%=basePath%>shop">首页</a></li>
+						<li class="active"><a href="<%=basePath%>shop/index">首页</a></li>
 						<li><a href="#">热卖</a></li>
 						<li><a href="<%=basePath%>shop/store.jsp">分类</a></li>
 						<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">

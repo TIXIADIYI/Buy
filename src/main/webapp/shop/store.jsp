@@ -30,108 +30,111 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
     </head>
 	<body>
-		<!-- 顶部开始 -->
-		<header>
-			<!-- TOP HEADER -->
-			<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">
-						<li style="color: #000000;">位置</li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 官塘大道</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> 登录</a></li>
-						<li><a href="#"><i class="fa fa-dollar"></i> 注册</a></li>
-						<li><a href="grzx.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
-					</ul>
-				</div>
+	<!-- 顶部开始 -->
+	<header>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li style="color: #000000;">位置</li>
+					<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
+					<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
+					<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;个人中心</a></li>
+					<li><a href="<%=basePath%>admin/login">&nbsp;后台管理</a></li>
+				</ul>
 			</div>
-			<!-- /TOP HEADER -->
+		</div>
+		<!-- /TOP HEADER -->
 
-			<!-- MAIN HEADER -->
-			<div id="header">
-				<!-- container -->
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<!-- LOGO -->
-						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
-								</a>
-							</div>
-						</div>
-						<!-- /LOGO -->
-
-						<!-- 搜索框 -->
-						<div class="col-md-6">
-							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">所有类别</option>
-										<option value="1">类别 01</option>
-										<option value="1">类别 02</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">搜索</button>
-								</form>
-							</div>
-						</div>
-						<!-- /SEARCH BAR -->
-
-						<!-- ACCOUNT -->
-						<!--<div class="col-md-3 clearfix">
-							<div class="header-ctn">-->
-								<!-- Wishlist -->
-								<div>
-									<a href="#" class="publish-btn"></i>发布二货</a>
-								</div>
-								<!-- /Wishlist -->
-
-								<!-- Cart -->
-								<!--<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span>购物车</span>
-										<div class="qty">3</div>
-									</a>		
-								</div>-->
-								<!-- /Cart -->
-							</div>
-						</div>
-						<!-- /ACCOUNT -->
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /顶部结束 -->
-
-		<!-- 横向菜单 -->
-		<nav id="navigation">
+		<!-- MAIN HEADER -->
+		<div id="header">
 			<!-- container -->
 			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="<%=basePath%>shop/index.jsp">首页</a></li>
-						<li><a href="#">热卖</a></li>
-						<li><a href="#">分类</a></li>
-						<li><a href="#">电脑</a></li>
-						<li><a href="#">手机</a></li>
-						<li><a href="#">电子配件</a></li>
-						<li><a href="#">娱乐</a></li>
-					</ul>
-					<!-- /NAV -->
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo">
+								<img src="<%=basePath%>shop/img/logo.png" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+					<!-- 搜索框 -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form>
+								<select class="input-select">
+									<option value="all">所有类别</option>
+									<c:forEach items="${requestScope.product_type}" var="list" >
+										<option value="${list.id}">${list.name}</option>
+									</c:forEach>
+								</select>
+								<input class="input" placeholder="${requestScope.recommend.commend}">
+								<button class="search-btn">搜索</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<!--<div class="col-md-3 clearfix">
+                        <div class="header-ctn">-->
+					<!-- Wishlist -->
+					<div>
+						<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+					</div>
+					<!-- /Wishlist -->
+
+					<!-- Cart -->
+					<!--<div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>购物车</span>
+                            <div class="qty">3</div>
+                        </a>
+                    </div>-->
+					<!-- /Cart -->
 				</div>
-				<!-- /responsive-nav -->
 			</div>
-			<!-- /container -->
-		</nav>
+			<!-- /ACCOUNT -->
+		</div>
+		<!-- row -->
+		</div>
+		<!-- container -->
+		</div>
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /顶部结束 -->
+
+		<!-- 横向菜单 -->
+	<!-- NAVIGATION -->
+	<nav id="navigation">
+		<!-- container -->
+		<div class="container">
+			<!-- responsive-nav -->
+			<div id="responsive-nav">
+				<!-- NAV -->
+				<ul class="main-nav nav navbar-nav">
+					<li class="active"><a href="<%=basePath%>shop/index">首页</a></li>
+					<li><a href="#">热卖</a></li>
+					<li><a href="<%=basePath%>shop/store.jsp">分类</a></li>
+					<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">
+						<li><a href="#">${list.name}</a></li>
+					</c:forEach>
+
+				</ul>
+				<!-- /NAV -->
+			</div>
+			<!-- /responsive-nav -->
+		</div>
+		<!-- /container -->
+	</nav>
+	<!-- /NAVIGATION -->
 		<!-- /横向菜单结束 -->
 
 		<!-- BREADCRUMB -->
