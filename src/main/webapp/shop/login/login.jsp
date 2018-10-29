@@ -18,7 +18,8 @@
                         $("#loginform").serialize(),
                         function (data) {
                             if (data == "1") {
-                                alert("登录成功");
+                                alert("登录成功,点击后跳转");
+                                setTimeout("location.href = '<%=basePath%>shop/index'",1000);
                             } else if (data == "0") {
                                 alert("登录失败，账号或密码错误");
                             } else if (data == "2") {

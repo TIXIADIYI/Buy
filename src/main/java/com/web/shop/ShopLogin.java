@@ -3,12 +3,14 @@ package com.web.shop;
 
 
 import com.bean.UserBean;
+import com.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/shop")
@@ -26,13 +28,17 @@ public class ShopLogin {
     //登录提交验证
     @ResponseBody
     @RequestMapping(value = "/login/post", method = RequestMethod.POST)
-    public Integer shoplogin_post(String user, String pass){
+    public Integer shoplogin_post(String user, String pass, HttpSession session){
         if(user==null||pass==null||user.equals("")||pass.equals("")){
             return 2;
-        }else if(userbean.login(user,pass)!=null){
-            return 1;
         }else{
-            return 0;
+            User users=userbean.login(user,pass);
+            if(users!=null){
+                session.setAttribute("user",users);
+               return 1;
+            }else{
+                return 0;
+            }
         }
     }
 
@@ -53,6 +59,13 @@ public class ShopLogin {
         }else{
             return 3;
         }
+    }
+
+    //退出登录
+    @RequestMapping(value = "/login/exit", method = RequestMethod.GET)
+    public String shoplogin_exit(HttpSession session){
+        session.removeAttribute("user");
+        return "/shop/index";
     }
 
 }

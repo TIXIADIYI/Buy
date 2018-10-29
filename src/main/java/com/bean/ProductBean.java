@@ -29,6 +29,13 @@ public class ProductBean {
     }
      //根据热门程度排序商品-->
     public Product[] product_hot(){ return  productdao.product_hot();}
+    //根据价格
+    public Product[]   product_max(){
+        return productdao.product_max();
+    }
+    public Product[] product_mix(){
+        return productdao.product_mix();
+    }
     //根据id上下架商品
     public int display_tf(Integer id,boolean display){
         int i=0;
@@ -50,5 +57,20 @@ public class ProductBean {
     //修改商品
     public int set(Product product){
         return productdao.set(product);
+    }
+    //根据分类和热门排序
+    public Product[] product_type_get_hot(Integer product_type_id){
+        return productdao.product_type_get_hot(product_type_id);
+    }
+    //根据分类和新品排序
+    public Product[] product_type_get_new(Integer product_type_id){
+        return productdao.product_type_get_new(product_type_id);
+    }
+    //根据分类和价格排序
+    public  Product[] product_type_get_mix(Integer product_type_id){
+        return  product_type_get_mix(product_type_id);
+    }
+    public Product[] product_type_get_max(Integer product_type_id){
+        return product_type_get_max(product_type_id);
     }
 }

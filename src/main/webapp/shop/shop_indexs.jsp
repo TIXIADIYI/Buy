@@ -37,9 +37,18 @@
 						<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
-						<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
-						<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;个人中心</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.user==null}">
+								<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
+								<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+								<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
+							</c:otherwise>
+						</c:choose>
+
+
 						<li><a href="<%=basePath%>admin/login">&nbsp;后台管理</a></li>
 					</ul>
 				</div>
@@ -116,11 +125,11 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="<%=basePath%>shop/index">首页</a></li>
-						<li><a href="#">热卖</a></li>
-						<li><a href="<%=basePath%>shop/store.jsp">分类</a></li>
+						<li><a href="<%=basePath%>shop/index">首页</a></li>
+						<li><a href="<%=basePath%>shop/store/all?product_sort=1">热卖</a></li>
+						<li><a href="<%=basePath%>shop/store/all?product_sort=2">新品</a></li>
 						<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">
-							<li><a href="#">${list.name}</a></li>
+							<li><a href="<%=basePath%>shop/store/all?product_type_id=${list.id}">${list.name}</a></li>
 						</c:forEach>
 
 					</ul>
@@ -155,7 +164,7 @@
 							</div>
 							<div class="shop-body">
 								<h3>${list.name}<br></h3>
-								<a href="product.jsp" class="cta-btn">进去淘一淘</a>
+								<a href="<%=basePath%>shop/store/all?product_type_id=${list.id}" class="cta-btn">进去淘一淘</a>
 							</div>
 						</div>
 					</div>
