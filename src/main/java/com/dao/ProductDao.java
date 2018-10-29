@@ -10,13 +10,6 @@ public interface ProductDao {
     Product get(@Param(value = "id") Integer id);
     //根据分类查询商品
     Product[] product_type_get(@Param(value = "product_type_id")Integer product_type_id);
-    //根据时间从新到旧排序商品
-    Product[] product_new();
-     //根据热门程度排序商品-->
-    Product[] product_hot();
-    //根据价格排序
-    Product[] product_max();
-    Product[] product_mix();
     //根据ID上架商品
     int display_t(@Param(value = "id") Integer id);
     //根据ID下架商品
@@ -27,12 +20,8 @@ public interface ProductDao {
     int in(Product product);
     //修改商品
     int set(Product product);
-    //根据分类和热门排序
-    Product[] product_type_get_hot(@Param(value = "product_type_id")Integer product_type_id);
-    //根据分类和新品排序
-    Product[] product_type_get_new(@Param(value = "product_type_id")Integer product_type_id);
-    //根据分类和价格排序
-    Product[] product_type_get_mix(@Param(value = "product_type_id")Integer product_type_id);
-    Product[] product_type_get_max(@Param(value = "product_type_id")Integer product_type_id);
+
+    //查询关键字
+    Product[] sel(String Key);
 
 }

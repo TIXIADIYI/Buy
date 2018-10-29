@@ -29,24 +29,6 @@
         select * from products where product_type_id=#{product_type_id}
     </select>
 
-    <!--根据日期从新到旧排序商品-->
-    <select id="product_new" resultMap="product">
-        SELECT * from products  order by time DESC
-    </select>
-
-    <!--根据热门程度排序商品-->
-    <select id="product_hot" resultMap="product">
-       SELECT * from products ORDER BY click desc
-    </select>
-
-    <!--根据价格程度排序商品-->
-    <select id="product_max" resultMap="product">
-        SELECT * from products ORDER BY price desc
-    </select>
-    <select id="product_mix" resultMap="product">
-        SELECT * from products ORDER BY price
-    </select>
-
     <!--根据id上架商品-->
     <update id="display_t" >
         UPDATE products SET display=1 where id=#{id}
@@ -74,24 +56,14 @@
          click=#{click},product_type_id=#{product_type_id.id},prices=#{prices},display=#{display},user_id=#{user_id.id},weixin=#{weixin}  where id=#{id}
     </update>
 
-    <!--根据分类id查询商品且按热门排序-->
-    <select id="product_type_get_hot" resultMap="product">
-        select * from products where product_type_id=#{product_type_id} ORDER BY click desc
-    </select>
-
-    <!--根据分类id查询商品且按新品排序-->
-    <select id="product_type_get_new" resultMap="product">
-        select * from products where product_type_id=#{product_type_id} order by time DESC
-    </select>
-
-    <!--根据分类id查询商品且按价格排序-->
-    <!--最低-->
-    <select id="product_type_get_mix" resultMap="product">
-        select * from products where product_type_id=#{product_type_id} order by price
-    </select>
-    <!--最高-->
-    <select id="product_type_get_max" resultMap="product">
-        select * from products where product_type_id=#{product_type_id} order by price DESC
+    <!--关键字查询-->
+    <select id="sel" resultMap="product" >
+        select * from products where
+        name like CONCAT('%',#{Key},'%')
+         or remake like CONCAT('%',#{Key},'%')
+         or phone like CONCAT('%',#{Key},'%')
+         or qq like CONCAT('%',#{Key},'%')
+         or weixin like CONCAT('%',#{Key},'%')
     </select>
 
 </mapper>

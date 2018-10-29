@@ -7,17 +7,17 @@ import java.util.Date;
 public class Product {
     private Integer id;
     private String name;
-    private Float price;
+    private Float price=0f;
     private String remake;
     private String image;
     private String sum;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date time;
+    private Date time=new Date(1,1,1);;
 
-    private Integer click;
+    private Integer click=0;
     private Product_type product_type_id;
-    private Float prices;
+    private Float prices=0f;
     private User user_id;
     private boolean display;
     private String phone;

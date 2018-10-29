@@ -28,6 +28,7 @@ public class ShopIndex {
     private String[] product_image=new String[3];
     //主页热门3分类的商品
     private Product[][] product_top_hot=new Product[3][];
+
     /*
    * 跳转到前台主页
    */
@@ -81,10 +82,10 @@ public class ShopIndex {
                 }
         request.setAttribute("product_type_top",product_type_top);
         //获取新上架商品
-        Product[] product_new=productbean.product_new();
+        Product[] product_new=product_new(product);
         request.setAttribute("product_new",product_new);
         //获取最热门商品
-        Product[] product_hot=productbean.product_hot();
+        Product[] product_hot=product_hot(product);
         request.setAttribute("product_hot",product_hot);
         //获取最热门3个分类的商pin
         for(int i=0;i<product_top_hot.length;i++){
@@ -109,6 +110,35 @@ public class ShopIndex {
         request.setAttribute("product_image",product_image);
         //跳转
         return "shop/shop_indexs.jsp";
+    }
+
+
+    //商品最热门排序方法
+    private Product[] product_hot(Product[] product){
+        for(int i=0;i<product.length;i++){
+            for(int j=i;j<product.length;j++){
+                if(product[i].getClick()<product[j].getClick()){
+                    Product p=product[i];
+                    product[i]=product[j];
+                    product[j]=p;
+                }
+            }
+        }
+        return product;
+    }
+
+    //商品新品排序
+    private Product[] product_new(Product[] product){
+        for(int i=0;i<product.length;i++){
+            for(int j=i;j<product.length;j++){
+                if(product[i].getTime().getTime()<product[j].getTime().getTime()){
+                    Product p=product[i];
+                    product[i]=product[j];
+                    product[j]=p;
+                }
+            }
+        }
+        return product;
     }
 
 }

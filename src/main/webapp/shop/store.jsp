@@ -5,12 +5,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>二手物品列表-xxx网</title>
+		<title>二手物品列表</title>
  		<!-- Google font -->
  		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
@@ -79,14 +77,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<div class="col-md-6">
 						<div class="header-search">
 							<form>
-								<select class="input-select">
+								<select class="input-select" id="product_type" >
 									<option value="all">所有类别</option>
 									<c:forEach items="${requestScope.product_type}" var="list" >
 										<option value="${list.id}">${list.name}</option>
 									</c:forEach>
 								</select>
-								<input class="input" placeholder="${requestScope.recommend.commend}">
-								<button class="search-btn">搜索</button>
+								<input class="input" placeholder="${requestScope.recommend.commend}" id="select">
+								<button class="search-btn" OnClick="Select();" type="button">搜索</button>
 							</form>
 						</div>
 					</div>
@@ -155,8 +153,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<ul class="breadcrumb-tree">
 							<li>首页</li>
 							<li>${requestScope.product_type_name}</li>
-
-							<li></li>
 						</ul>
 					</div>
 				</div>
@@ -222,7 +218,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 								<label>
 									<ul class="main-nav nav navbar-nav">
 										<li <c:choose>
-											<c:when test="${requestScope.product_sort==0}">
+											<c:when test="${requestScope.product_sort==0||requestScope.product_sort==null}">
 												class="active"
 											</c:when>
 										</c:choose> ><a href="<%=basePath%>shop/store/all?product_type_id=${requestScope.product_type_id}">默认</a></li>
@@ -236,20 +232,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 												class="active"
 											</c:when>
 										</c:choose>><a href="<%=basePath%>shop/store/all?product_sort=2&product_type_id=${requestScope.product_type_id}">最新</a></li>
-										<li <c:choose>
-											<c:when test="${requestScope.product_sort==3&&requestScope.product_sort_3==false}">
+										<li
+												<c:choose>
+											<c:when test="${requestScope.product_sort==3}">
 												class="active">
-												<a href="<%=basePath%>shop/store/all?product_sort=3&product_sort_3=true&product_type_id=${requestScope.product_type_id}">↓价格</a>
 											</c:when>
-											<c:when test="${requestScope.product_sort==3&&requestScope.product_sort_3==true}">
-												class="active">
-												<a href="<%=basePath%>shop/store/all?product_sort=3&product_sort_3=false&product_type_id=${requestScope.product_type_id}">↑价格</a>
-											</c:when>
-											<c:otherwise>
-												>
-												<a href="<%=basePath%>shop/store/all?product_sort=3&product_sort_3=false&product_type_id=${requestScope.product_type_id}">价格</a>
-											</c:otherwise>
-										</c:choose></li>
+                                            <c:otherwise>
+                                                >
+                                            </c:otherwise>
+										</c:choose>
+                                           <c:choose>
+												<c:when test="${requestScope.product_sort_3==true}">
+													<a href="<%=basePath%>shop/store/all?product_sort=3&product_sort_3=false&product_type_id=${requestScope.product_type_id}">价格↓</a>
+												</c:when>
+												<c:otherwise>
+													<a href="<%=basePath%>shop/store/all?product_sort=3&product_sort_3=true&product_type_id=${requestScope.product_type_id}">价格↑</a>
+												</c:otherwise>
+										   </c:choose>
+										</li>
 									</ul>
 								</label>
 
@@ -319,10 +319,21 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<!-- store bottom filter -->
 						<div class="store-filter clearfix">
 							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
+								<c:forEach var="index" end="${requestScope.pagemax}" begin="0" varStatus="s">
+
+									<li
+											<c:choose>
+											 <c:when test="${s.index==page}">
+												 class="active"
+											 </c:when>
+											</c:choose>
+									>
+										<a href="<%=basePath%>shop/store/all?product_sort=${requestScope.product_sort}&
+										product_sort_3=${requestScope.product_sort_3}&
+										product_type_id=${requestScope.product_type_id}&
+										page=${s.index}">
+										${s.index+1}</a></li>
+								</c:forEach>
 								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 							</ul>
 						</div>
@@ -419,6 +430,21 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<script src="<%=basePath%>shop/js/nouislider.min.js"></script>
 		<script src="<%=basePath%>shop/js/jquery.zoom.min.js"></script>
 		<script src="<%=basePath%>shop/js/main.js"></script>
+	<script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
+	<script>
+        function Select(){
+            var select=$("#select").val()+"";
+            var product_type=$("#product_type").val();
+            if(select==null||select==""){
+                select="${requestScope.recommend.value}";
+                product_type=null;
+            }
+            if(product_type==null||product_type==""){
+                product_type=-1;
+            }
 
+            window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+        }
+	</script>
 	</body>
 </html>

@@ -9,22 +9,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>首页</title>
-
  		<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
-
  		<!-- Slick -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/slick.css"/>
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/slick-theme.css"/>
-
  		<!-- nouislider -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/nouislider.min.css"/>
-
  		<!-- Font Awesome Icon -->
  		<link rel="stylesheet" href="<%=basePath%>shop/css/font-awesome.min.css">
-
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/style.css"/>
+
 	</head>
 	<body>
 		<!-- 顶部开始 -->
@@ -74,14 +70,14 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select">
-										<option value="all">所有类别</option>
+									<select class="input-select" id="product_type" >
+										<option value="-1">所有类别</option>
                                            <c:forEach items="${requestScope.product_type}" var="list" >
 											   <option value="${list.id}">${list.name}</option>
 										   </c:forEach>
 									</select>
-									<input class="input" placeholder="${requestScope.recommend.commend}">
-									<button class="search-btn">搜索</button>
+									<input class="input" placeholder="${requestScope.recommend.commend}" id="select">
+									<button class="search-btn" OnClick="Select();" type="button">搜索</button>
 								</form>
 							</div>
 						</div>
@@ -630,6 +626,22 @@
 		<script src="<%=basePath%>shop/js/nouislider.min.js"></script>
 		<script src="<%=basePath%>shop/js/jquery.zoom.min.js"></script>
 		<script src="<%=basePath%>shop/js/main.js"></script>
+        <script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
+        <script>
+            function Select(){
+                var select=$("#select").val()+"";
+                var product_type=$("#product_type").val();
+                alert(product_type);
+                if(select==null||select==""){
+                    select="${requestScope.recommend.value}";
+                    product_type=null;
+                }
+                if(product_type==null||product_type==""){
+                    product_type=-1;
+                }
 
+                window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+            }
+        </script>
 	</body>
 </html>
