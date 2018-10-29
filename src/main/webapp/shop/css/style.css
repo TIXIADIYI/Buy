@@ -1179,6 +1179,8 @@ textarea.input {
 }
 
 .product .product-body {
+	width: 263px;
+	height: 186px;
 	position: relative;
 	padding: 15px;
 	background-color: #FFF;
@@ -2366,13 +2368,9 @@ textarea.input {
 	color: #2B2D42;
 }
 
-.slick-prev:before {
-	content: "\f104";
-}
 
-.slick-next:before {
-	content: "\f105";
-}
+
+
 
 .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
 	color: #FFF;
