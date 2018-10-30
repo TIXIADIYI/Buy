@@ -44,14 +44,14 @@
 </div>
 <form id="loginform" method="post">
     <div class="login_wrap"
-         style="width:; background:#fff url(<%=basePath%>shop/image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
+         style="width:; background:#fff url(../image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
         <div class="wrapper" id="login_body" style="width:;">
             <div class="log_ad" style="display:"><a href="javascript:;"></a></div>
             <div class="login_border" style="padding:8px;">
                 <div class="login" style="display: block;">
                     <div style="position:absolute; right:30px; top:14px;">
-                        <a href="<%=basePath%>shop/login/zhuce.jsp" target="_parent">账号注册
-                            <em style="width:16px; height:16px; background:#999; float:right; color:#fff; border-radius:100%; text-align:center; line-height:16px; margin:1px 0 0 5px; font-family:'宋体'; font-weight:bold;">&gt;</em>
+                        <a href="<%=basePath%>shop/login/zhuce.jsp" target="_parent" style="font-size: 13px;">账号注册
+                            <!--<em style="width:16px; height:16px; background:#999; float:right; color:#fff; border-radius:100%; text-align:center; line-height:16px; margin:1px 0 0 5px; font-family:'宋体'; font-weight:bold;">&gt;</em>-->
                         </a>
                     </div>
                     <ul class="login-tab">
@@ -61,11 +61,14 @@
                     <div class="login-body">
                         <div class="login-style" style="display: block;">
                             <dl>
-                                <dd><img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;"><input
-                                        name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
+                                <dd>
+                                	<img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
+                                <input name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
                             </dl>
-                            <dl><img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
-                                <dd><input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
+                            <dl>
+                            	<dd>
+                            	<img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
+                                <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
                                            placeholder="请输入您的密码" name="pass"/></dd>
                             </dl>
                             <div class="psword" style="margin-top:15px;"><a href="javascript:void(0);"

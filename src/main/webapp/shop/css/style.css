@@ -81,7 +81,7 @@
 .login-body { 
       padding: 5px 25px 0;
 	height: 230px;
-	  overflow: hidden; }
+	  /*overflow: hidden;*/ }
 .login ul { 
        overflow: hidden; 
 	   width:310px; 
@@ -111,7 +111,7 @@
 .login-on { 
           color: #ff6700;
 		  font-size:14px; 
-		  border-bottom:1px solid #f60 !important;}
+		  /*border-bottom:1px solid #f60 !important;*/}
 .login-on em { opacity: 1 !important; }
 .login dl { margin-top: 20px; }
 .login dl dt { height: 25px; 
@@ -241,8 +241,8 @@
 .foot_nav i { 
            margin: 0 10px; }
 #button{
-	width: 270px; height: 40px; background-color:#ff6700;font-size: 24px; color:#fff;
-	position: relative;
+	width: 270px; height: 40px; background-color:#ff6700;font-size: 18px; color:#fff;
+
 	top: 20px;
 	border: 0px;
 	box-shadow: 0px 0px;
