@@ -205,8 +205,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 									<img src="${list.image}" alt="">
 								</div>
 								<div class="product-body">
-									<h3 class="product-name"><a href="#">${list.name}</a></h3>
-									<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
+									<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.name}</a></h3>
+									<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.prices}</del></h4>
 								</div>
 							</div>
 							</c:forEach>
@@ -295,7 +295,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 									<div class="product-body">
 										<p class="product-category">${list.name}</p>
 										<h3 class="product-name">${list.remake}</h3>
-										<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
+										<h4 class="product-price">￥${list.price}<del class="product-old-price">￥${list.prices}</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -310,7 +310,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 										</div>
 									</div>
 									<div class="add-to-cart">
-										<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
+										<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
 									</div>
 								</div>
 							</div>

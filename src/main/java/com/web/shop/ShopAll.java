@@ -43,39 +43,6 @@ public class ShopAll {
         Recommend[] recommends = recommendbean.all();
         Recommend recommend = recommends[(int) (Math.random() * recommends.length)];
         request.setAttribute("recommend", recommend);
-        //获取头部热门(下半部分热门)点击分类
-        for (int i = 0; i < product_type_top.length; i++) {
-            product_type_top_int[i] = 0;
-            product_type_top[i] = null;
-        }
-        for (int j = 0; j < product_type.length; j++) {
-            int click = 0;
-            Product[] product_j = productbean.product_type_get(product_type[j].getId());
-            for (int k = 0; k < product_j.length; k++) {
-                click += product_j[k].getClick();
-            }
-            for (int p = 0; p < product_type_top.length; p++) {
-                if (click > product_type_top_int[p]) {
-                    int clicks = product_type_top_int[p];
-                    Product_type product_type_clicks = product_type_top[p];
-                    product_type_top_int[p] = click;
-                    product_type_top[p] = product_type[j];
-                    for (int i = p + 1; i < product_type_top.length; i++) {
-                        if (clicks > product_type_top_int[i]) {
-                            int clickss = product_type_top_int[i];
-                            Product_type product_type_clickss = product_type_top[i];
-                            product_type_top_int[i] = clicks;
-                            product_type_top[i] = product_type_clicks;
-                            product_type_clicks = product_type_clickss;
-                            clicks = clickss;
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-        request.setAttribute("product_type_top", product_type_top);
-
         //获取最热门商品
         Product[] product_hot = product_hot(product);
         request.setAttribute("product_hot", product_hot);
@@ -127,7 +94,6 @@ public class ShopAll {
         if(page>pagemax){
             page=pagemax;
         }
-
         product=product_page(product,page);
         request.setAttribute("page", page);
         if(pagemax<=0){
@@ -135,6 +101,7 @@ public class ShopAll {
         }else{
             request.setAttribute("pagemax", pagemax-1);
         }
+        //传送商品！
         request.setAttribute("product", product);
 
         //跳转

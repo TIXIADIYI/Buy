@@ -3,6 +3,8 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -34,12 +36,22 @@
 				<div class="container">
 					<ul class="header-links pull-left">
 						<li style="color: #000000;">位置</li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 官塘大道</a></li>
+						<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> 登录</a></li>
-						<li><a href="#"><i class="fa fa-dollar"></i> 注册</a></li>
-						<li><a href="<%=basePath%>shop/grzx.jsp"><i class="fa fa-user-o"></i> 个人中心</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.user==null}">
+								<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
+								<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+								<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
+							</c:otherwise>
+						</c:choose>
+
+
+						<li><a href="<%=basePath%>admin/login">&nbsp;后台管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -55,23 +67,23 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+									<img src="<%=basePath%>shop/img/logo.png" alt="">
 								</a>
 							</div>
 						</div>
 						<!-- /LOGO -->
-
 						<!-- 搜索框 -->
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select">
-										<option value="0">所有类别</option>
-										<option value="1">类别 01</option>
-										<option value="1">类别 02</option>
+									<select class="input-select" id="product_type" >
+										<option value="-1">所有类别</option>
+										<c:forEach items="${requestScope.product_type}" var="list" >
+											<option value="${list.id}">${list.name}</option>
+										</c:forEach>
 									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">搜索</button>
+									<input class="input" placeholder="${requestScope.recommend.commend}" id="select">
+									<button class="search-btn" OnClick="Select();" type="button">搜索</button>
 								</form>
 							</div>
 						</div>
@@ -80,32 +92,33 @@
 						<!-- ACCOUNT -->
 						<!--<div class="col-md-3 clearfix">
 							<div class="header-ctn">-->
-								<!-- Wishlist -->
-								<div>
-									<a href="#" class="publish-btn"></i>发布二货</a>
-								</div>
-								<!-- /Wishlist -->
-
-								<!-- Cart -->
-								<!--<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span>购物车</span>
-										<div class="qty">3</div>
-									</a>		
-								</div>-->
-								<!-- /Cart -->
-							</div>
+						<!-- Wishlist -->
+						<div>
+							<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
 						</div>
-						<!-- /ACCOUNT -->
+						<!-- /Wishlist -->
+
+						<!-- Cart -->
+						<!--<div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>购物车</span>
+                                <div class="qty">3</div>
+                            </a>
+                        </div>-->
+						<!-- /Cart -->
 					</div>
-					<!-- row -->
 				</div>
-				<!-- container -->
+				<!-- /ACCOUNT -->
+			</div>
+			<!-- row -->
+			</div>
+			<!-- container -->
 			</div>
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /顶部结束 -->
+
 
 
 		<!-- NAVIGATION -->
@@ -116,13 +129,13 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="<%=basePath%>shop/index.jsp">首页</a></li>
-						<li><a href="#">热卖</a></li>
-						<li><a href="store.jsp">分类</a></li>
-						<li><a href="#">笔记本电脑</a></li>
-						<li><a href="#">智能手机</a></li>
-						<li><a href="#">相机</a></li>
-						<li><a href="#">饰品</a></li>
+						<li><a href="<%=basePath%>shop/index">首页</a></li>
+						<li><a href="<%=basePath%>shop/store/all?product_sort=1">热卖</a></li>
+						<li><a href="<%=basePath%>shop/store/all?product_sort=2">新品</a></li>
+						<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">
+							<li><a href="<%=basePath%>shop/store/all?product_type_id=${list.id}">${list.name}</a></li>
+						</c:forEach>
+
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -140,11 +153,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							
-							<li><a href="#">所有商品名</a></li>
-							<li><a href="#">饰品</a></li>
-							<li><a href="#">头戴耳机</a></li>
-							<li class="active">产品名称就在这里</li>
+							<li>首页</li>
+                            <li>${requestScope.product.name}</li>
 						</ul>
 					</div>
 				</div>
@@ -164,20 +174,19 @@
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product01.png" alt="">
+								<c:choose>
+									<c:when test="${list.image==null||list.image==''}">
+										<img src="<%=basePath%>shop/image/timg.gif" alt="" width="350" height="300">
+									</c:when>
+									<c:otherwise>
+										<img src="${list.image}" alt="" width="400" height="400">
+									</c:otherwise>
+								</c:choose>
 							</div>
 
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product08.png" alt="">
-							</div>
+							<%--<div class="product-preview">--%>
+								<%--<img src="<%=basePath%>shop/img/product03.png" alt="">--%>
+							<%--</div>--%>
 						</div>
 					</div>
 					<!-- /Product main img -->
@@ -185,21 +194,15 @@
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product01.png" alt="">
-							</div>
+							<%--<div class="product-preview">--%>
+								<%--<img src="<%=basePath%>shop/img/product01.png" alt="">--%>
+							<%--</div>--%>
 
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product03.png" alt="">
-							</div>
+							<%--<div class="product-preview">--%>
+								<%--<img src="<%=basePath%>shop/img/product03.png" alt="">--%>
+							<%--</div>--%>
 
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product06.png" alt="">
-							</div>
 
-							<div class="product-preview">
-								<img src="<%=basePath%>shop/img/product08.png" alt="">
-							</div>
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
@@ -207,40 +210,45 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">酷奇</h2>
+							<h2 class="product-name">${requestScope.product.name}</h2>
 							<div>
-								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-								<span class="product-available">有现货</span>
+								<h3 class="product-price">￥${requestScope.product.price}<del class="product-old-price">￥${requestScope.product.prices}</del></h3>
 							</div>
-
 							<ul class="product-links" >
-                            <img src="img/类别 (1).png"/>
-								<li>商品名:</li>
-								<li><a href="#">头戴耳机</a></li>
-								<li><a href="#">饰品</a></li>
+                            <img src="<%=basePath%>shop/img/类别 (1).png"/>
+								<li>分类:</li>
+								<li>${requestScope.product.product_type_id.name}</li>
 							</ul>
 
 							<ul class="product-links">
-                            <img src="img/手机 (4).png"/>
+                            <img src="<%=basePath%>shop/img/手机 (4).png"/>
 								<li>联系电话:</li>
-                                <li><a href="#">15472583652</a></li>
+                                <li>${requestScope.product.phone}</li>
+								<li>qq</li>
+								<li>${requestScope.product.qq}</li>
+								<li>微信</li>
+								<li>${requestScope.product.weixin}</li>
 							</ul>
                             
                             <ul class="product-links">
-                            <img src="img/地址.png"/>
+                            <img src="<%=basePath%>shop/img/地址.png"/>
 								<li>地址:</li>
-                                <li><a href="#">柳州城市职业学院</a></li>
+                                <li>${requestScope.user_id.address}</li>
+							</ul>
+
+							<ul class="product-links">
+								<li>发布时间</li>
+								<li><fmt:formatDate type="date" value="${requestScope.product.time}" dateStyle="default"/></li>
 							</ul>
                             
                             <ul class="product-links">
                           
 								<li>描述:</li>
-                                <p>酷奇（COOSKIN）于2003年成立于上海，是国内笔记本电脑周边产品的领军者。</p>
+                                <p>${requestScope.product.remake}</p>
 							</ul>
                             
                            
                             <div class="add-to-cart">
-								 <button class="primary-btn">联系卖家</button>
 								<button class="primary-btn">收藏</button>
 							</div>
 
@@ -259,19 +267,18 @@
 
 							<!-- product tab content -->
 							<div class="tab-content">
-								
-								
 
-								
 
 										<!-- Reviews -->
 										<div class="col-md-6">
 											<div id="reviews">
 												<ul class="reviews">
+                                                  <c:forEach items="${requestScope.product_comment}" var="list">
 													<li>
 														<div class="review-heading">
-															<h5 class="name">李海健</h5>
-															<p class="date">2018年12月27日,下午8:0</p>
+															<h5 class="name">${list.user_id.name}</h5>
+															<p class="date">
+																<fmt:formatDate type="date" value="${list.time}" dateStyle="default"/></p>
 															<div class="review-rating">
 																<i class="fa fa-star"></i>
 																<i class="fa fa-star"></i>
@@ -281,48 +288,25 @@
 															</div>
 														</div>
 														<div class="review-body">
-															<p>非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好。</p>
+															<p>${list.comment}</p>
 														</div>
 													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">李海健</h5>
-															<p class="date">2018年12月27日,下午8:0</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好。</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">李海健</h5>
-															<p class="date">2018年12月27日, 下午8:0</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好，非常好。</p>
-														</div>
-													</li>
+												  </c:forEach>
 												</ul>
 												<ul class="reviews-pagination">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+													<c:forEach var="index" end="${requestScope.comment_pagemax}" begin="0" varStatus="s">
+														<li
+																<c:choose>
+																	<c:when test="${s.index==comment_page}">
+																		class="active"
+																	</c:when>
+																</c:choose>
+														>
+															<a href="<%=basePath%>shop/product/edit?
+															id=${requestScope.id}&
+															comment_page=${s.index}">
+																	${s.index+1}</a></li>
+													</c:forEach>
 												</ul>
 											</div>
 										</div>
@@ -333,40 +317,17 @@
 											<div id="review-form">
 												<form class="review-form">
 													
-													<textarea class="input" placeholder="Your Review"></textarea>
+													<textarea class="input" placeholder="填写评论内容" style="height: 200px;"></textarea>
 													<div class="input-rating">
 												<i style="color: #8D99AE">对本商品进行评价:</i>
 														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+															<select >
+																<option>好评</option>
+																<option>差评</option>
+															</select>
 														</div>
-										                     </br>
-										                       <i style="color: #D10024" class="fa fa-star"></i><a style="color: #8D99AE">&nbsp;非常差</a></br>
-										                       
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i><a style="color: #8D99AE">&nbsp;差</a></br>
-										                       
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i><a style="color: #8D99AE">&nbsp;一般</a></br>
-										                       
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i><a style="color: #8D99AE">&nbsp;好</a></br>
-										                       
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i> 
-										                       <i style="color: #D10024" class="fa fa-star"></i><a style="color: #8D99AE">&nbsp;非常好</a>
-										                       
 													</div>
-													
-													<button class="primary-btn">提交</button>
+													<button class="primary-btn">评论</button>
 												</form>
 											</div>
 										</div>
@@ -398,120 +359,59 @@
 							<h3 class="title">相关产品</h3>
 						</div>
 					</div>
+                   <c:forEach items="${requestScope.product_all}" var="list">
+					   <c:choose>
+						   <c:when test="${list.id!=requestScope.product.id}">
+							   <!-- product -->
+							   <div class="col-md-3 col-xs-6">
+								   <div class="product">
+									   <div class="product-img">
+										   <c:choose>
+											   <c:when  test="${list.image==null||list.image==''}">
+												   <img src="<%=basePath%>shop/image/timg.gif" alt="" height="200" width="400">
+											   </c:when>
+											   <c:otherwise>
+												   <img src="${list.image}" alt="" height="200" width="400">
+											   </c:otherwise>
+										   </c:choose>
+										   <div class="product-label">
+											   <c:choose>
+												   <c:when  test="${(1-list.price/list.prices)*100==0||list.prices==null||list.prices==0}">
 
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="<%=basePath%>shop/img/product01.png" alt="">
-								<div class="product-label">
-									<span class="sale">-30%</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">商品名</p>
-								<h3 class="product-name"><a href="#">这里是描述</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-									
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
+												   </c:when>
+												   <c:otherwise>
+													   <span class="sale">-<fmt:formatNumber type="number" value="${(1-list.price/list.prices)*100}" pattern="#.##"/>%</span>
+												   </c:otherwise>
+											   </c:choose>
+										   </div>
+									   </div>
+									   <div class="product-body">
+										   <p class="product-category">${list.name}</p>
+										   <h3 class="product-name">${list.remake}</h3>
+										   <h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
+										   <div class="product-rating">
+											   <i class="fa fa-star"></i>
+											   <i class="fa fa-star"></i>
+											   <i class="fa fa-star"></i>
+											   <i class="fa fa-star"></i>
+											   <i class="fa fa-star"></i>
+										   </div>
+										   <div class="product-btns">
+											   <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
+										   </div>
+									   </div>
+									   <div class="add-to-cart">
+										   <a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
+									   </div>
+								   </div>
+							   </div>
+							   <!-- /product -->
+						   </c:when>
+					   </c:choose>
+					</c:forEach>
 
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="<%=basePath%>shop/img/product02.png" alt="">
-								<div class="product-label">
-									<span class="new">新</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">商品名</p>
-								<h3 class="product-name"><a href="#">这里是描述</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-									
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
 
-					<div class="clearfix visible-sm visible-xs"></div>
 
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="<%=basePath%>shop/img/product03.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">商品名</p>
-								<h3 class="product-name"><a href="#">这里是描述</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-									
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-							</div>
-						</div>
-					</div>
-					<!-- /product --> 
-
-					<!-- product -->
-					<div class="col-md-3 col-xs-6">
-						<div class="product">
-							<div class="product-img">
-								<img src="./img/product04.png" alt="">
-							</div>
-							<div class="product-body">
-								<p class="product-category">商品名</p>
-								<h3 class="product-name"><a href="#">这里是描述</a></h3>
-								<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">收藏</span></button>
-									
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>查看详情</button></a>
-							</div>
-						</div>
-					</div>
-					<!-- /product -->
 
 				</div>
 				<!-- /row -->
@@ -601,6 +501,17 @@
 		<script src="<%=basePath%>shop/js/nouislider.min.js"></script>
 		<script src="<%=basePath%>shop/js/jquery.zoom.min.js"></script>
 		<script src="<%=basePath%>shop/js/main.js"></script>
-
+		<script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
+		<script>
+            function Select(){
+                var select=$("#select").val()+"";
+                var product_type=$("#product_type").val();
+                if(select==null||select==""){
+                    select="${requestScope.recommend.value}";
+                    product_type=-1;
+                }
+                window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+            }
+		</script>
 	</body>
 </html>

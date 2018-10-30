@@ -36,4 +36,9 @@
     <update id="set">
         update  product_comment set comment=#{comment},user_id=#{user_id.id},product_id=#{product_id.id},time=#{time},praise=#{praise} where id=#{id}
     </update>
+
+    <!--根据商品id查询 -->
+    <select id="product_id_get"  resultMap="product_comment">
+         select * from product_comment  where product_id=#{product_id}
+    </select>
 </mapper>

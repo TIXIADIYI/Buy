@@ -253,7 +253,7 @@
 											<div class="product-body">
 												<p class="product-category">${list.name}</p>
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-												<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
+												<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
@@ -267,7 +267,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
+												<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
 										<!-- /product -->
@@ -377,7 +377,7 @@
 											<div class="product-body">
 												<p class="product-category">${list.name}</p>
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-												<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
+												<h4 class="product-price">￥${list.price}<del class="product-old-price">￥${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
@@ -390,7 +390,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
+												<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
 
@@ -455,8 +455,8 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${list.name}</p>
-										<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-										<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+										<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+										<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -491,8 +491,8 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>
-											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+											<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+											<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 										</div>
 									</div>
 									<!-- /product widget -->
@@ -527,8 +527,8 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>
-											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+											<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+											<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 										</div>
 									</div>
 									<!-- /product widget -->
