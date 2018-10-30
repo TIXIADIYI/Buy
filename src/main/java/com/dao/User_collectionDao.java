@@ -14,4 +14,6 @@ public interface User_collectionDao {
     int add(User_collection user_collection);
     //编辑
     int set(User_collection user_collection);
+    //重复
+    User_collection rep(User_collection user_collection);
 }

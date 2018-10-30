@@ -29,7 +29,7 @@
 
     <!--添加pingl -->
     <insert id="add" >
-        insert into product_comment values (#{comment},#{user_id.id},#{product_id.id},#{time},#{praise},#{id})
+        insert into product_comment values (#{comment},#{user_id.id},#{product_id.id},#{time},#{praise},null)
     </insert>
 
     <!--编辑-->

@@ -34,8 +34,6 @@ public class ShopAll {
     //跳转至商品列表页面
     @RequestMapping(value = "/store/all", method = RequestMethod.GET)
     public String shop_store_all(HttpServletRequest request,Integer product_type_id,Integer product_sort,boolean product_sort_3,Integer page,String Key) throws UnsupportedEncodingException {
-        //获取所有商品
-        Product[] product=productbean.all();
         //获取所有分类
         Product_type[] product_type = product_typeBean.all();
         request.setAttribute("product_type", product_type);
@@ -44,12 +42,13 @@ public class ShopAll {
         Recommend recommend = recommends[(int) (Math.random() * recommends.length)];
         request.setAttribute("recommend", recommend);
         //获取最热门商品
-        Product[] product_hot = product_hot(product);
+        Product[] product_hot = product_hot(productbean.all());
         request.setAttribute("product_hot", product_hot);
+        //获取所有商品
+        Product[] product=productbean.all();
         //检测关键字
         if(Key!=null&&!Key.equals("")&&!Key.equals(" ")){
             request.setAttribute("Key", Key);
-            System.out.println(Key);//查看是否乱码
             //若搜索出现中文搜索不出的情况，请解除下面注释，反之
 //            Key = new String(Key .getBytes("iso8859-1"),"utf-8");
 //            System.out.println(Key);

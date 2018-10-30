@@ -2,6 +2,7 @@ package com.web.shop;
 
 
 
+import com.bean.Product_commentBean;
 import com.bean.UserBean;
 import com.model.User;
 import org.springframework.stereotype.Controller;
@@ -67,5 +68,6 @@ public class ShopLogin {
         session.removeAttribute("user");
         return "/shop/index";
     }
+
 
 }

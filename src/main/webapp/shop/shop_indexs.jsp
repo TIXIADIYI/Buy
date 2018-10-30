@@ -88,7 +88,7 @@
 							<div class="header-ctn">-->
 								<!-- Wishlist -->
 								<div>
-									<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+									<a href="<%=basePath%>shop/login/index/product/add" class="publish-btn"></i>发布二货</a>
 								</div>
 								<!-- /Wishlist -->
 
@@ -262,7 +262,7 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"  ><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 
 												</div>
 											</div>
@@ -385,7 +385,7 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 													
 												</div>
 											</div>
@@ -631,12 +631,28 @@
             function Select(){
                 var select=$("#select").val()+"";
                 var product_type=$("#product_type").val();
+                if(product_type==-1){
                 if(select==null||select==""){
                     select="${requestScope.recommend.value}";
-                    product_type=-1;
                 }
+              }
                 window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+            };
+			function Collection_button(id) {
+                $.get("<%=basePath%>shop/login/index/collection/get?id="+id+" ",
+                    function (data) {
+                        if (data == "1") {
+                            alert("收藏成功");
+                        } else if(data == "2"){
+                            alert("你已经收藏过了！");
+                        }else{
+                            alert("收藏失败，可能原因未登录");
+						}
+                    });
             }
         </script>
+	<script>
+
+	</script>
 	</body>
 </html>

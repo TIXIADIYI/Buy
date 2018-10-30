@@ -95,7 +95,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         <div class="header-ctn">-->
 					<!-- Wishlist -->
 					<div>
-						<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+						<a href="<%=basePath%>shop/login/index/product/add" class="publish-btn"></i>发布二货</a>
 					</div>
 					<!-- /Wishlist -->
 
@@ -226,7 +226,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<c:when test="${requestScope.product_sort==0||requestScope.product_sort==null}">
 												class="active"
 											</c:when>
-										</c:choose> ><a href="<%=basePath%>shop/store/all?product_type_id=${requestScope.product_type_id}">默认</a></li>
+										</c:choose> ><a href="<%=basePath%>shop/store/all?product_sort=0&product_type_id=${requestScope.product_type_id}">默认</a></li>
 										<li <c:choose>
 											<c:when test="${requestScope.product_sort==1}">
 												class="active"
@@ -304,7 +304,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
+											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
 
 
 										</div>
@@ -338,7 +338,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 										page=${s.index}">
 										${s.index+1}</a></li>
 								</c:forEach>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+
 							</ul>
 						</div>
 						<!-- /store bottom filter -->
@@ -439,11 +439,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         function Select(){
             var select=$("#select").val()+"";
             var product_type=$("#product_type").val();
-            if(select==null||select==""){
-                select="${requestScope.recommend.value}";
-                product_type=-1;
+            if(product_type==-1){
+                if(select==null||select==""){
+                    select="${requestScope.recommend.value}";
+                }
             }
             window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+        }
+        function Collection_button(id) {
+            $.get("<%=basePath%>shop/login/index/collection/get?id="+id+" ",
+                function (data) {
+                    if (data == "1") {
+                        alert("收藏成功");
+                    } else if(data == "2"){
+                        alert("你已经收藏过了！");
+                    }else{
+                        alert("收藏失败，可能原因未登录");
+                    }
+                });
         }
 	</script>
 	</body>

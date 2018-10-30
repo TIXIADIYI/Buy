@@ -5,6 +5,7 @@
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -94,7 +95,7 @@
 							<div class="header-ctn">-->
 						<!-- Wishlist -->
 						<div>
-							<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+							<a href="<%=basePath%>shop/login/index/product/add" class="publish-btn"></i>发布二货</a>
 						</div>
 						<!-- /Wishlist -->
 
@@ -175,11 +176,11 @@
 						<div id="product-main-img">
 							<div class="product-preview">
 								<c:choose>
-									<c:when test="${list.image==null||list.image==''}">
+									<c:when test="${requestScope.product.image==null||requestScope.product.image==''}">
 										<img src="<%=basePath%>shop/image/timg.gif" alt="" width="350" height="300">
 									</c:when>
 									<c:otherwise>
-										<img src="${list.image}" alt="" width="400" height="400">
+										<img src="${requestScope.product.image}" alt="" width="350" height="300">
 									</c:otherwise>
 								</c:choose>
 							</div>
@@ -249,7 +250,7 @@
                             
                            
                             <div class="add-to-cart">
-								<button class="primary-btn">收藏</button>
+								<button class="primary-btn" OnClick="Collection_button(${requestScope.product.id});">收藏</button>
 							</div>
 
 						</div>
@@ -261,7 +262,7 @@
 							<!-- product tab nav -->
 							<ul class="tab-nav">
 								
-								<li><a data-toggle="tab" href="#tab3">评论(3)</a></li>
+								<li><a data-toggle="tab" href="#tab3">评论(${fn:length(requestScope.product_comment)})</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -276,7 +277,17 @@
                                                   <c:forEach items="${requestScope.product_comment}" var="list">
 													<li>
 														<div class="review-heading">
-															<h5 class="name">${list.user_id.name}</h5>
+															<h5 class="name">${list.user_id.name} </h5>
+															<c:choose>
+																<c:when test="${list.praise==true}">
+																	<i style="color: green;">好评</i>
+
+																</c:when>
+																<c:otherwise>
+																	<i style="color: red;">差评</i>
+																</c:otherwise>
+															</c:choose>
+
 															<p class="date">
 																<fmt:formatDate type="date" value="${list.time}" dateStyle="default"/></p>
 															<div class="review-rating">
@@ -315,19 +326,19 @@
 										<!-- Review Form -->
 										<div class="col-md-3">
 											<div id="review-form">
-												<form class="review-form">
-													
-													<textarea class="input" placeholder="填写评论内容" style="height: 200px;"></textarea>
+												<form class="review-form" method="post" id="myform">
+													<input  type="hidden" value="${requestScope.id}" name="product_id.id"/>
+													<textarea class="input" placeholder="填写评论内容" style="height: 200px;" name="comment" id="comment"></textarea>
 													<div class="input-rating">
 												<i style="color: #8D99AE">对本商品进行评价:</i>
 														<div class="stars">
-															<select >
-																<option>好评</option>
-																<option>差评</option>
+															<select name="praise">
+																<option value="true">好评</option>
+																<option value="false">差评</option>
 															</select>
 														</div>
 													</div>
-													<button class="primary-btn">评论</button>
+													<input class="primary-btn" type="button" id="comment_button" value="评论"/>
 												</form>
 											</div>
 										</div>
@@ -397,7 +408,7 @@
 											   <i class="fa fa-star"></i>
 										   </div>
 										   <div class="product-btns">
-											   <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
+											   <button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
 										   </div>
 									   </div>
 									   <div class="add-to-cart">
@@ -506,12 +517,44 @@
             function Select(){
                 var select=$("#select").val()+"";
                 var product_type=$("#product_type").val();
-                if(select==null||select==""){
-                    select="${requestScope.recommend.value}";
-                    product_type=-1;
+                if(product_type==-1){
+                    if(select==null||select==""){
+                        select="${requestScope.recommend.value}";
+                    }
                 }
                 window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
             }
+
+            $("#comment_button").click(function() {
+                if($("#comment").val()==null||$("#comment").val()==""){
+                    alert("请填写！");
+				}else {
+                    $.post("<%=basePath%>shop/login/index/product_comment/post",
+                        $("#myform").serialize(),
+                        function (data) {
+                            if (data == "1") {
+                                alert("评论成功");
+                                location.reload();
+                            } else {
+                                alert("评论失败，可能原因未登录");
+                            }
+                        });
+                }
+                } );
+
+            function Collection_button(id) {
+                $.get("<%=basePath%>shop/login/index/collection/get?id="+id+" ",
+                    function (data) {
+                        if (data == "1") {
+                            alert("收藏成功");
+                        } else if(data == "2"){
+                            alert("你已经收藏过了！");
+                        }else{
+                            alert("收藏失败，可能原因未登录");
+                        }
+                    });
+            }
+
 		</script>
 	</body>
 </html>

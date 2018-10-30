@@ -1,20 +1,17 @@
 package com.web.shop;
 
-import com.bean.ProductBean;
-import com.bean.Product_commentBean;
-import com.bean.Product_typeBean;
-import com.bean.RecommendBean;
-import com.model.Product;
-import com.model.Product_comment;
-import com.model.Product_type;
-import com.model.Recommend;
+import com.bean.*;
+import com.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/shop")
@@ -27,6 +24,8 @@ public class ShopProduct {
     private RecommendBean recommendbean;
     @Resource
     private Product_commentBean product_commentbean;
+    @Resource
+    private User_collectionBean user_collectionbean;
 
     //主页头部使用分类数组、7个分类
     private Product_type[] product_type_top=new Product_type[7];
@@ -46,10 +45,12 @@ public class ShopProduct {
         Recommend recommend = recommends[(int) (Math.random() * recommends.length)];
         request.setAttribute("recommend", recommend);
 
-        //获取相关商品
+        //获取相关商品，并增加点击数
         Product product=productbean.get(id);
         request.setAttribute("product", product);
         request.setAttribute("id", id);
+        product.setClick(product.getClick()+1);
+        productbean.set(product);
 
         //获取热门商品并取该分类（同类推荐）
         Product[] product_all=productbean.all();
@@ -58,7 +59,7 @@ public class ShopProduct {
         request.setAttribute("product_all", product_all);
 
         //获取该商品评论
-        Product_comment[] product_comment=product_commentbean.product_id_get(product.getProduct_type_id().getId());
+        Product_comment[] product_comment=product_commentbean.product_id_get(id);
 
         //评论分页
         if(comment_page==null||comment_page<=0){
@@ -85,6 +86,66 @@ public class ShopProduct {
 
         return "shop/product.jsp";
     }
+
+
+
+    //以下操作均为登录后可使用
+
+
+    //跳转至发布二货
+    @RequestMapping(value = "/login/index/product/add", method = RequestMethod.GET)
+    public String shop_login_product_add(HttpServletRequest request){
+        //获取分类
+        Product_type[] product_type = product_typeBean.all();
+        request.setAttribute("product_type", product_type);
+        return "shop/fabu.jsp";
+    }
+    //提交二货
+    @ResponseBody
+    @RequestMapping(value = "/login/index/product/add/post", method = RequestMethod.POST)
+    public Integer shop_login_product_add_post(Product product, HttpSession session){
+        Date myDate = new Date();
+        product.setTime(myDate);
+        User user=(User)session.getAttribute("user");
+        product.setUser_id(user);
+        return productbean.in(product);
+    }
+    //发布评论
+    @ResponseBody
+    @RequestMapping(value = "/login/index/product_comment/post", method = RequestMethod.POST)
+    public Integer shop_product_comment_post(Product_comment product_comment, HttpSession session){
+        Date myDate = new Date();
+        product_comment.setTime(myDate);
+        User user=(User)session.getAttribute("user");
+        product_comment.setUser_id(user);
+        return  product_commentbean.add(product_comment);
+    }
+
+    //添加收藏
+    @ResponseBody
+    @RequestMapping(value = "/login/index/collection/get", method = RequestMethod.GET)
+    public Integer shop_login_collection_get(Integer id,HttpSession session){
+        User user=(User)session.getAttribute("user");
+        User_collection user_collection=new User_collection();
+        user_collection.setProduct_id(productbean.get(id));
+        user_collection.setUser_id(user);
+        Integer i=0;
+        if(user_collectionbean.rep(user_collection)==null){
+            if(user_collectionbean.add(user_collection)!=0){
+               i=1;
+            }else{
+                i=0;
+            }
+        }else{
+            i=2;
+        }
+        return  i;
+    }
+
+
+
+    //以下是执行方法
+
 
     //商品最热门排序方法
     private Product[] product_hot(Product[] product){

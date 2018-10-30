@@ -31,4 +31,8 @@ public class User_collectionBean {
     public int set(User_collection collection){
         return  user_collectiondao.set(collection);
     }
+    //重复
+    public User_collection rep(User_collection collection){
+        return  user_collectiondao.rep(collection);
+    }
 }
