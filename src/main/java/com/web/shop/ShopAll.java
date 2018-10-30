@@ -81,7 +81,11 @@ public class ShopAll {
         request.setAttribute("product_hot", product_hot);
         //检测关键字
         if(Key!=null&&!Key.equals("")&&!Key.equals(" ")){
-            Key = new String(Key .getBytes("iso8859-1"),"utf-8");
+            request.setAttribute("Key", Key);
+            System.out.println(Key);//查看是否乱码
+            //若搜索出现中文搜索不出的情况，请解除下面注释，反之
+//            Key = new String(Key .getBytes("iso8859-1"),"utf-8");
+//            System.out.println(Key);
           product=productbean.sel(Key);
         }
         //获取分类字
@@ -123,14 +127,20 @@ public class ShopAll {
         if(page>pagemax){
             page=pagemax;
         }
+
         product=product_page(product,page);
         request.setAttribute("page", page);
-        request.setAttribute("pagemax", pagemax-1);
+        if(pagemax<=0){
+            request.setAttribute("pagemax", 0);
+        }else{
+            request.setAttribute("pagemax", pagemax-1);
+        }
         request.setAttribute("product", product);
 
         //跳转
         return "/shop/store.jsp";
     }
+
 
 
     //商品价格排序方法

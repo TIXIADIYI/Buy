@@ -72,9 +72,9 @@
 								<form>
 									<select class="input-select" id="product_type" >
 										<option value="-1">所有类别</option>
-                                           <c:forEach items="${requestScope.product_type}" var="list" >
-											   <option value="${list.id}">${list.name}</option>
-										   </c:forEach>
+										<c:forEach items="${requestScope.product_type}" var="list" >
+											<option value="${list.id}">${list.name}</option>
+										</c:forEach>
 									</select>
 									<input class="input" placeholder="${requestScope.recommend.commend}" id="select">
 									<button class="search-btn" OnClick="Select();" type="button">搜索</button>
@@ -631,15 +631,10 @@
             function Select(){
                 var select=$("#select").val()+"";
                 var product_type=$("#product_type").val();
-                alert(product_type);
                 if(select==null||select==""){
                     select="${requestScope.recommend.value}";
-                    product_type=null;
-                }
-                if(product_type==null||product_type==""){
                     product_type=-1;
                 }
-
                 window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
             }
         </script>

@@ -78,7 +78,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="header-search">
 							<form>
 								<select class="input-select" id="product_type" >
-									<option value="all">所有类别</option>
+									<option value="-1">所有类别</option>
 									<c:forEach items="${requestScope.product_type}" var="list" >
 										<option value="${list.id}">${list.name}</option>
 									</c:forEach>
@@ -153,6 +153,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<ul class="breadcrumb-tree">
 							<li>首页</li>
 							<li>${requestScope.product_type_name}</li>
+							<c:choose>
+								<c:when test="${requestScope.Key!=null}">
+									<li>搜索"${requestScope.Key}"</li>
+								</c:when>
+							</c:choose>
 						</ul>
 					</div>
 				</div>
@@ -320,7 +325,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="store-filter clearfix">
 							<ul class="store-pagination">
 								<c:forEach var="index" end="${requestScope.pagemax}" begin="0" varStatus="s">
-
 									<li
 											<c:choose>
 											 <c:when test="${s.index==page}">
@@ -437,12 +441,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             var product_type=$("#product_type").val();
             if(select==null||select==""){
                 select="${requestScope.recommend.value}";
-                product_type=null;
-            }
-            if(product_type==null||product_type==""){
                 product_type=-1;
             }
-
             window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
         }
 	</script>
