@@ -62,13 +62,13 @@
                         <div class="login-style" style="display: block;">
                             <dl>
                                 <dd>
-                                	<img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
-                                <input name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
+                                    <img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
+                                    <input name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
                             </dl>
                             <dl>
-                            	<dd>
-                            	<img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
-                                <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
+                                <dd>
+                                    <img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
+                                    <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
                                            placeholder="请输入您的密码" name="pass"/></dd>
                             </dl>
                             <div class="psword" style="margin-top:15px;"><a href="javascript:void(0);"

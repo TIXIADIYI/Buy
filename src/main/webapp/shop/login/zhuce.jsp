@@ -67,35 +67,35 @@
                         </a>
                     </div>
                     <ul class="login-tab">
-                        <li ><a href="login.jsp" style="font-size: 14px;">普通登录</li> </a> 
+                        <li ><a href="login.jsp" style="font-size: 14px;">普通登录</li> </a>
 
                     </ul>
                     <div class="login-body">
                         <div class="login-style" style="display: block;">
                             <dl>
                                 <dd>
-                                	<img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
-                                <input name="user" type="text" id="txtUser" placeholder="请填写您的手机号"/></dd>
+                                    <img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
+                                    <input name="user" type="text" id="txtUser" placeholder="请填写您的手机号"/></dd>
                             </dl>
 
                             <dl>
-                            	<dd>
-                            	<img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
-                                <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
+                                <dd>
+                                    <img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
+                                    <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
                                            placeholder="请输入您的密码" name="pass"/></dd>
                             </dl>
 
                             <dl>
-                            	<dd>
-                            	<img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
-                                <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
+                                <dd>
+                                    <img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
+                                    <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
                                            placeholder="再次确认您的密码" name="pass2"/></dd>
                             </dl>
                             <p>
                                 <input checked="checked" id="inputacc" type="checkbox">
                                 我已阅读并接受<a target="_blank" href="#">《用户服务协议》</a></p>
                             <div class="tishi"></div>
-                            
+
                             <input id="button" type="button" value="同意协议并注册"/>
                         </div>
                     </div>
