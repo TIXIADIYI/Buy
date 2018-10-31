@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
 
 html { 
   height: 100%; 
@@ -43,11 +43,11 @@ svg {
   }
 }
 .group {
-  animation: rot 30s steps(10) ;
+  animation: rot 15s steps(10) ;
   transform-origin:50% 50%;
 }
 path {
-  animation: fillit 6s  ease-in;
+  animation: fillit 3s  ease-in;
 }
 .p1 {
   stroke-dasharray: 100;
@@ -82,7 +82,7 @@ path {
 }
 circle.big {
   fill: yellow;
-  animation: col 6s linear ;
+  animation: col 3s linear ;
 }
 @keyframes col {
   0% {
@@ -109,9 +109,10 @@ circle.big {
 	width:337.5px;
 	height:384px;
 	position:absolute;
+
 	left:0px;
 	right:0px;
-	top:0px;
+	top:50px;   
 	bottom:0px;
 	margin:auto;
 }
@@ -120,7 +121,7 @@ circle.big {
 	top:0px;
 	left:0px;
 	display:none;
-  	animation: show 1.5s linear ;
+  	animation: show 1.0s linear ;
 }
 #icon{
 	position:absolute;

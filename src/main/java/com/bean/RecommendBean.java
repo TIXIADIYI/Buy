@@ -31,4 +31,8 @@ public class RecommendBean {
     public int set(Recommend recommend){
         return  recommenddao.set(recommend);
     }
+    //随机取一条
+    public Recommend one(){
+        return recommenddao.one();
+    }
 }

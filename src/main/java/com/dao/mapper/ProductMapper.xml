@@ -71,4 +71,17 @@
          or weixin like CONCAT('%',#{Key},'%')
     </select>
 
+   <!--根据id增加点击数-->
+    <update id="click">
+         update products set click=click+1  where id={id}
+    </update>
+
+    <!--根据分类id查询该分类中最热门的商品-->
+    <select id="product_type_get_hot" resultMap="product">
+        SELECT * from products,product_type
+where products.product_type_id=product_type.id
+and product_type.id=#{product_type_id}
+ORDER BY click desc
+LIMIT 1
+    </select>
 </mapper>

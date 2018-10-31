@@ -13,4 +13,7 @@ public interface RecommendDao {
     int add(Recommend recommend);
     //编辑
     int set(Recommend recommend);
+    //随机取一条数据
+    Recommend one();
+
 }

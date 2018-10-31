@@ -61,7 +61,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="<%=basePath%>shop/img/logo.png" alt="" width="90" height="90">
+									<img src="<%=basePath%>shop/img/logo.png" alt="" >
 								</a>
 							</div>
 						</div>
@@ -124,7 +124,7 @@
 						<li><a href="<%=basePath%>shop/index">首页</a></li>
 						<li><a href="<%=basePath%>shop/store/all?product_sort=1">热卖</a></li>
 						<li><a href="<%=basePath%>shop/store/all?product_sort=2">新品</a></li>
-						<c:forEach items="${requestScope.product_type_top}" var="list" begin="3">
+						<c:forEach items="${requestScope.product_type_top}" var="list" end="3">
 							<li><a href="<%=basePath%>shop/store/all?product_type_id=${list.id}">${list.name}</a></li>
 						</c:forEach>
 
@@ -149,11 +149,11 @@
 						<div class="shop">
 							<div class="shop-img">
 								<c:choose>
-									<c:when  test="${requestScope.product_image[sss.index]==null||requestScope.product_image[sss.index]==''}">
+									<c:when  test="${requestScope.product_image[sss.index].image==null||requestScope.product_image[sss.index].image==''}">
 										<img src="<%=basePath%>shop/image/timg.gif" alt="" height="250" width="350">
 								    </c:when>
 									<c:otherwise>
-										<img src="${requestScope.product_image[sss.index]}" alt="" height="250" width="350">
+										<img src="${requestScope.product_image[sss.index].image}" alt="" height="250" width="350">
 									</c:otherwise>
 								</c:choose>
 
@@ -440,7 +440,7 @@
 									<%--</div>--%>
 								<%--</div>--%>
 								<!-- /product widget -->
-                             <c:forEach items="${requestScope.product_top_hot[0]}" var="list" >
+                             <c:forEach items="${requestScope.product_top_hot[0]}" var="list" end="5" >
 								<!-- product widget -->
 								<div class="product-widget">
 									<div class="product-img">
@@ -475,7 +475,7 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-4">
 							<div>
-								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" >
+								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" end="5" >
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">
@@ -512,7 +512,7 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-5">
 							<div>
-								<c:forEach items="${requestScope.product_top_hot[2]}" var="list" >
+								<c:forEach items="${requestScope.product_top_hot[2]}" var="list"  end="5">
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">

@@ -132,7 +132,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<li><a href="<%=basePath%>shop/index">首页</a></li>
 					<li ><a href="<%=basePath%>shop/store/all?product_sort=1">热卖</a></li>
 					<li><a href="<%=basePath%>shop/store/all?product_sort=2">新品</a></li>
-
+					<c:forEach items="${requestScope.product_type_top}" var="list" end="3">
+						<li><a href="<%=basePath%>shop/store/all?product_type_id=${list.id}">${list.name}</a></li>
+					</c:forEach>
 				</ul>
 				<!-- /NAV -->
 			</div>

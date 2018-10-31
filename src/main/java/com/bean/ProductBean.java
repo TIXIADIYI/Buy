@@ -53,4 +53,12 @@ public class ProductBean {
     public Product[] sel(String Key){
         return productdao.sel(Key);
     }
+    //根据id增加一点点击数
+    public int click(Integer id){
+        return  productdao.click(id);
+    }
+    //根据分类id查询该分类中最热门的商品
+    public Product product_type_get_hot(Integer product_type_id){
+        return productdao.product_type_get_hot(product_type_id);
+    }
 }

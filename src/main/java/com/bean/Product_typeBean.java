@@ -31,4 +31,8 @@ public class Product_typeBean {
     public int set(Product_type product_type){
         return  product_typedao.set(product_type);
     }
+    //热门分类排序
+    public Product_type[] product_type_hot(){
+        return product_typedao.product_type_hot();
+    }
 }

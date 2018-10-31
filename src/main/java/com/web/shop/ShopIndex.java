@@ -6,6 +6,7 @@ import com.bean.RecommendBean;
 import com.model.Product;
 import com.model.Product_type;
 import com.model.Recommend;
+import com.model.ShopMe;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,13 +22,7 @@ public class ShopIndex {
     @Resource
     private RecommendBean recommendbean;
 
-    //主页头部使用分类数组、7个分类
-    private Product_type[] product_type_top=new Product_type[7];
-    private int[] product_type_top_int=new int[7];
-    //主页头部大图分类的第一个商品图片
-    private String[] product_image=new String[3];
-    //主页热门3分类的商品
-    private Product[][] product_top_hot=new Product[3][];
+    private ShopMe shopMe=new ShopMe();
 
     /*
    * 跳转到前台主页
@@ -39,106 +34,45 @@ public class ShopIndex {
 
     @RequestMapping(value = "/shop/index")
     public String shops(HttpServletRequest request){
-        //获取商品
-        Product[] product=productbean.all();
-        request.setAttribute("product", product);
+
         //获取所有分类
         Product_type[] product_type=product_typeBean.all();
         request.setAttribute("product_type",product_type);
+
         //获取随机推荐
-        Recommend[] recommends=recommendbean.all();
-        Recommend recommend=recommends[(int) (Math.random() * recommends.length)];
+        Recommend recommend=recommendbean.one();
         request.setAttribute("recommend",recommend);
-        //获取头部热门(下半部分热门)点击分类
-        for(int i=0;i<product_type_top.length;i++){
-            product_type_top_int[i]=0;
-            product_type_top[i]=null;
-        }
-        for(int j=0;j<product_type.length;j++){
-                int click=0;
-                Product[] product_j=productbean.product_type_get(product_type[j].getId());
-                for(int k=0;k<product_j.length;k++){
-                    click+=product_j[k].getClick();
-                }
-                for(int p=0;p<product_type_top.length;p++){
-                    if(click>product_type_top_int[p]) {
-                        int clicks = product_type_top_int[p];
-                        Product_type product_type_clicks= product_type_top[p];
-                        product_type_top_int[p]=click;
-                        product_type_top[p]=product_type[j];
-                        for(int i=p+1;i<product_type_top.length;i++){
-                            if(clicks>product_type_top_int[i]){
-                                int clickss=product_type_top_int[i];
-                                Product_type product_type_clickss=product_type_top[i];
-                                product_type_top_int[i]=clicks;
-                                product_type_top[i]=product_type_clicks;
-                                product_type_clicks=product_type_clickss;
-                                clicks=clickss;
-                            }
-                        }
-                        break;
-                    }
-                }
-                }
+
+
+        //获取热门分类
+        Product_type[] product_type_top=product_typeBean.product_type_hot();
         request.setAttribute("product_type_top",product_type_top);
+
         //获取新上架商品
-        Product[] product_new=product_new(product);
+        Product[] product_new=shopMe.product_new(productbean.all());
         request.setAttribute("product_new",product_new);
+
         //获取最热门商品
-        Product[] product_hot=product_hot(product);
+        Product[] product_hot=shopMe.product_hot(productbean.all());
         request.setAttribute("product_hot",product_hot);
-        //获取最热门3个分类的商pin
+
+        //获取大图分类的最热门商品
+        Product[] product_image=new Product[3];
+        for(int i=0;i<product_image.length;i++){
+            product_image[i]=productbean.product_type_get_hot(product_type_top[i].getId());
+        }
+        request.setAttribute("product_image",product_image);
+
+        //获取底部小分类商品
+        Product[][] product_top_hot=new Product[3][];
         for(int i=0;i<product_top_hot.length;i++){
             product_top_hot[i]=productbean.product_type_get(product_type_top[i].getId());
         }
         request.setAttribute("product_top_hot",product_top_hot);
-         //头部大图分类取最热门商品图片
-         for(int i=0;i<3;i++){
-             Product[] product_j=productbean.product_type_get(product_type_top[i].getId());
-             Product product_js=null;
-             for(int l=0;l<product_j.length;l++){
-                 if(l==0){
-                     product_js=product_j[l];
-                 }else {
-                     if(product_js.getClick()<product_j[l].getClick()){
-                         product_js=product_j[l];
-                     }
-                 }
-             }
-             product_image[i]=product_js.getImage();
-         }
-        request.setAttribute("product_image",product_image);
         //跳转
         return "shop/shop_indexs.jsp";
     }
 
 
-    //商品最热门排序方法
-    private Product[] product_hot(Product[] product){
-        for(int i=0;i<product.length;i++){
-            for(int j=i;j<product.length;j++){
-                if(product[i].getClick()<product[j].getClick()){
-                    Product p=product[i];
-                    product[i]=product[j];
-                    product[j]=p;
-                }
-            }
-        }
-        return product;
-    }
-
-    //商品新品排序
-    private Product[] product_new(Product[] product){
-        for(int i=0;i<product.length;i++){
-            for(int j=i;j<product.length;j++){
-                if(product[i].getTime().getTime()<product[j].getTime().getTime()){
-                    Product p=product[i];
-                    product[i]=product[j];
-                    product[j]=p;
-                }
-            }
-        }
-        return product;
-    }
 
 }

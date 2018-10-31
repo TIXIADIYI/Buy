@@ -36,4 +36,9 @@
     <update id="set">
         update recommend set commend=#{commend},admin_id=#{admin_id.id},value=#{value} where id=#{id}
     </update>
+
+    <!--随机取一条-->
+    <select id="one"  resultMap="recommend">
+        SELECT * FROM recommend order by rand() LIMIT 1
+    </select>
 </mapper>

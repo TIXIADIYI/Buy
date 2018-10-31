@@ -22,8 +22,10 @@ public interface ProductDao {
     int in(Product product);
     //修改商品
     int set(Product product);
-
     //查询关键字
     Product[] sel(String Key);
-
+    //根据id增加一点点击数
+    int click(Integer id);
+     //根据分类id查询该分类中最热门的商品
+     Product product_type_get_hot(Integer product_type_id);
 }

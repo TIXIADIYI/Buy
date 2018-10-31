@@ -14,4 +14,6 @@ public interface Product_typeDao {
     int in(Product_type product_type);
     //编辑分类
     int set(Product_type product_type);
+    //热门分类排序
+    Product_type[] product_type_hot();
 }

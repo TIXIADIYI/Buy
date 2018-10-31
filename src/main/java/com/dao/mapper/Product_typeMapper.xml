@@ -24,4 +24,12 @@
     <update id="set">
         update product_type set name=#{name} where id=#{id}
     </update>
+
+    <!--热门分类排序查询-->
+    <select id="product_type_hot"  resultType="Product_type">
+        select product_type.id,product_type.name,SUM(click) as click from product_type,products
+         where product_type.id=products.product_type_id
+         GROUP BY product_type.id
+          ORDER BY click DESC
+    </select>
 </mapper>
