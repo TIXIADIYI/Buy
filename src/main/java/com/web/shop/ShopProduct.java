@@ -52,6 +52,7 @@ public class ShopProduct {
            product = productbean.get(id);
         }
         if(product!=null) {
+            request.setAttribute("product", product);
             //增加点击数
             productbean.click(id);
             //获取热门商品并取该分类（同类推荐）

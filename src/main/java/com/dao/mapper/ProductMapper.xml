@@ -73,7 +73,7 @@
 
    <!--根据id增加点击数-->
     <update id="click">
-         update products set click=click+1  where id={id}
+         update products set click=click+1  where id=#{id}
     </update>
 
     <!--根据分类id查询该分类中最热门的商品-->
