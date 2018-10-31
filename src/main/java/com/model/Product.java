@@ -10,7 +10,7 @@ public class Product {
     private Float price=0f;
     private String remake;
     private String image;
-    private String sum;
+    private Integer sum;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time=new Date(1,1,1);;
@@ -112,11 +112,11 @@ public class Product {
         this.image = image;
     }
 
-    public String getSum() {
+    public Integer getSum() {
         return sum;
     }
 
-    public void setSum(String sum) {
+    public void setSum(Integer sum) {
         this.sum = sum;
     }
 
