@@ -10,6 +10,8 @@ public interface ProductDao {
     Product get(@Param(value = "id") Integer id);
     //根据分类查询商品
     Product[] product_type_get(@Param(value = "product_type_id")Integer product_type_id);
+    //根据用户id查询
+    Product[] user_id_get(@Param(value = "user_id")Integer user_id);
     //根据ID上架商品
     int display_t(@Param(value = "id") Integer id);
     //根据ID下架商品

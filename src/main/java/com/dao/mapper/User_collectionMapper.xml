@@ -20,6 +20,10 @@
     <select id="get" resultMap="user_collection">
         select  * from user_collection where id=#{id}
     </select>
+    <!--根据用户id查询-->
+    <select id="user_id_get" resultMap="user_collection">
+        select  * from user_collection where user_id=#{user_id}
+    </select>
     <!--根据id删除-->
     <delete id="del" >
         delete from user_collection where id=#{id}

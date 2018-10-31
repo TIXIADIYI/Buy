@@ -34,4 +34,9 @@ public class Product_commentBean {
     public Product_comment[] product_id_get(Integer product_id){
         return  product_commentdao.product_id_get(product_id);
     }
+
+    //根据用户id查询
+    public Product_comment[] user_id_get(Integer user_id){
+        return product_commentdao.user_id_get(user_id);
+    }
 }

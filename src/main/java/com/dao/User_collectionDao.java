@@ -16,4 +16,6 @@ public interface User_collectionDao {
     int set(User_collection user_collection);
     //重复
     User_collection rep(User_collection user_collection);
+    //根据用户id查询
+    User_collection[] user_id_get(Integer user_id);
 }

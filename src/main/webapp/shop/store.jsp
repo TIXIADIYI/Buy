@@ -46,7 +46,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+							<li><a href="<%=basePath%>shop/login/index/my/fabu"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
 							<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
 						</c:otherwise>
 					</c:choose>

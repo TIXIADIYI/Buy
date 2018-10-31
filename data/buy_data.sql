@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 28/10/2018 19:44:46
+ Date: 31/10/2018 11:55:43
 */
 
 SET NAMES utf8mb4;
@@ -52,7 +52,7 @@ CREATE TABLE `product_comment`  (
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `product_comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_comment_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product_comment
@@ -60,6 +60,17 @@ CREATE TABLE `product_comment`  (
 INSERT INTO `product_comment` VALUES ('这个手机很赞！', 2, 1, '2018-10-16', b'0', 1);
 INSERT INTO `product_comment` VALUES ('辣鸡玩意', 1, 6, '2018-10-25', b'1', 2);
 INSERT INTO `product_comment` VALUES ('安全啊啊啊啊啊', 2, 4, '2018-10-11', b'1', 3);
+INSERT INTO `product_comment` VALUES ('坎坎坷坷', 1, 12, '2018-10-30', b'1', 4);
+INSERT INTO `product_comment` VALUES ('å°æ¶è¯µè¯ä¹¦ææææææææ', NULL, 10, '2018-10-30', b'1', 5);
+INSERT INTO `product_comment` VALUES ('哦哦哦', 2, 1, '2018-10-11', b'0', 6);
+INSERT INTO `product_comment` VALUES ('呀呀呀呀呀呀晕晕晕晕晕晕晕晕晕晕晕', 2, 1, '2018-10-03', b'1', 7);
+INSERT INTO `product_comment` VALUES ('噢噢噢噢哦哦哦哦哦哦哦哦哦哦哦哦', 3, 1, '2018-10-04', b'0', 8);
+INSERT INTO `product_comment` VALUES ('啦啦啦啦啦啦啦啦绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿', NULL, 10, '2018-10-30', b'1', 9);
+INSERT INTO `product_comment` VALUES ('55555', NULL, 1, '2018-10-30', b'1', 10);
+INSERT INTO `product_comment` VALUES ('999999999', NULL, 1, '2018-10-30', b'0', 11);
+INSERT INTO `product_comment` VALUES ('那你那你女', NULL, 6, '2018-10-30', b'1', 12);
+INSERT INTO `product_comment` VALUES ('123', 1, 11, '2018-10-30', b'1', 13);
+INSERT INTO `product_comment` VALUES ('好极了', 1, 12, '2018-10-30', b'1', 14);
 
 -- ----------------------------
 -- Table structure for product_type
@@ -110,14 +121,14 @@ CREATE TABLE `products`  (
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`product_type_id`) REFERENCES `product_type` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES (NULL, NULL, 1, '楠神旗舰电脑', NULL, NULL, NULL, NULL, '2018-10-02', 1, 2, NULL, b'1', 1, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 1, '楠神旗舰电脑', 0, NULL, NULL, NULL, '2018-10-02', 12, 2, 0, b'1', 1, NULL);
 INSERT INTO `products` VALUES (NULL, NULL, 2, '楠神的商品', NULL, NULL, '1111111', NULL, '2018-10-17', 5, 1, NULL, b'1', 1, NULL);
-INSERT INTO `products` VALUES (NULL, NULL, 3, '楠神手机', NULL, NULL, 'img/shop02.png', NULL, '2018-06-06', 99, 1, NULL, b'1', 1, NULL);
+INSERT INTO `products` VALUES (NULL, NULL, 3, '楠神手机', 0, NULL, 'img/shop02.png', NULL, '2018-06-06', 101, 1, 0, b'1', 1, NULL);
 INSERT INTO `products` VALUES (NULL, NULL, 4, '海飞丝', 50, '要毕业了用不完，还有400多毫升', NULL, 5, '2018-10-09', 40, 23, 100, b'1', 2, NULL);
 INSERT INTO `products` VALUES (NULL, NULL, 5, '测试专用商品', 99, '测试专用哦', NULL, 999, '2018-10-31', 55, 5, 999, b'1', 2, NULL);
 INSERT INTO `products` VALUES (NULL, NULL, 6, '测试专用商品2', 88, NULL, NULL, NULL, '2018-10-30', 5, 6, NULL, b'1', NULL, NULL);
@@ -125,8 +136,9 @@ INSERT INTO `products` VALUES (NULL, NULL, 7, '测试专用商品3', 77, NULL, N
 INSERT INTO `products` VALUES (NULL, NULL, 8, '测试专用商品4', NULL, NULL, NULL, NULL, NULL, 7, 8, NULL, b'0', NULL, NULL);
 INSERT INTO `products` VALUES (NULL, NULL, 9, '测试专用商品5', 66, NULL, NULL, NULL, NULL, 3, 23, 1, b'1', NULL, NULL);
 INSERT INTO `products` VALUES ('123', '123', 10, '哈哈哈', 123, '123', '', 213, NULL, 123, 1, 123, b'1', 2, '123');
-INSERT INTO `products` VALUES ('123', '1234567890', 11, '哈哈哈', 500, '牛逼哄哄吊炸天', '', 500, '2018-10-11', 123, 4, 123, b'1', 1, '123');
-INSERT INTO `products` VALUES ('123', '1234567890', 12, 'hhh', 500, '', '', 500, '2018-10-13', 123, 8, 123, b'1', 2, '123');
+INSERT INTO `products` VALUES ('123', '1234567890', 11, '哈哈哈', 500, '牛逼哄哄吊炸天', '', 500, '2018-10-11', 124, 4, 123, b'1', 1, '123');
+INSERT INTO `products` VALUES ('123', '1234567890', 12, 'hhh', 500, '', '', 500, '2018-10-13', 126, 8, 123, b'1', 2, '123');
+INSERT INTO `products` VALUES (NULL, '55', 13, '好吃的呀呀呀呀呀呀', 500, '废话', '/Buy/upload/image/20180707/20180707003628_837.jpg', NULL, '2018-10-30', 2, 23, 0, b'1', 1, '55');
 
 -- ----------------------------
 -- Table structure for recommend
@@ -163,13 +175,16 @@ CREATE TABLE `user_collection`  (
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `user_collection_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_collection_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_collection
 -- ----------------------------
 INSERT INTO `user_collection` VALUES (1, 1, 1);
 INSERT INTO `user_collection` VALUES (3, 2, 11);
+INSERT INTO `user_collection` VALUES (4, 1, 11);
+INSERT INTO `user_collection` VALUES (5, 1, 10);
+INSERT INTO `user_collection` VALUES (8, 1, 12);
 
 -- ----------------------------
 -- Table structure for users
@@ -191,7 +206,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'user', '123456', '小王', NULL, NULL, b'0', NULL, NULL);
+INSERT INTO `users` VALUES (1, 'user', '123456', '小煞笔', '/Buy/upload/image/20180707/20180707003628_837.jpg', '123', b'0', '', '2018-10-03');
 INSERT INTO `users` VALUES (2, '12345678900', '123456', '楠神', '', '牛逼哄哄吊炸天', b'1', '', NULL);
 INSERT INTO `users` VALUES (3, '111', '123', 'you盘2', '', '牛逼哄哄吊炸天', b'0', '', '2018-10-16');
 

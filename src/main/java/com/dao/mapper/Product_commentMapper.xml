@@ -41,4 +41,10 @@
     <select id="product_id_get"  resultMap="product_comment">
          select * from product_comment  where product_id=#{product_id}
     </select>
+
+    <!--根据用户id查询-->
+    <select id="user_id_get"  resultMap="product_comment">
+         select * from product_comment  where user_id=#{user_id}
+    </select>
+
 </mapper>
