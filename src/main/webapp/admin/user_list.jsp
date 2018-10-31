@@ -65,7 +65,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<td>${list.address}</td>
 						<td><fmt:formatDate type="date" value="${list.time}" dateStyle="default" /></td>
 						<td class="td-manage">
-							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','<%=basePath%>admin/index/user/edit?id=${list.id}','')" href="javascript:;" title="编辑">
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('编辑','<%=basePath%>admin/index/user/edit?id=${list.id}','')" href="javascript:;" title="编辑">
 							<i class="Hui-iconfont">&#xe6df;</i></a> <a  id="${list.id}" style="text-decoration:none" class="ml-5" onClick="product_del(this,id)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 						</td>
 					</tr>

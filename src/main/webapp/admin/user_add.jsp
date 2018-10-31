@@ -33,11 +33,15 @@
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>账号：</label>
 			<div class="formControls col-10">
-				<input type="text" class="input-text" value="${requestScope.user.user}" placeholder=""  name="user">
+
 				<c:choose>
 					<c:when test="${requestScope.add_or_edit==false}">
 						<input type="hidden" class="input-text" value="${requestScope.user.id}" placeholder=""  name="id">
+						<input type="text" class="input-text" disabled value="${requestScope.user.user}" placeholder=""  name="user" >
 					</c:when>
+					<c:otherwise>
+						<input type="text" class="input-text" value="${requestScope.user.user}" placeholder=""  name="user" >
+					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
