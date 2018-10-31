@@ -177,12 +177,14 @@ public class ShopAll {
     private Product[] product_type(Product[] product,Integer product_type_id){
         Product[] products = new Product[0];
         for(int i=0;i<product.length;i++){
+            if(product[i].getProduct_type_id()!=null){
               if(product[i].getProduct_type_id().getId()!=null){
                   if(product[i].getProduct_type_id().getId().equals(product_type_id)){
                   products = Arrays.copyOf(products, products.length+1) ;
                   products[products.length-1]=product[i];
               }
               }
+            }
         }
         return  products;
     }
