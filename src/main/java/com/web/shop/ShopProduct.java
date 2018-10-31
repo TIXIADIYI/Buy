@@ -161,13 +161,16 @@ public class ShopProduct {
         return product;
     }
 
+
     //截取同个分类的商品
     private Product[] product_type(Product[] product,Integer product_type_id){
         Product[] products = new Product[0];
         for(int i=0;i<product.length;i++){
-            if(product[i].getProduct_type_id().getId()!=null&&product[i].getProduct_type_id().getId().equals(product_type_id)){
-                products = Arrays.copyOf(products, products.length+1) ;
-                products[products.length-1]=product[i];
+            if(product[i].getProduct_type_id().getId()!=null){
+                if(product[i].getProduct_type_id().getId().equals(product_type_id)){
+                    products = Arrays.copyOf(products, products.length+1) ;
+                    products[products.length-1]=product[i];
+                }
             }
         }
         return  products;
