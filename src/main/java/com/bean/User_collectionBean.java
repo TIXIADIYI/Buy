@@ -31,4 +31,15 @@ public class User_collectionBean {
     public int set(User_collection collection){
         return  user_collectiondao.set(collection);
     }
+    //重复
+    public User_collection rep(User_collection collection){
+        return  user_collectiondao.rep(collection);
+    }
+
+    //根据用户id查询
+    public User_collection[] user_id_get(Integer user_id){
+        return  user_collectiondao.user_id_get(user_id);
+    }
+
+    //
 }

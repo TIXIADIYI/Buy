@@ -20,6 +20,10 @@
     <select id="get" resultMap="user_collection">
         select  * from user_collection where id=#{id}
     </select>
+    <!--根据用户id查询-->
+    <select id="user_id_get" resultMap="user_collection">
+        select  * from user_collection where user_id=#{user_id}
+    </select>
     <!--根据id删除-->
     <delete id="del" >
         delete from user_collection where id=#{id}
@@ -28,8 +32,13 @@
     <insert id="add">
         insert into user_collection values (null,#{user_id.id},#{product_id.id})
     </insert>
-    <!--编辑分类-->
+    <!--编辑-->
     <update id="set">
         update user_collection set user_id=#{user_id.id},product_id=#{product_id.id} where id=#{id}
     </update>
+    
+    <!--重复查询-->
+    <select id="rep" resultMap="user_collection">
+         select  * from user_collection where user_id=#{user_id.id} and product_id=#{product_id.id}
+    </select>
 </mapper>

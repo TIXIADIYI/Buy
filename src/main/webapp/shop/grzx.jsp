@@ -3,17 +3,19 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>个人中心</title>
 	<script type="text/javascript" src="<%=basePath%>shop/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>shop/js/la.js"></script>
-<link rel="stylesheet" href="<%=basePath%>shop/css/layui.css"></script>
+<link rel="stylesheet" href="<%=basePath%>shop/css/layui.css"/>
 
-<link rel="stylesheet" href="<%=basePath%>shop/css/public.css">
+<link rel="stylesheet" href="<%=basePath%>shop/css/public.css"/>
 <script src="<%=basePath%>shop/js/common.js"></script>
-	<link rel="stylesheet" href="<%=basePath%>shop/css/user.css">
+	<link rel="stylesheet" href="<%=basePath%>shop/css/user.css" />
 	<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
 
@@ -29,85 +31,102 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/style.css"/>
- 		
- 		
-	<script type="text/javascript">
- 
-</script>
+
 </head>
 <body>
 	<div id="header">
 	<!--
     	个人中心顶部
     -->
-	<div id="top-header">
-				<div class="container">
-					<ul class="header-links pull-left">					
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<li><a href="shop_indexs.jsp"></i> 首页</a></li>
-					</ul>
-					<ul class="header-links pull-right">
-						
-						
-						<li><a href="#"><i class="fa fa-user-o"></i> 用户名</a></li>
-						<li><a href="#"><i class="fa fa-dollar"></i> 退出</a></li>
-						<!--<a href="#" class="log-btn"><img src="img/logo.jpg" class="user-header-image">用户名</a>
-					<a href="3" class="log-btn">退出</a>-->
-					</ul>
-				</div>
+		<!-- TOP HEADER -->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li style="color: #000000;">位置</li>
+					<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<c:choose>
+						<c:when test="${sessionScope.user==null}">
+							<li><a href="<%=basePath%>shop/login"><i class="fa fa-dollar"></i> 登录</a></li>
+							<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="<%=basePath%>shop/login/index/my/fabu"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+							<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
+						</c:otherwise>
+					</c:choose>
+
+
+					<li><a href="<%=basePath%>admin/login">&nbsp;后台管理</a></li>
+				</ul>
 			</div>
+		</div>
+		<!-- /TOP HEADER -->
   <!--
   	个人中心顶部结束
   -->
 
 
 	<div id="main" class="clearfix">
+
+
 		<div class="user-sider fl">
 	<div class="user-info">
-		<img src="<%=basePath%>shop/img/logo.jpg" class="user-header">
-		<a href="#" class="username">用户名</a>
-		<!--<div class="auth">
-			<a class="realname-auth" href="#"><i class="icon" title=未实名认证 >&#xe605;</i></a>
-			<a class="phone-auth" href="#"><i class="icon" style=color:#f40; title=已绑定手机>&#xe624;</i></a>
-			<a class="email-auth" href="#"><i class="icon" title=未绑定邮箱>&#xe623;</i></a>
-		</div>-->
+		<c:choose>
+			<c:when test="${sessionScope.user.image==null}">
+				<img src="<%=basePath%>shop/img/logo.jpg" class="user-header">
+			</c:when>
+			<c:otherwise>
+				<img src="${sessionScope.user.image}" class="user-header">
+			</c:otherwise>
+		</c:choose>
+		<li  class="username">账号：${sessionScope.user.user}</li>
+		<li  class="username">昵称：${sessionScope.user.name}</li>
 	</div>
 	<div class="sider-nav">
 		<ul>
-			<li><a href="<%=basePath%>shop/grzx.jsp" class="active"><i class="icon" ></i><img src="<%=basePath%>shop/img/fabu.png" />&nbsp;我发布的</a></li>
-			<li><a href="<%=basePath%>shop/xiangyao.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xin.png" />&nbsp;我想要的</a></li>
-			<li><a href="<%=basePath%>shop/liuyan.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/ly.png" />&nbsp;我的留言</a></li>
-			<li><a href="<%=basePath%>shop/xinxi.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xx.png" />&nbsp;个人信息</a></li>
-			
-			<li><a href="<%=basePath%>shop/fankiu.jsp" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/yj.png" />&nbsp;意见反馈</a></li>
+			<li><a href="<%=basePath%>shop/login/index/my/fabu" class="active"><i class="icon" ></i><img src="<%=basePath%>shop/img/fabu.png" />&nbsp;我发布的</a></li>
+			<li><a href="<%=basePath%>shop/login/index/my/collection" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xin.png" />&nbsp;我想要的</a></li>
+			<li><a href="<%=basePath%>shop/login/index/my/comment" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/ly.png" />&nbsp;我的评论</a></li>
+			<li><a href="<%=basePath%>shop/login/index/my/edit" class=""><i class="icon"></i><img src="<%=basePath%>shop/img/xx.png" />&nbsp;个人信息</a></li>
 		</ul>
 	</div>
-</div>
+   </div>
+
 <!--右边-->
 		<div class="user-main fr">
 			<ul>
-				<!-- <li>
+				<c:forEach items="${requestScope.product}" var="list">
+				<li>
 					<div class="list-header">
-						<span>发布时间：2016-12-12</span>
+						<span>发布时间：<fmt:formatDate type="date" value="${list.time}" dateStyle="default"/></span>
 					</div>
 					<div class="list-main clearfix">
-						<a href="" class="goods-images fl"><img src="/images/web/user/default.png" ></a>
+						<a href="" class="goods-images fl">
+							<c:choose>
+								<c:when test="${list.image==null}">
+								<img src="<%=basePath%>shop/image/timg.gif"  width="150" height="120"/>
+								</c:when>
+						<c:otherwise>
+								<img src="${list.image}"  width="150" height="100"/>
+						</c:otherwise>
+							</c:choose>
+
 						<div class="good-info fl">
-							<a href="" class="goods-title">我的商品的标题我的商品的标题</a>
-							<p class="goods-price">￥<span>3.00</span></p>
+							<a href="" class="goods-title">${list.name}</a>
+							<p class="goods-price">￥<span>${list.price}</span></p>
 						</div>
 						<div class="operation fr">
-							<a href="" class="edit">编辑</a>
-							<a href="" class="delete">删除</a>
+							<%--<a href="" class="edit">编辑</a>--%>
+							<a href="<%=basePath%>shop/login/index/my/fabu/del?id=${list.id}" class="delete" id="del">删除</a>
 						</div>
 					</div>
-				</li> -->
-			
-			<div class="no-data">
-				<p>您没有发布二货哦~</p>
-			</div>
-			
+				</li>
+				</c:forEach>
+
 			</ul>
+
 			<div id="page"></div>
 		</div>
 		<!--右边结束-->
@@ -145,39 +164,27 @@
 		</div>
 	</div>
 </div>
-<script src="<%=basePath%>shop/js/lib/sitemap.js"></script>
-	<!--<script> var count = 0</script>
-	<script src="/js/web/user_index.js"></script>-->
-	<script>
-		$(function(){
-		    layui.use(['layer', 'laypage'], function(){
-		        var layer = layui.layer
+		<script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
+		<script type="text/javascript">
+            $(document).ready(function () {
+                $("#del").click(function () {
+                    var judge = window.confirm('确定要删除吗?');
+                    if(judge) {
+                        $.get($(this).attr("href"),
+                            function (data) {
+                                if (data == "1") {
+                                    alert("成功");
+                                    location.reload();
+                                } else {
+                                    alert("失败");
+                                }
+                            });
+                    }
+                    return false;
+                    }
 
-		        layui.laypage({
-		            cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-		            pages: 0, //通过后台拿到的总页数
-		            curr: Common.getQuery('page') || 1, //当前页
-		            jump: function(obj, first){ //触发分页后的回调
-		                if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
-		                    window.location.href = '/user/want?page=' + obj.curr
-		                }
-		            }
-		        })
-
-		        $('.delete-want').click(function(){
-		        	var url = '/user/collect_delete'
-					var Data = { gid: $(this).attr('data-gid')}
-					Common.ajax(url, Data, function (data) {
-						layer.msg(data.msg)
-					    if(data.success){
-					        setTimeout(function(){ location.reload() }, 2000)
-					    }
-					}, function (err) {
-					    console.log(err)
-					}, function () {}, true, 'POST')
-		        })
-		    })
-		})
-	</script>
+                )
+            });
+		</script>
 </body>
 </html>

@@ -14,4 +14,8 @@ public interface Product_commentDao {
     int add(Product_comment product_comment);
     //编辑
     int set(Product_comment product_comment);
+    //根据商品id查
+    Product_comment[] product_id_get(Integer product_id);
+    //根据用户id
+    Product_comment[] user_id_get(Integer user_id);
 }

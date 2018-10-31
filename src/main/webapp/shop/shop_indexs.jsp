@@ -39,7 +39,7 @@
 								<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+								<li><a href="<%=basePath%>shop/login/index/my/fabu"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
 								<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
 							</c:otherwise>
 						</c:choose>
@@ -61,7 +61,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="<%=basePath%>shop/img/logo.png" alt="">
+									<img src="<%=basePath%>shop/img/logo.jpg" alt="" width="90" height="90">
 								</a>
 							</div>
 						</div>
@@ -72,9 +72,9 @@
 								<form>
 									<select class="input-select" id="product_type" >
 										<option value="-1">所有类别</option>
-                                           <c:forEach items="${requestScope.product_type}" var="list" >
-											   <option value="${list.id}">${list.name}</option>
-										   </c:forEach>
+										<c:forEach items="${requestScope.product_type}" var="list" >
+											<option value="${list.id}">${list.name}</option>
+										</c:forEach>
 									</select>
 									<input class="input" placeholder="${requestScope.recommend.commend}" id="select">
 									<button class="search-btn" OnClick="Select();" type="button">搜索</button>
@@ -88,7 +88,7 @@
 							<div class="header-ctn">-->
 								<!-- Wishlist -->
 								<div>
-									<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+									<a href="<%=basePath%>shop/login/index/product/add" class="publish-btn"></i>发布二货</a>
 								</div>
 								<!-- /Wishlist -->
 
@@ -253,7 +253,7 @@
 											<div class="product-body">
 												<p class="product-category">${list.name}</p>
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-												<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
+												<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
@@ -262,12 +262,12 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"  ><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="<%=basePath%>shop/product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
+												<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
 										<!-- /product -->
@@ -377,7 +377,7 @@
 											<div class="product-body">
 												<p class="product-category">${list.name}</p>
 												<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-												<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
+												<h4 class="product-price">￥${list.price}<del class="product-old-price">￥${list.prices}</del></h4>
 												<div class="product-rating">
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
@@ -385,12 +385,12 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
 													
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="product.jsp"><button class="add-to-cart-btn">查看详情</button></a>
+												<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn">查看详情</button></a>
 											</div>
 										</div>
 
@@ -455,8 +455,8 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">${list.name}</p>
-										<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-										<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+										<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+										<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 									</div>
 								</div>
 								<!-- /product widget -->
@@ -491,8 +491,8 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>
-											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+											<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+											<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 										</div>
 									</div>
 									<!-- /product widget -->
@@ -527,8 +527,8 @@
 										</div>
 										<div class="product-body">
 											<p class="product-category">${list.name}</p>
-											<h3 class="product-name"><a href="#">${list.remake}</a></h3>
-											<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.price}</del></h4>
+											<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+											<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 										</div>
 									</div>
 									<!-- /product widget -->
@@ -631,17 +631,28 @@
             function Select(){
                 var select=$("#select").val()+"";
                 var product_type=$("#product_type").val();
-                alert(product_type);
+                if(product_type==-1){
                 if(select==null||select==""){
                     select="${requestScope.recommend.value}";
-                    product_type=null;
                 }
-                if(product_type==null||product_type==""){
-                    product_type=-1;
-                }
-
+              }
                 window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+            };
+			function Collection_button(id) {
+                $.get("<%=basePath%>shop/login/index/collection/get?id="+id+" ",
+                    function (data) {
+                        if (data == "1") {
+                            alert("收藏成功");
+                        } else if(data == "2"){
+                            alert("你已经收藏过了！");
+                        }else{
+                            alert("收藏失败，可能原因未登录");
+						}
+                    });
             }
         </script>
+	<script>
+
+	</script>
 	</body>
 </html>

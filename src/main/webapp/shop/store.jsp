@@ -46,7 +46,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<li><a href="<%=basePath%>shop/login/zhuce.jsp"><i class="fa fa-dollar"></i> 注册</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="grzx.jsp"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
+							<li><a href="<%=basePath%>shop/login/index/my/fabu"><img src="<%=basePath%>shop/img/grzx.png" />&nbsp;${sessionScope.user.name}</a></li>
 							<li><a href="<%=basePath%>shop/login/exit"><i class="fa fa-dollar"></i> 注销</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -78,7 +78,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="header-search">
 							<form>
 								<select class="input-select" id="product_type" >
-									<option value="all">所有类别</option>
+									<option value="-1">所有类别</option>
 									<c:forEach items="${requestScope.product_type}" var="list" >
 										<option value="${list.id}">${list.name}</option>
 									</c:forEach>
@@ -95,7 +95,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         <div class="header-ctn">-->
 					<!-- Wishlist -->
 					<div>
-						<a href="<%=basePath%>shop/fabu.jsp" class="publish-btn"></i>发布二货</a>
+						<a href="<%=basePath%>shop/login/index/product/add" class="publish-btn"></i>发布二货</a>
 					</div>
 					<!-- /Wishlist -->
 
@@ -153,6 +153,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<ul class="breadcrumb-tree">
 							<li>首页</li>
 							<li>${requestScope.product_type_name}</li>
+							<c:choose>
+								<c:when test="${requestScope.Key!=null}">
+									<li>搜索"${requestScope.Key}"</li>
+								</c:when>
+							</c:choose>
 						</ul>
 					</div>
 				</div>
@@ -200,8 +205,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 									<img src="${list.image}" alt="">
 								</div>
 								<div class="product-body">
-									<h3 class="product-name"><a href="#">${list.name}</a></h3>
-									<h4 class="product-price">$${list.price} <del class="product-old-price">$${list.prices}</del></h4>
+									<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.name}</a></h3>
+									<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.prices}</del></h4>
 								</div>
 							</div>
 							</c:forEach>
@@ -221,7 +226,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<c:when test="${requestScope.product_sort==0||requestScope.product_sort==null}">
 												class="active"
 											</c:when>
-										</c:choose> ><a href="<%=basePath%>shop/store/all?product_type_id=${requestScope.product_type_id}">默认</a></li>
+										</c:choose> ><a href="<%=basePath%>shop/store/all?product_sort=0&product_type_id=${requestScope.product_type_id}">默认</a></li>
 										<li <c:choose>
 											<c:when test="${requestScope.product_sort==1}">
 												class="active"
@@ -290,7 +295,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 									<div class="product-body">
 										<p class="product-category">${list.name}</p>
 										<h3 class="product-name">${list.remake}</h3>
-										<h4 class="product-price">$${list.price}<del class="product-old-price">$${list.prices}</del></h4>
+										<h4 class="product-price">￥${list.price}<del class="product-old-price">￥${list.prices}</del></h4>
 										<div class="product-rating">
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -299,13 +304,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
+											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
 
 
 										</div>
 									</div>
 									<div class="add-to-cart">
-										<a href="product.jsp"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
+										<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
 									</div>
 								</div>
 							</div>
@@ -320,7 +325,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="store-filter clearfix">
 							<ul class="store-pagination">
 								<c:forEach var="index" end="${requestScope.pagemax}" begin="0" varStatus="s">
-
 									<li
 											<c:choose>
 											 <c:when test="${s.index==page}">
@@ -334,7 +338,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 										page=${s.index}">
 										${s.index+1}</a></li>
 								</c:forEach>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+
 							</ul>
 						</div>
 						<!-- /store bottom filter -->
@@ -435,15 +439,24 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         function Select(){
             var select=$("#select").val()+"";
             var product_type=$("#product_type").val();
-            if(select==null||select==""){
-                select="${requestScope.recommend.value}";
-                product_type=null;
+            if(product_type==-1){
+                if(select==null||select==""){
+                    select="${requestScope.recommend.value}";
+                }
             }
-            if(product_type==null||product_type==""){
-                product_type=-1;
-            }
-
             window.location.href="<%=basePath%>shop/store/all?Key="+select+"&product_type_id="+product_type+" ";
+        }
+        function Collection_button(id) {
+            $.get("<%=basePath%>shop/login/index/collection/get?id="+id+" ",
+                function (data) {
+                    if (data == "1") {
+                        alert("收藏成功");
+                    } else if(data == "2"){
+                        alert("你已经收藏过了！");
+                    }else{
+                        alert("收藏失败，可能原因未登录");
+                    }
+                });
         }
 	</script>
 	</body>

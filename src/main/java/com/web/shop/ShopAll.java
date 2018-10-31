@@ -34,8 +34,6 @@ public class ShopAll {
     //跳转至商品列表页面
     @RequestMapping(value = "/store/all", method = RequestMethod.GET)
     public String shop_store_all(HttpServletRequest request,Integer product_type_id,Integer product_sort,boolean product_sort_3,Integer page,String Key) throws UnsupportedEncodingException {
-        //获取所有商品
-        Product[] product=productbean.all();
         //获取所有分类
         Product_type[] product_type = product_typeBean.all();
         request.setAttribute("product_type", product_type);
@@ -43,45 +41,17 @@ public class ShopAll {
         Recommend[] recommends = recommendbean.all();
         Recommend recommend = recommends[(int) (Math.random() * recommends.length)];
         request.setAttribute("recommend", recommend);
-        //获取头部热门(下半部分热门)点击分类
-        for (int i = 0; i < product_type_top.length; i++) {
-            product_type_top_int[i] = 0;
-            product_type_top[i] = null;
-        }
-        for (int j = 0; j < product_type.length; j++) {
-            int click = 0;
-            Product[] product_j = productbean.product_type_get(product_type[j].getId());
-            for (int k = 0; k < product_j.length; k++) {
-                click += product_j[k].getClick();
-            }
-            for (int p = 0; p < product_type_top.length; p++) {
-                if (click > product_type_top_int[p]) {
-                    int clicks = product_type_top_int[p];
-                    Product_type product_type_clicks = product_type_top[p];
-                    product_type_top_int[p] = click;
-                    product_type_top[p] = product_type[j];
-                    for (int i = p + 1; i < product_type_top.length; i++) {
-                        if (clicks > product_type_top_int[i]) {
-                            int clickss = product_type_top_int[i];
-                            Product_type product_type_clickss = product_type_top[i];
-                            product_type_top_int[i] = clicks;
-                            product_type_top[i] = product_type_clicks;
-                            product_type_clicks = product_type_clickss;
-                            clicks = clickss;
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-        request.setAttribute("product_type_top", product_type_top);
-
         //获取最热门商品
-        Product[] product_hot = product_hot(product);
+        Product[] product_hot = product_hot(productbean.all());
         request.setAttribute("product_hot", product_hot);
+        //获取所有商品
+        Product[] product=productbean.all();
         //检测关键字
         if(Key!=null&&!Key.equals("")&&!Key.equals(" ")){
-            Key = new String(Key .getBytes("iso8859-1"),"utf-8");
+            request.setAttribute("Key", Key);
+            //若搜索出现中文搜索不出的情况，请解除下面注释，反之
+//            Key = new String(Key .getBytes("iso8859-1"),"utf-8");
+//            System.out.println(Key);
           product=productbean.sel(Key);
         }
         //获取分类字
@@ -125,12 +95,18 @@ public class ShopAll {
         }
         product=product_page(product,page);
         request.setAttribute("page", page);
-        request.setAttribute("pagemax", pagemax-1);
+        if(pagemax<=0){
+            request.setAttribute("pagemax", 0);
+        }else{
+            request.setAttribute("pagemax", pagemax-1);
+        }
+        //传送商品！
         request.setAttribute("product", product);
 
         //跳转
         return "/shop/store.jsp";
     }
+
 
 
     //商品价格排序方法

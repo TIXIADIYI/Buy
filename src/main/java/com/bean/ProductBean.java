@@ -37,6 +37,10 @@ public class ProductBean {
     public int del(Integer id){
         return productdao.del(id);
     }
+    //根据用户id查询
+    public Product[] user_id_get(Integer user_id){
+        return productdao.user_id_get(user_id);
+    }
     //添加商品
     public int in(Product product){
         return  productdao.in(product);
