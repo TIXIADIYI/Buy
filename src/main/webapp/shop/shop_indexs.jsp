@@ -61,7 +61,7 @@
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
-									<img src="<%=basePath%>shop/img/logo.jpg" alt="" width="90" height="90">
+									<img src="<%=basePath%>shop/img/logo.png" alt="" width="90" height="90">
 								</a>
 							</div>
 						</div>
