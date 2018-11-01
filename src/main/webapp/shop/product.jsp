@@ -10,9 +10,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>商品详情</title>
-		<!-- Google font -->
- 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
  		<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
 
@@ -216,13 +213,12 @@
 								<h3 class="product-price">￥${requestScope.product.price}<del class="product-old-price">￥${requestScope.product.prices}</del></h3>
 							</div>
 							<ul class="product-links" >
-                            <img src="<%=basePath%>shop/img/类别 (1).png"/>
+                            <img src="<%=basePath%>shop/img/leibie.png"/>
 								<li>分类:</li>
 								<li>${requestScope.product.product_type_id.name}</li>
 							</ul>
-
 							<ul class="product-links">
-                            <img src="<%=basePath%>shop/img/手机 (4).png"/>
+                            <img src="<%=basePath%>shop/img/shouji_product.png"/>
 								<li>联系电话:</li>
                                 <li>${requestScope.product.phone}</li>
 								<li>qq</li>
@@ -232,9 +228,9 @@
 							</ul>
                             
                             <ul class="product-links">
-                            <img src="<%=basePath%>shop/img/地址.png"/>
+                            <img src="<%=basePath%>shop/img/address.png"/>
 								<li>地址:</li>
-                                <li>${requestScope.user_id.address}</li>
+                                <li>${requestScope.product.user_id.address}</li>
 							</ul>
 
 							<ul class="product-links">

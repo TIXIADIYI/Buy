@@ -262,7 +262,11 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"  ><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"  >
+														<i class="fa fa-heart-">
+														<img src="<%=basePath%>shop/img/ax.png" /></i>
+
+														<span class="tooltipp">收藏</span></button>
 
 												</div>
 											</div>
@@ -650,6 +654,7 @@
 						}
                     });
             }
+
         </script>
 	<script>
 
