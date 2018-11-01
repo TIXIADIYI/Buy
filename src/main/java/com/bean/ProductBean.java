@@ -57,8 +57,27 @@ public class ProductBean {
     public int click(Integer id){
         return  productdao.click(id);
     }
+    //最热门10
+    public Product[] product_hot(){
+        return productdao.product_hot();
+    }
+    //最新10
+    public Product[] product_new(){
+        return productdao.product_new();
+    }
+
+
     //根据分类id查询该分类中最热门的商品
     public Product product_type_get_hot(Integer product_type_id){
         return productdao.product_type_get_hot(product_type_id);
+    }
+
+    //终极数据库语句
+    public Product[] product_type_key_order_desc(Integer product_type_id,String Key,Integer product_sort){
+        return  productdao.product_type_key_order_desc(product_type_id,Key,product_sort);
+    }
+    //终极数据库语句(价格升序版本
+    public Product[] product_type_key_order(Integer product_type_id,String Key){
+        return  productdao.product_type_key_order(product_type_id,Key);
     }
 }

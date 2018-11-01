@@ -6,7 +6,6 @@ import com.bean.RecommendBean;
 import com.model.Product;
 import com.model.Product_type;
 import com.model.Recommend;
-import com.model.ShopMe;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,8 +20,6 @@ public class ShopIndex {
     private Product_typeBean product_typeBean;
     @Resource
     private RecommendBean recommendbean;
-
-    private ShopMe shopMe=new ShopMe();
 
     /*
    * 跳转到前台主页
@@ -43,17 +40,16 @@ public class ShopIndex {
         Recommend recommend=recommendbean.one();
         request.setAttribute("recommend",recommend);
 
-
         //获取热门分类
         Product_type[] product_type_top=product_typeBean.product_type_hot();
         request.setAttribute("product_type_top",product_type_top);
 
         //获取新上架商品
-        Product[] product_new=shopMe.product_new(productbean.all());
+        Product[] product_new=productbean.product_new();
         request.setAttribute("product_new",product_new);
 
         //获取最热门商品
-        Product[] product_hot=shopMe.product_hot(productbean.all());
+        Product[] product_hot=productbean.product_hot();
         request.setAttribute("product_hot",product_hot);
 
         //获取大图分类的最热门商品

@@ -27,7 +27,8 @@ public class ShopProduct {
     @Resource
     private User_collectionBean user_collectionbean;
 
-    private ShopMe shopMe=new ShopMe();
+    //评论分页 每页数
+    private int pages=3;
 
 
 
@@ -51,39 +52,38 @@ public class ShopProduct {
         if(id!=null) {
            product = productbean.get(id);
         }
+        if(comment_page==null){
+            comment_page=0;
+        }
+        if(comment_page.equals("")){
+            comment_page=0;
+        }
+
         if(product!=null) {
             request.setAttribute("product", product);
+            request.setAttribute("id", id);
             //增加点击数
             productbean.click(id);
-            //获取热门商品并取该分类（同类推荐）
-            Product[] product_all=productbean.all();
-            product_all=shopMe.product_hot(product_all);
-            product_all=shopMe.product_type(product_all,product.getProduct_type_id().getId());
+            //（同类推荐）
+            Product[] product_all=productbean.product_type_key_order_desc(product.getProduct_type_id().getId(),null,1);
             request.setAttribute("product_all", product_all);
 
             //获取该商品评论
             Product_comment[] product_comment = product_commentbean.product_id_get(id);
-            //评论分页
-            if(comment_page==null||comment_page<=0){
-                comment_page=0;
-            }
-            int comment_pagemax=1;
-            if(product_comment.length%shopMe.getComment_pages()==0){
-                comment_pagemax=product_comment.length/shopMe.getComment_pages();
-            }else{
-                comment_pagemax=product_comment.length/shopMe.getComment_pages()+1;
-            }
-            if(comment_page>comment_pagemax){
-                comment_page=comment_pagemax;
-            }
-            product_comment=shopMe.product_comment(product_comment,comment_page);
 
-            request.setAttribute("comment_page", comment_page);
-            if(comment_pagemax<=0){
-                request.setAttribute("comment_pagemax", 0);
-            }else{
-                request.setAttribute("comment_pagemax", comment_pagemax-1);
+            //评论分页
+            int max=product_comment.length;
+            int comment_pagemax=max/pages;
+            if(max!=0&&max%pages==0){
+                comment_pagemax-=1;
             }
+            if(max>pages){
+                if(pages*comment_page+pages<=max){
+                    max=pages*comment_page+pages;
+                }
+                product_comment= Arrays.copyOfRange(product_comment, pages*comment_page, max);
+            }
+            request.setAttribute("comment_pagemax", comment_pagemax);
             request.setAttribute("product_comment", product_comment);
         }
         return "shop/product.jsp";

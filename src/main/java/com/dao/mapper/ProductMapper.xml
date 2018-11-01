@@ -76,6 +76,17 @@
          update products set click=click+1  where id=#{id}
     </update>
 
+
+    <!--最热门Top10-->
+    <select id="product_hot" resultMap="product">
+        select * from products order by click desc LIMIT 0,9
+    </select>
+    <!--最新Top10-->
+    <select id="product_new" resultMap="product">
+        select * from products  order by time desc LIMIT 0,9
+    </select>
+
+
     <!--根据分类id查询该分类中最热门的商品-->
     <select id="product_type_get_hot" resultMap="product">
         SELECT * from products,product_type
@@ -84,4 +95,30 @@ and product_type.id=#{product_type_id}
 ORDER BY click desc
 LIMIT 1
     </select>
+
+    <!--根据分类、关键字、排序方式查询商品-->
+
+    <!--分类查询所有 设置-1-->
+    <!--关键字查询所有 设置null-->
+    <!--排序查询默认 设置0-->
+    <!--价格降序版-->
+    <select id="product_type_key_order_desc" resultMap="product">
+SELECT * from products
+where
+ if (#{product_type_id}=-1,product_type_id like'%%',product_type_id=#{product_type_id})
+and
+ifnull (name like CONCAT('%',#{Key},'%'),name like'%%')
+ order by
+if(#{product_sort}=0,"",if(#{product_sort}=1,click,if(#{product_sort}=2,time,price)))+0 desc
+    </select>
+    <!--价格升序版-->
+    <select id="product_type_key_order" resultMap="product">
+SELECT * from products
+where
+ if (#{product_type_id}=-1,product_type_id like'%%',product_type_id=#{product_type_id})
+and
+ifnull (name like CONCAT('%',#{Key},'%'),name like'%%')
+ order by price
+    </select>
+
 </mapper>

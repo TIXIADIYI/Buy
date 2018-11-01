@@ -28,4 +28,12 @@ public interface ProductDao {
     int click(Integer id);
      //根据分类id查询该分类中最热门的商品
      Product product_type_get_hot(Integer product_type_id);
+     //最热门10
+    Product[] product_hot();
+    //最新10
+    Product[] product_new();
+     //终极数据库语句
+    Product[] product_type_key_order_desc(@Param(value = "product_type_id")Integer product_type_id,@Param(value = "Key")String Key,@Param(value = "product_sort")Integer product_sort);
+    //终极数据库语句（价格升序版)
+    Product[] product_type_key_order(@Param(value = "product_type_id")Integer product_type_id,@Param(value = "Key")String Key);
 }

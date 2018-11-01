@@ -6,13 +6,13 @@ import com.bean.RecommendBean;
 import com.model.Product;
 import com.model.Product_type;
 import com.model.Recommend;
-import com.model.ShopMe;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 
 @Controller
@@ -25,8 +25,8 @@ public class ShopAll {
     @Resource
     private RecommendBean recommendbean;
 
-    private ShopMe shopMe=new ShopMe();
-
+//分页 每页数量
+   private int pages=9;
 
 
 
@@ -34,88 +34,93 @@ public class ShopAll {
     @RequestMapping(value = "/store/all", method = RequestMethod.GET)
     public String shop_store_all(HttpServletRequest request,Integer product_type_id,Integer product_sort,boolean product_sort_3,Integer page,String Key)  {
 
-
-        //获取所有商品
-        Product[] product;
-        //检测关键字
-        if(Key!=null&&!Key.equals("")&&!Key.equals(" ")){
-            request.setAttribute("Key", Key);
-            product=productbean.sel(Key);
-        }else{
-            product=productbean.all();
-        }
-
         //获取所有分类
-        Product_type[] product_type = product_typeBean.all();
-        request.setAttribute("product_type", product_type);
+        Product_type[] product_type=product_typeBean.all();
+        request.setAttribute("product_type",product_type);
 
         //获取随机推荐
-        Recommend recommend = recommendbean.one();
-        request.setAttribute("recommend", recommend);
+        Recommend recommend=recommendbean.one();
+        request.setAttribute("recommend",recommend);
 
         //获取最热门商品
-        Product[] product_hot = shopMe.product_hot(productbean.all());
-        request.setAttribute("product_hot", product_hot);
+        Product[] product_hot=productbean.product_hot();
+        request.setAttribute("product_hot",product_hot);
 
         //获取热门分类
         Product_type[] product_type_top=product_typeBean.product_type_hot();
         request.setAttribute("product_type_top",product_type_top);
 
-        //获取分类字
-        String product_type_name = "所有分类";
-
-        //检测分类若存在则获取
-        if (product_type_id != null&& product_type_id!=-1) {
-            Product_type product_type_now = product_typeBean.get(product_type_id);
-            product_type_name = product_type_now.getName();
-            request.setAttribute("product_type_id", product_type_id);
-            product=shopMe.product_type(product,product_type_id);
+        //传送的变量检测和修正
+        if(product_type_id==null){
+            product_type_id=-1;
         }
-        request.setAttribute("product_type_name", product_type_name);
-
-
-        //获取商品排序方式
-        boolean product_sort_3s=false;
-        if(product_sort!=null&&product_sort==1){//按热门优先排序
-            product=shopMe.product_hot(product);
-        }else if(product_sort!=null&&product_sort==2){ //按新品优先排序
-            product=shopMe.product_new(product);
-        }else if(product_sort!=null&&product_sort==3){ //按价格排序
-            product=shopMe.product_sort(product,product_sort_3);
-            product_sort_3s=product_sort_3;
+        if(Key!=null){
+           if(Key.equals("")){
+               Key=null;
+           }
         }
-        request.setAttribute("product_sort_3", product_sort_3s);
-
-        if(product_sort!=null){
-            request.setAttribute("product_sort", product_sort);
-        }else{
-            request.setAttribute("product_sort", 0);
+        if(product_sort==null){
+            product_sort=0;
         }
-        //分页数据
-        if(page==null||page<=0){
+        if(product_sort.equals("")){
+            product_sort=0;
+        }
+        if(page==null){
             page=0;
         }
-        int pagemax=1;
-        if(product.length%shopMe.getPages()==0){
-            pagemax=product.length/shopMe.getPages();
+        if(page.equals("")){
+            page=0;
+        }
+        boolean product_sort_3s=false;
+        if(product_sort==3){
+            product_sort_3s=product_sort_3;
+        }
+
+        //传送数据
+        //显示分类的数据
+        String product_type_name="全部分类";
+        if(product_type_id!=-1){
+            Product_type product_type1=product_typeBean.get(product_type_id);
+            product_type_name=product_type1.getName();
+        }
+        request.setAttribute("product_type_name",product_type_name);
+        //其他
+        request.setAttribute("product_type_id",product_type_id);
+        request.setAttribute("Key",Key);
+        request.setAttribute("product_sort",product_sort);
+        request.setAttribute("product_sort_3",product_sort_3s);
+
+        //获取数据
+        Product[] product=null;
+        if(product_sort_3s) {
+            product=productbean.product_type_key_order(product_type_id,Key);
         }else{
-            pagemax=product.length/shopMe.getPages()+1;
+            product=productbean.product_type_key_order_desc(product_type_id,Key,product_sort);
         }
-        if(page>pagemax){
-            page=pagemax;
+
+
+        //分页  商品数据截取
+        int max=product.length;
+        int pagemax=max/pages;
+        if(max!=0&&max%pages==0){
+            pagemax-=1;
         }
-        product=shopMe.product_page(product,page);
-        request.setAttribute("page", page);
-        if(pagemax<=0){
-            request.setAttribute("pagemax", 0);
-        }else{
-            request.setAttribute("pagemax", pagemax-1);
+        if(max>pages){
+            if(pages*page+pages<=max){
+                max=pages*page+pages;
+            }
+            product= Arrays.copyOfRange(product, pages*page, max);
         }
-        //传送商品！
-        request.setAttribute("product", product);
+
+        request.setAttribute("product",product);
+        request.setAttribute("page",page);
+        request.setAttribute("pagemax",pagemax);
+
+
         //跳转
         return "/shop/store.jsp";
     }
+
 
 
 
