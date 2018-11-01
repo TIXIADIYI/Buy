@@ -431,7 +431,7 @@
 		</div>
 		<!-- /Section -->
 
-		
+
 		<!-- 底部 -->
 		<footer id="footer">
 			<!-- top footer -->
@@ -442,19 +442,19 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">关于我们</h3>
-								
+								<h3 style="color:#8a8a8a" class="footer-title" >信息</h3>
+
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>官塘大道</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+123-45-67-89</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/wz.png" /></i>官塘大道</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/shouji.png" /></i>+123-45-67-89</a></li>
+									<li><a href="#"><i><img src="<%=basePath%>shop/img/yx.png" /></i>email@email.com</a></li>
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">分类</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">分类</h3>
 								<ul class="footer-links">
 									<li><a href="#">热卖</a></li>
 									<li><a href="#">电脑</a></li>
@@ -469,7 +469,7 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">信息</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">关于我们</h3>
 								<ul class="footer-links">
 									<li><a href="#">关于我们</a></li>
 									<li><a href="#">联系我们</a></li>
@@ -482,7 +482,7 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">服务</h3>
+								<h3 style="color:#8a8a8a" class="footer-title">服务</h3>
 								<ul class="footer-links">
 									<li><a href="#">我的账户</a></li>
 									<li><a href="#">查看购物车</a></li>
@@ -498,8 +498,8 @@
 				<!-- /container -->
 			</div>
 			<!-- /top footer -->
-				</div>
-				<!-- /container -->
+			</div>
+			<!-- /container -->
 			</div>
 			<!-- /bottom footer -->
 		</footer>

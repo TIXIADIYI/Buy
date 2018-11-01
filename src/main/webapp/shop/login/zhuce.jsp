@@ -13,7 +13,6 @@
     <script type="text/javascript" src="<%=basePath%>shop/js/jquery.min.js"></script>
     <script src="<%=basePath%>shop/js/jquery-1.12.4.js" type="text/javascript"></script>
     <script src="<%=basePath%>shop/js/yanz.js"></script>
-    <script src="<%=basePath%>shop/js/yanz1.js"></script>
     <script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -41,7 +40,7 @@
     <link href="<%=basePath%>shop/css/style.css" rel="stylesheet"/>
     <link type="text/css" href="<%=basePath%>shop/css/base.css" rel="stylesheet"/>
     <link href="<%=basePath%>shop/css/style.css" rel="stylesheet"/>
-    <script type="text/javascript" src="<%=basePath%>shop/js/111.js"></script>
+
 
 </head>
 

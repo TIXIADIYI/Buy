@@ -10,11 +10,11 @@
 	<meta charset="UTF-8">
 	<title>个人中心</title>
 	<script type="text/javascript" src="<%=basePath%>shop/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>shop/js/layui.all.js"></script>
+
     <link rel="stylesheet" href="<%=basePath%>shop/css/layui.css"></script>
 
 <link rel="stylesheet" href="<%=basePath%>shop/css/public.css?=0.1">
-<script src="<%=basePath%>shop/js/common.js"></script>
+
 	<link rel="stylesheet" href="<%=basePath%>shop/css/user.css">
 	<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
@@ -38,14 +38,14 @@
 </script>
 </head>
 <body>
-	<div id="header">
+	<!--<div id="header">-->
 
 		<!-- TOP HEADER -->
 		<div id="top-header">
 			<div class="container">
 				<ul class="header-links pull-left">
-					<li style="color: #000000;">位置</li>
-					<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+
+					<li><a href="<%=basePath%>shop/index">首页</a></li>
 				</ul>
 				<ul class="header-links pull-right">
 					<c:choose>
@@ -203,11 +203,7 @@
 		</div>
 	</div>
 </div>
-<!--<script src="/js/lib/sitemap.js"></script>
-	<script> var count = 0</script>
-	<script type="text/javascript" src="js/message.js"></script>-->
-	<!--<script type="text/javascript" src="js/cs.js"></script>
-	<script type="text/javascript" src="js/grxx.js"></script>-->
+
 </body>
 <link rel="stylesheet" href="<%=basePath%>plugins/kindeditor-4.1.10/themes/default/default.css" />
 <script src="<%=basePath%>plugins/kindeditor-4.1.10/kindeditor.js"></script>

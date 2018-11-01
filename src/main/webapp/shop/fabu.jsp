@@ -36,8 +36,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li style="color: #000000;">位置</li>
-						<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+
+						<li><a href="<%=basePath%>shop/index">首页</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 						<c:choose>
@@ -56,6 +56,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					</ul>
 				</div>
 			</div>
+
 			<!-- /TOP HEADER -->
 
 		</header>

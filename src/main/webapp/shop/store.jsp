@@ -306,13 +306,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-o"></i><span class="tooltipp">加入收藏</span></button>
+											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i></i><span class="tooltipp">加入收藏</span></button>
 
 
 										</div>
 									</div>
 									<div class="add-to-cart">
-										<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 查看详情</button></a>
+										<a href="<%=basePath%>shop/product/edit?id=${list.id}"><button class="add-to-cart-btn">查看详情</button></a>
 									</div>
 								</div>
 							</div>
@@ -354,80 +354,78 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<!-- /SECTION -->
 
 
-		<!-- 底部 -->
-		<footer id="footer">
-			<!-- top footer -->
-			<div class="section">
-				<!-- container -->
-				
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">关于我们</h3>
-								
-								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>官塘大道</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+123-45-67-89</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-								</ul>
-							</div>
-						</div>
+	<!-- 底部 -->
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 style="color:#8a8a8a" class="footer-title" >信息</h3>
 
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">分类</h3>
-								<ul class="footer-links">
-									<li><a href="#">热卖</a></li>
-									<li><a href="#">电脑</a></li>
-									<li><a href="#">手机</a></li>
-									<li><a href="#">电子配件</a></li>
-									<li><a href="#">书籍</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="clearfix visible-xs"></div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">信息</h3>
-								<ul class="footer-links">
-									<li><a href="#">关于我们</a></li>
-									<li><a href="#">联系我们</a></li>
-									<li><a href="#">隐私政策</a></li>
-									<li><a href="#">订单和退货</a></li>
-									<li><a href="#">条款和条件</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col-md-3 col-xs-6">
-							<div class="footer">
-								<h3 class="footer-title">服务</h3>
-								<ul class="footer-links">
-									<li><a href="#">我的账户</a></li>
-									<li><a href="#">查看购物车</a></li>
-									<li><a href="#">收藏</a></li>
-									<li><a href="#">我的订单</a></li>
-									<li><a href="#">帮助</a></li>
-								</ul>
-							</div>
+							<ul class="footer-links">
+								<li><a href="#"><i><img src="<%=basePath%>shop/img/wz.png" /></i>官塘大道</a></li>
+								<li><a href="#"><i><img src="<%=basePath%>shop/img/shouji.png" /></i>+123-45-67-89</a></li>
+								<li><a href="#"><i><img src="<%=basePath%>shop/img/yx.png" /></i>email@email.com</a></li>
+							</ul>
 						</div>
 					</div>
-					<!-- /row -->
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 style="color:#8a8a8a" class="footer-title">分类</h3>
+							<ul class="footer-links">
+								<li><a href="#">热卖</a></li>
+								<li><a href="#">电脑</a></li>
+								<li><a href="#">手机</a></li>
+								<li><a href="#">电子配件</a></li>
+								<li><a href="#">书籍</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 style="color:#8a8a8a" class="footer-title">关于我们</h3>
+							<ul class="footer-links">
+								<li><a href="#">关于我们</a></li>
+								<li><a href="#">联系我们</a></li>
+								<li><a href="#">隐私政策</a></li>
+								<li><a href="#">订单和退货</a></li>
+								<li><a href="#">条款和条件</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 style="color:#8a8a8a" class="footer-title">服务</h3>
+							<ul class="footer-links">
+								<li><a href="#">我的账户</a></li>
+								<li><a href="#">查看购物车</a></li>
+								<li><a href="#">收藏</a></li>
+								<li><a href="#">我的订单</a></li>
+								<li><a href="#">帮助</a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
-				
-				<!-- /container -->
+				<!-- /row -->
 			</div>
-			<!-- /top footer -->
-				</div>
-				<!-- /container -->
-			</div>
-			<!-- /bottom footer -->
-		</footer>
-		<!-- /FOOTER -->
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+		</div>
+		<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
 
 		<!-- jQuery Plugins -->
 		<script src="<%=basePath%>shop/js/jquery.min.js"></script>

@@ -10,11 +10,11 @@
 	<meta charset="UTF-8">
 	<title>个人中心</title>
 	<script type="text/javascript" src="<%=basePath%>shop/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>shop/js/la.js"></script>
+
 <link rel="stylesheet" href="<%=basePath%>shop/css/layui.css"/>
 
 <link rel="stylesheet" href="<%=basePath%>shop/css/public.css"/>
-<script src="<%=basePath%>shop/js/common.js"></script>
+
 	<link rel="stylesheet" href="<%=basePath%>shop/css/user.css" />
 	<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
@@ -34,7 +34,7 @@
 
 </head>
 <body>
-	<div id="header">
+
 	<!--
     	个人中心顶部
     -->
@@ -42,8 +42,8 @@
 		<div id="top-header">
 			<div class="container">
 				<ul class="header-links pull-left">
-					<li style="color: #000000;">位置</li>
-					<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+
+					<li><a href="<%=basePath%>shop/index">首页</a></li>
 				</ul>
 				<ul class="header-links pull-right">
 					<c:choose>

@@ -14,7 +14,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <link rel="stylesheet" href="css/layui.css"></script>
 
 <link rel="stylesheet" href="<%=basePath%>shop/css/public.css">
-<script src="<%=basePath%>shop/js/common.js"></script>
+
 	<link rel="stylesheet" href="<%=basePath%>shop/css/user.css">
 	<!-- Bootstrap -->
  		<link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
@@ -38,14 +38,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </script>
 </head>
 <body>
-	<div id="header">
+	<!--<div id="header">-->
 
 		<!-- TOP HEADER -->
 		<div id="top-header">
 			<div class="container">
 				<ul class="header-links pull-left">
-					<li style="color: #000000;">位置</li>
-					<li><a href="#"> <img src="<%=basePath%>shop/img/wz.png" />官塘大道</a></li>
+
+					<li><a href="<%=basePath%>shop/index">首页</a></li>
 				</ul>
 				<ul class="header-links pull-right">
 					<c:choose>
@@ -161,9 +161,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				</div>
 			</div>
 		</div>
-<!--<script src="/js/lib/sitemap.js"></script>
-	<script> var count = 0</script>-->
-	<script src="<%=basePath%>shop/js/message.js"></script>
+
 	
 </body>
 </html>
