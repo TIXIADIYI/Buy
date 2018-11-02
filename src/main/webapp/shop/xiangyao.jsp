@@ -114,7 +114,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						</div>
 						<div class="operation fr">
 							<a href="<%=basePath%>shop/product/edit?id=${list.product_id.id}" class="" target="_blank">查看详情</a>
-							<a href="<%=basePath%>shop/login/index/my/collection/del?id=${list.id}" class="delete-want" data-gid="1393" id="del">删除</a>
+							<a href="<%=basePath%>shop/login/index/my/collection/del?id=${list.id}" class="delete-want" data-gid="1393" name="del">删除</a>
 						</div>
 					</div>
 				</li>
@@ -161,7 +161,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
 		<script type="text/javascript">
             $(document).ready(function () {
-                $("#del").click(function () {
+                $("a[name='del']").click(function () {
                         var judge = window.confirm('确定要删除吗?');
                         if(judge) {
                             $.get($(this).attr("href"),

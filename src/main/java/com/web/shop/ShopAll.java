@@ -3,15 +3,15 @@ package com.web.shop;
 import com.bean.ProductBean;
 import com.bean.Product_typeBean;
 import com.bean.RecommendBean;
-import com.model.Product;
-import com.model.Product_type;
-import com.model.Recommend;
+import com.bean.User_collectionBean;
+import com.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
 
@@ -24,6 +24,8 @@ public class ShopAll {
     private Product_typeBean product_typeBean;
     @Resource
     private RecommendBean recommendbean;
+    @Resource
+    private User_collectionBean user_collectionBean;
 
 //分页 每页数量
    private int pages=9;
@@ -32,7 +34,7 @@ public class ShopAll {
 
     //跳转至商品列表页面
     @RequestMapping(value = "/store/all", method = RequestMethod.GET)
-    public String shop_store_all(HttpServletRequest request,Integer product_type_id,Integer product_sort,boolean product_sort_3,Integer page,String Key)  {
+    public String shop_store_all(HttpServletRequest request,HttpSession session,Integer product_type_id, Integer product_sort, boolean product_sort_3, Integer page, String Key)  {
 
         //获取所有分类
         Product_type[] product_type=product_typeBean.all();
@@ -98,6 +100,22 @@ public class ShopAll {
             product=productbean.product_type_key_order_desc(product_type_id,Key,product_sort);
         }
 
+        //获取用户收藏
+        User user=(User)(session.getAttribute("user"));
+        if(user!=null) {
+            boolean[] product_collection=new boolean[product.length];
+            User_collection user_collection=new User_collection();
+            user_collection.setUser_id(user);
+            for(int i=0;i<product.length;i++){
+                user_collection.setProduct_id(product[i]);
+                if(user_collectionBean.rep(user_collection)!=null){
+                    product_collection[i]=true;
+                }
+            }
+            request.setAttribute("product_collection",product_collection);
+        }
+
+
 
         //分页  商品数据截取
         int max=product.length;
@@ -115,7 +133,6 @@ public class ShopAll {
         request.setAttribute("product",product);
         request.setAttribute("page",page);
         request.setAttribute("pagemax",pagemax);
-
 
         //跳转
         return "/shop/store.jsp";

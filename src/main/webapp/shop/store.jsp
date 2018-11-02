@@ -267,7 +267,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 						<!-- 产品列表 -->
 						<div class="row">
-							<c:forEach items="${requestScope.product}" var="list">
+							<c:forEach items="${requestScope.product}" var="list" varStatus="sss">
 							<!-- 产品 -->
 							<div class="col-md-4 col-xs-6">
 								<div class="product">
@@ -303,7 +303,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 											<i class="fa fa-star"></i>
 										</div>
 										<div class="product-btns">
-											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i></i><span class="tooltipp">加入收藏</span></button>
+											<button class="add-to-wishlist" OnClick="Collection_button(${list.id});">
+												<i class="fa fa-heart-">
+													<c:choose>
+														<c:when test="${requestScope.product_collection[sss.index]==true}">
+															<img src="<%=basePath%>shop/img/ax2.png" width="20" height="20"/>
+														</c:when>
+														<c:otherwise>
+															<img src="<%=basePath%>shop/img/ax.png" />
+														</c:otherwise>
+													</c:choose>
+											</i><span class="tooltipp">加入收藏</span></button>
 
 
 										</div>

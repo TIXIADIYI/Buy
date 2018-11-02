@@ -227,7 +227,7 @@
 											<%--</div>--%>
 										<%--</div>--%>
 										<!-- /product -->
-                                    <c:forEach items="${requestScope.product_new}" var="list" end="4">
+                                    <c:forEach items="${requestScope.product_new}" var="list" end="4" varStatus="sss">
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
@@ -264,7 +264,16 @@
 												<div class="product-btns">
 													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"  >
 														<i class="fa fa-heart-">
-														<img src="<%=basePath%>shop/img/ax.png" /></i>
+
+															<c:choose>
+																<c:when test="${requestScope.product_new_collection[sss.index]==true}">
+																	<img src="<%=basePath%>shop/img/ax2.png" width="20" height="20"/>
+																</c:when>
+																<c:otherwise>
+																	<img src="<%=basePath%>shop/img/ax.png" />
+																</c:otherwise>
+															</c:choose>
+														</i>
 
 														<span class="tooltipp">收藏</span></button>
 
@@ -355,7 +364,7 @@
 											<%--</div>--%>
 										<%--</div>--%>
 										<%--<!-- /product -->--%>
-                            <c:forEach items="${requestScope.product_hot}" var="list" end="4">
+                            <c:forEach items="${requestScope.product_hot}" var="list" end="4" varStatus="sss">
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
@@ -389,7 +398,17 @@
 													<i class="fa fa-sta"><img src="<%=basePath%>shop/img/xing.png" /></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});"><i class="fa fa-heart-"><img src="<%=basePath%>shop/img/ax.png" /></i><span class="tooltipp">收藏</span></button>
+													<button class="add-to-wishlist" OnClick="Collection_button(${list.id});">
+														<i class="fa fa-heart-">
+															<c:choose>
+																<c:when test="${requestScope.product_hot_collection[sss.index]==true}">
+																	<img src="<%=basePath%>shop/img/ax2.png" width="20" height="20"/>
+																</c:when>
+																<c:otherwise>
+																	<img src="<%=basePath%>shop/img/ax.png" />
+																</c:otherwise>
+															</c:choose>
+														</i><span class="tooltipp">收藏</span></button>
 													
 												</div>
 											</div>
@@ -647,6 +666,7 @@
                     function (data) {
                         if (data == "1") {
                             alert("收藏成功");
+                            location.reload();
                         } else if(data == "2"){
                             alert("你已经收藏过了！");
                         }else{

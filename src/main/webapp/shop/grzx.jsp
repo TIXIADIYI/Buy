@@ -119,7 +119,7 @@
 						</div>
 						<div class="operation fr">
 							<%--<a href="" class="edit">编辑</a>--%>
-							<a href="<%=basePath%>shop/login/index/my/fabu/del?id=${list.id}" class="delete" id="del">删除</a>
+							<a href="<%=basePath%>shop/login/index/my/fabu/del?id=${list.id}" class="delete" name="del">删除</a>
 						</div>
 					</div>
 				</li>
@@ -167,7 +167,7 @@
 		<script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
 		<script type="text/javascript">
             $(document).ready(function () {
-                $("#del").click(function () {
+                $("a[name='del']").click(function () {
                     var judge = window.confirm('确定要删除吗?');
                     if(judge) {
                         $.get($(this).attr("href"),

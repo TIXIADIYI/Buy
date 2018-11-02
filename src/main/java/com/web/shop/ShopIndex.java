@@ -3,14 +3,14 @@ package com.web.shop;
 import com.bean.ProductBean;
 import com.bean.Product_typeBean;
 import com.bean.RecommendBean;
-import com.model.Product;
-import com.model.Product_type;
-import com.model.Recommend;
+import com.bean.User_collectionBean;
+import com.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ShopIndex {
@@ -20,6 +20,9 @@ public class ShopIndex {
     private Product_typeBean product_typeBean;
     @Resource
     private RecommendBean recommendbean;
+    @Resource
+    private User_collectionBean user_collectionBean;
+
 
     /*
    * 跳转到前台主页
@@ -30,7 +33,7 @@ public class ShopIndex {
     }
 
     @RequestMapping(value = "/shop/index")
-    public String shops(HttpServletRequest request){
+    public String shops(HttpServletRequest request, HttpSession session){
 
         //获取所有分类
         Product_type[] product_type=product_typeBean.all();
@@ -51,6 +54,29 @@ public class ShopIndex {
         //获取最热门商品
         Product[] product_hot=productbean.product_hot();
         request.setAttribute("product_hot",product_hot);
+
+        //获取用户收藏
+        User user=(User)(session.getAttribute("user"));
+        if(user!=null) {
+            //新品收藏
+            boolean[] product_new_collection=new boolean[product_new.length];
+            //热门收藏
+            boolean[] product_hot_collection=new boolean[product_hot.length];
+            User_collection user_collection=new User_collection();
+            user_collection.setUser_id(user);
+            for(int i=0;i<product_new.length;i++){
+                user_collection.setProduct_id(product_new[i]);
+                if(user_collectionBean.rep(user_collection)!=null){
+                    product_new_collection[i]=true;
+                }
+                user_collection.setProduct_id(product_hot[i]);
+                if(user_collectionBean.rep(user_collection)!=null){
+                    product_hot_collection[i]=true;
+                }
+            }
+            request.setAttribute("product_new_collection",product_new_collection);
+            request.setAttribute("product_hot_collection",product_hot_collection);
+        }
 
         //获取大图分类的最热门商品
         Product[] product_image=new Product[3];
