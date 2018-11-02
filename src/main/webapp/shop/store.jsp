@@ -199,15 +199,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="aside">
 							<h3 class="aside-title">热门交易</h3>
 							<c:forEach items="${requestScope.product_hot}" var="list" end="2">
+							<a href="<%=basePath%>shop/product/edit?id=${list.id}">
 							<div class="product-widget">
 								<div class="product-img">
 									<img src="${list.image}" alt="">
 								</div>
 								<div class="product-body">
-									<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.name}</a></h3>
+									<h3 class="product-name">${list.name}</h3>
 									<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.prices}</del></h4>
 								</div>
 							</div>
+							</a>
 							</c:forEach>
 						</div>
 						<!-- /aside Widget -->

@@ -450,21 +450,9 @@
 						</div>
 
 						<div class="products-widget-slick" data-nav="#slick-nav-3">
-							<div>
-						<%--<!-- product widget -->--%>
-								<%--<div class="product-widget">--%>
-									<%--<div class="product-img">--%>
-										<%--<img src="<%=basePath%>shop/img/product07.png" alt="">--%>
-									<%--</div>--%>
-									<%--<div class="product-body">--%>
-										<%--<p class="product-category">商品名</p>--%>
-										<%--<h3 class="product-name"><a href="#">这里是描述</a></h3>--%>
-										<%--<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>--%>
-									<%--</div>--%>
-								<%--</div>--%>
-								<!-- /product widget -->
-                             <c:forEach items="${requestScope.product_top_hot[0]}" var="list" end="5" >
-								<!-- product widget -->
+                          <div>
+                             <c:forEach items="${requestScope.product_top_hot[0]}" var="list" end="2">
+							   <a href="<%=basePath%>shop/product/edit?id=${list.id}">
 								<div class="product-widget">
 									<div class="product-img">
 										<c:choose>
@@ -482,9 +470,34 @@
 										<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 									</div>
 								</div>
-								<!-- /product widget -->
+							</a>
 							 </c:forEach>
+						  </div>
+
+							<div>
+								<c:forEach items="${requestScope.product_top_hot[0]}" var="list" begin="3" end="5">
+									<a href="<%=basePath%>shop/product/edit?id=${list.id}">
+										<div class="product-widget">
+											<div class="product-img">
+												<c:choose>
+													<c:when test="${list.image==null||list.image==''}">
+														<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+													</c:when>
+													<c:otherwise>
+														<img src="${list.image}" alt="" width="100" height="50">
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="product-body">
+												<p class="product-category">${list.name}</p>
+												<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+												<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
+											</div>
+										</div>
+									</a>
+								</c:forEach>
 							</div>
+
 						</div>
 					</div>
 
@@ -497,8 +510,9 @@
 						</div>
 
 						<div class="products-widget-slick" data-nav="#slick-nav-4">
-							<div>
-								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" end="5" >
+                             <div>
+								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" end="2" >
+									<a href="<%=basePath%>shop/product/edit?id=${list.id}">
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">
@@ -518,10 +532,40 @@
 											<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
 										</div>
 									</div>
+									</a>
+									<!-- /product widget -->
+								</c:forEach>
+							 </div>
+
+
+							<div>
+								<c:forEach items="${requestScope.product_top_hot[1]}" var="list" end="5"  begin="3">
+									<a href="<%=basePath%>shop/product/edit?id=${list.id}">
+										<!-- product widget -->
+										<div class="product-widget">
+											<div class="product-img">
+												<c:choose>
+													<c:when test="${list.image==null||list.image==''}">
+														<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+													</c:when>
+													<c:otherwise>
+														<img src="${list.image}" alt="" width="100" height="50">
+													</c:otherwise>
+												</c:choose>
+
+											</div>
+											<div class="product-body">
+												<p class="product-category">${list.name}</p>
+												<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+												<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
+											</div>
+										</div>
+									</a>
 									<!-- /product widget -->
 								</c:forEach>
 							</div>
-						</div>
+
+							</div>
 					</div>
 
 					<div class="clearfix visible-sm visible-xs"></div>
@@ -535,7 +579,8 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-5">
 							<div>
-								<c:forEach items="${requestScope.product_top_hot[2]}" var="list"  end="5">
+								<c:forEach items="${requestScope.product_top_hot[2]}" var="list"  end="2">
+									<a href="<%=basePath%>shop/product/edit?id=${list.id}">
 									<!-- product widget -->
 									<div class="product-widget">
 										<div class="product-img">
@@ -555,9 +600,37 @@
 										</div>
 									</div>
 									<!-- /product widget -->
+									</a>
 								</c:forEach>
 							</div>
-						</div>
+
+							<div>
+								<c:forEach items="${requestScope.product_top_hot[2]}" var="list"  begin="3" end="5">
+									<a href="<%=basePath%>shop/product/edit?id=${list.id}">
+										<!-- product widget -->
+										<div class="product-widget">
+											<div class="product-img">
+												<c:choose>
+													<c:when test="${list.image==null||list.image==''}">
+														<img src="<%=basePath%>shop/image/timg.gif" alt="" width="100" height="50">
+													</c:when>
+													<c:otherwise>
+														<img src="${list.image}" alt="" width="100" height="50">
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="product-body">
+												<p class="product-category">${list.name}</p>
+												<h3 class="product-name"><a href="<%=basePath%>shop/product/edit?id=${list.id}">${list.remake}</a></h3>
+												<h4 class="product-price">￥${list.price} <del class="product-old-price">￥${list.price}</del></h4>
+											</div>
+										</div>
+										<!-- /product widget -->
+									</a>
+								</c:forEach>
+							</div>
+
+							</div>
 					</div>
 
 				</div>
