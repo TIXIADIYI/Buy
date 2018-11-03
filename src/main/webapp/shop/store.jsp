@@ -460,6 +460,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 function (data) {
                     if (data == "1") {
                         alert("收藏成功");
+                        location.reload();
                     } else if(data == "2"){
                         alert("你已经收藏过了！");
                     }else{
