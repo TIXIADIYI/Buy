@@ -68,15 +68,15 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<div class="ibox-content">
                 <form action="/Home/Release/dosale" class="form-horizontal m-t" id="myform" method="post">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">标题：</label>
+                        <label class="col-sm-3 control-label">*标题：</label>
                         <div class="col-sm-8">
                             <input id="title" name="name" class="required form-control" type="text" placeholder="请输入标题">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">详情：</label>
+                        <label class="col-sm-3 control-label">*详情：</label>
                         <div class="col-sm-8">
-                            <textarea id="detail" name="remake" placeholder="请输入详情" class="form-control" type="text" aria-required="true" aria-invalid="false" class="valid" ></textarea>
+                            <textarea id="detail" name="remake" placeholder="请输入详情" class="form-control" type="text"  ></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -88,25 +88,25 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">价格：</label>
+                        <label class="col-sm-3 control-label">*价格：</label>
                         <div class="col-sm-8" >
                             <input id="price" name="price"  class="form-control" placeholder="请输入商品价格" type="text" style="width:60%;">
                         </div>
                     </div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">原价格：</label>
+						<label class="col-sm-3 control-label">*原价格：</label>
 						<div class="col-sm-8" >
 							<input id="prices" name="prices"  class="form-control" placeholder="请输入商品价格" type="text" style="width:60%;">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">库存</label>
+						<label class="col-sm-3 control-label">*库存</label>
 						<div class="col-sm-8" >
 							<input id="sum" name="price"  class="form-control" placeholder="请输入商品价格" type="text" style="width:60%;">
 						</div>
 					</div>
                     <div class="form-group">
-					<label class="col-sm-3 control-label">分类：</label>
+					<label class="col-sm-3 control-label">*分类：</label>
 					<div class="col-sm-8">
 						<select id="type" name="product_type_id.id" data-placeholder="选择分类..." class="chosen-select"  style=" width: 60%;" tabindex="2">
 							<c:forEach items="${requestScope.product_type}" var="list">
@@ -116,7 +116,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					</div>
 				</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">是否上架</label>
+						<label class="col-sm-3 control-label">*是否上架</label>
 						<div class="col-sm-8">
 							<select  name="display" data-placeholder="选择分类..." class="chosen-select"  style=" width: 60%;" tabindex="2">
                                 <option value="true">是</option>
@@ -267,16 +267,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	</script>
 <script>
 $("#fabu_button").click(function () {
-    $.post("<%=basePath%>shop/login/index/product/add/post",
-        $("#myform").serialize(),
-        function (data) {
-            if (data == "1") {
-                alert("发布成功");
-                window.location.href="<%=basePath%>shop/store/all";
-            } else {
-                alert("发布失败");
-            }
-        });
+    if($("input[name='name']").val()==null||$("input[name='name']").val()==""){
+        alert("标题未填写");
+	}else if($("textarea[name='remake']").val()==null||$("textarea[name='remake']").val()==""){
+        alert("详情未填写");
+	}else if($("input[name='price']").val()==null||$("input[name='price']").val()==""){
+        alert("价格未填写");
+	}else if($("input[name='prices']").val()==null||$("input[name='prices']").val()==""){
+        alert("原价格未填写");
+    }else if($("input[name='sum']").val()==null||$("input[name='sum']").val()==""){
+        alert("库存未填写");
+    }else{
+        $.post("<%=basePath%>shop/login/index/product/add/post",
+            $("#myform").serialize(),
+            function (data) {
+                if (data == "1") {
+                    alert("发布成功");
+                    window.location.href="<%=basePath%>shop/store/all";
+                } else {
+                    alert("发布失败");
+                }
+            });
+	}
+
 })
 </script>
 
