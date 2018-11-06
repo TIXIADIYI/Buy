@@ -7,6 +7,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>注册交易网</title>
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/bootstrap.min.css"/>
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="<%=basePath%>shop/css/style.css"/>
     <script src="../js/jquery-1.7.2.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>shop/css/base.css">
     <link rel="stylesheet" type="text/css" href="<%=basePath%>shop/css/zccs.css">
@@ -21,15 +24,14 @@
                         $("#loginform").serialize(),
                         function (data) {
                             if (data == "1") {
-                                alert("注册成功");
+                                alert("注册成功!!!");
                             } else if (data == "2") {
-                                alert("注册失败，未填写完整");
+                                alert("注册失败，未填写完整!");
                             } else if (data == "3") {
-                                alert("注册失败，该账号已存在");
-                            } else if (data == "4") {
-                                alert("注册失败，两次密码不一致");
+                                alert("注册失败，该账号已存在!");
+
                             } else {
-                                alert("注册失败");
+                                alert("注册失败!");
                             }
                         });
                 }
@@ -55,9 +57,9 @@
 </div>
 <form id="loginform" method="post">
     <div class="login_wrap"
-         style="width:; background:#fff url(<%=basePath%>shop/image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
+         style="width:; background:#fff url(<%=basePath%>shop/img/ZCLOGO.jpg) no-repeat center top; padding:40px 0;">
         <div class="wrapper" id="login_body" style="width:;">
-            <div class="log_ad" style="display:"><a href="javascript:;"></a></div>
+
             <div class="login_border" style="padding:8px;">
                 <div class="login" style="display: block;">
                     <div style="position:absolute; right:30px; top:14px;">
@@ -74,28 +76,30 @@
                             <dl>
                                 <dd>
                                     <img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
-                                    <input name="user" type="text" id="txtUser" placeholder="请填写您的手机号"/></dd>
+                                    <input name="user" type="text" id="txtUser" placeholder="请填写您的手机号" onChange="upperCase()"/></dd>
                             </dl>
 
                             <dl>
                                 <dd>
                                     <img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
                                     <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
-                                           placeholder="请输入您的密码" name="pass"/></dd>
+                                           placeholder="请输入您的密码" name="pass" onblur="checkpas1();"/></dd>
+                                <span class="tip" style="color: red;">密码长度必须大于6位！！</span>
                             </dl>
 
                             <dl>
                                 <dd>
                                     <img src="<%=basePath%>shop/image/iconfont-psw.png" style="position: absolute;">
-                                    <input type="password" id="Userpwd" onKeyDown="enterHandler(event)"
-                                           placeholder="再次确认您的密码" name="pass2"/></dd>
+                                    <input type="password" id="Userpwd1" onKeyDown="enterHandler(event)"
+                                           placeholder="再次确认您的密码" name="pass2" onChange="checkpas();"/></dd>
+                                <span class="tip" style="color: red;">两次输入的密码不一致</span>
                             </dl>
                             <p>
                                 <input checked="checked" id="inputacc" type="checkbox">
                                 我已阅读并接受<a target="_blank" href="#">《用户服务协议》</a></p>
                             <div class="tishi"></div>
 
-                            <input id="button" type="button" value="同意协议并注册"/>
+                            <input id="button" type="button" value="同意协议并注册" onclick="checkpas2();"/>
                         </div>
                     </div>
 
@@ -105,19 +109,57 @@
         </div>
     </div>
 </form>
+<script language="javascript">
+    function upperCase() {
+        var txtUser = document.getElementById('txtUser').value;
+        if (!(/^1[34578]\d{9}$/.test(txtUser))) {
+            alert("手机号码格式错误，请核对后重试");
+
+            return false; //return false用来阻止表单提交
+        }
+    }
+</script>
 <div class="bottom">
     <div class="wrapper">
         <div class="copy">
-            <p>各门店营业时间：周一至周日 09:00-21:30 &nbsp;&nbsp;&nbsp;&nbsp; 全国服务热线：000-000-00000 &nbsp;&nbsp;0000-00000000 &nbsp;&nbsp;&nbsp;&nbsp;
-                工作时间：周一至周日 09:00-21:30</p>
-            <p>网站ICP备案号：<a rel="nofollow" href="javascript:;" target="_blank">滇ICP备xxxxx号</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                电信业务经营许可证：滇B2-xxxx号 &nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <p>Copyright © 2006 - 2017 All Rights Reserved</p>
+            <p>全国服务热线：000-000-00000 &nbsp;&nbsp;0000-00000000 &nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+            <p>网站ICP备案号：xxxxx号</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                电信业务经营许可证：xxxx号 &nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <p>Copyright © 2017 - 2018 All Rights Reserved</p>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<%=basePath%>shop/js/style.js"></script>
 
 </body>
+<script src="<%=basePath%>shop/js/jquery-1.12.4.js"></script>
+<script>
+    $(".tip").hide();
+    function checkpas1(){//当第一个密码框失去焦点时，触发checkpas1事件
+        var pas1=document.getElementById("Userpwd").value;
+        var pas2=document.getElementById("Userpwd1").value;//获取两个密码框的值
+        if(pas1!=pas2&&pas2!="")//此事件当两个密码不相等且第二个密码是空的时候会显示错误信息
+            $(".tip").show();
+        else
+            $(".tip").hide();//若两次输入的密码相等且都不为空时，不显示错误信息。
+    }
 
+    function checkpas(){//当第一个密码框失去焦点时，触发checkpas2件
+        var pas1=document.getElementById("Userpwd").value;
+        var pas2=document.getElementById("Userpwd1").value;//获取两个密码框的值
+        if(pas1!=pas2){
+            $(".tip").show();//当两个密码不相等时则显示错误信息
+        }else{
+            $(".tip").hide();
+        }
+    }
+    function checkpas2(){//点击提交按钮时，触发checkpas2事件，会进行弹框提醒以防无视错误信息提交
+        var pas3=document.getElementById("Userpwd").value;
+        var pas4=document.getElementById("Userpwd1").value;
+        if(pas3!=pas4){
+            alert("两次输入的密码不一致！");
+            return false;
+        }
+    }
+</script>
 </html>

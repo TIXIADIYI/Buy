@@ -11,6 +11,7 @@
     <title>二手市场登录</title>
     <script type="text/javascript" src="<%=basePath%>shop/js/jquery-1.12.3.min.js"></script>
     <script language="JavaScript" src="<%=basePath%>shop/js/jquery.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#button").click(function () {
@@ -44,7 +45,7 @@
 </div>
 <form id="loginform" method="post">
     <div class="login_wrap"
-         style="width:; background:#fff url(../image/20161209115754_5628.jpg) no-repeat center top; padding:40px 0;">
+         style="width:; background:#fff url(../img/ZCLOGO.jpg) no-repeat center top; padding:40px 0;">
         <div class="wrapper" id="login_body" style="width:;">
             <div class="log_ad" style="display:"><a href="javascript:;"></a></div>
             <div class="login_border" style="padding:8px;">
@@ -63,7 +64,7 @@
                             <dl>
                                 <dd>
                                     <img src="<%=basePath%>shop/image/iconfont-yonghu.png" style="position: absolute;">
-                                    <input name="user" type="text" id="txtUser" placeholder="手机号"/></dd>
+                                    <input name="user" type="text" autocomplete="off" id="txtUser" placeholder="请输入您的手机号" /></dd>
                             </dl>
                             <dl>
                                 <dd>
@@ -79,7 +80,7 @@
                                 <input type="checkbox" id="issave" checked/><label for="issave">下次自动登录</label>
                             </div>
                             <div class="tishi"></div>
-                            <input id="button" type="button" value="登 录" />
+                            <input id="button" type="button" value="登 录" onclick="check();"/>
                         </div>
                     </div>
 
@@ -92,16 +93,23 @@
 <div class="bottom">
     <div class="wrapper">
         <div class="copy">
-            <p>各门店营业时间：周一至周日 09:00-21:30 &nbsp;&nbsp;&nbsp;&nbsp; 全国服务热线：000-000-00000 &nbsp;&nbsp;0000-00000000 &nbsp;&nbsp;&nbsp;&nbsp;
-                工作时间：周一至周日 09:00-21:30</p>
-            <p>网站ICP备案号：<a rel="nofollow" href="javascript:;" target="_blank">滇ICP备xxxxx号</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                电信业务经营许可证：滇B2-xxxx号 &nbsp;&nbsp;&nbsp;&nbsp; </p>
-            <p>Copyright © 2006 - 2017 All Rights Reserved</p>
+            <p>全国服务热线：000-000-00000 &nbsp;&nbsp;0000-00000000 &nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+            <p>网站ICP备案号：xxxxx号</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                电信业务经营许可证：xxxx号 &nbsp;&nbsp;&nbsp;&nbsp; </p>
+            <p>Copyright © 2017 - 2018 All Rights Reserved</p>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="<%=basePath%>shop/js/style.js"></script>
 
+<script type="text/javascript">
+    function check() {
+        var txtUser = document.getElementById('txtUser').value;
+        if (!(/^1[34578]\d{9}$/.test(txtUser))) {
+            alert("手机号码格式错误，请核对后重试");
+        }
+    }
+</script>
 </body>
 
 </html>
